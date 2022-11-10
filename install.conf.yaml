@@ -2,4 +2,5 @@
     ~/.zshrc: .zshrc
     ~/.tmux.conf: .tmux.conf
     ~/.config/tmuxinator: tmuxinator
+    ~/.config/nvim: nvim
 
