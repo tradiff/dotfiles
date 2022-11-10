@@ -52,14 +52,6 @@ export PATH="$PATH:$HOME/bin"
 
 alias ls='ls -lGFhva'
 alias cls='clear && printf "\e[3J"'
-
-# delete any branches that have been pushed and then deleted upstream
-git-prune() {
-  git switch main
-  git fetch -p
-  git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
-}
-
 alias k="kubectl"
 alias rspecp='bundle exec turbo_tests'
 alias db-up='rails db:migrate'

@@ -3,4 +3,5 @@
     ~/.tmux.conf: .tmux.conf
     ~/.config/tmuxinator: tmuxinator
     ~/.config/nvim: nvim
-
+    ~/.gitconfig: .gitconfig
+    ~/.gitignore_global: .gitignore_global

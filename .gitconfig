@@ -1,0 +1,12 @@
+[include]
+    path = .gitconfig_user
+[core]
+    editor = code --wait
+    excludesFile = ~/.gitignore_global
+[alias]
+    uncommit = reset --soft HEAD~1
+
+    # delete any branches that have been pushed and then deleted upstream
+    cleanup = !git switch main && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+[push]
+    default = current
