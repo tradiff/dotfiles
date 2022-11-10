@@ -1,2 +1,5 @@
 - link:
     ~/.zshrc: .zshrc
+    ~/.tmux.conf: .tmux.conf
+    ~/.config/tmuxinator: tmuxinator
+
