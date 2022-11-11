@@ -14,3 +14,10 @@ require('bufferline').setup {
         sort_by = 'insert_after_current' -- 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
     }
 }
+
+-- <TAB><S-TAB> switch between buffers
+vim.keymap.set('n', '<TAB>', ':BufferLineCycleNext<CR>')
+vim.keymap.set('n', '<S-TAB>', ':BufferLineCyclePrev<CR>')
+
+vim.api.nvim_create_user_command('Pin', 'BufferLineTogglePin', { nargs = 0 })
+
