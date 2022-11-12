@@ -41,13 +41,3 @@ vim.o.wrap = false
 
 vim.o.termguicolors = true
 
--- attempt to delay the loading of the persistance buffers until after
--- syntax hilighting is loaded. it's not working, the initial file loaded
--- doesn't have syntax hilighting. still invetigating.
-local persistence_group = vim.api.nvim_create_augroup('persistence', {
-  clear = true
-})
-vim.api.nvim_create_autocmd('UIEnter', {
-  command = 'lua require("persistence").load()',
-  group = persistence_group
-})

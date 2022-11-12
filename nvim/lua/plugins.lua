@@ -135,10 +135,10 @@ return require('packer').startup(function(use)
 
   -- persistant sessions
   use({
-    'folke/persistence.nvim',
-    module = 'persistence',
+    'Shatur/neovim-session-manager',
+    requires = 'nvim-lua/plenary.nvim',
     config = function()
-      require('plugins.persistence')
+      require('plugins.session-manager')
     end
   })
 end)
