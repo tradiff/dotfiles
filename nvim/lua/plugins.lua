@@ -13,11 +13,15 @@ return require('packer').startup(function(use)
 
   -- file tree
   use {
-    'nvim-tree/nvim-tree.lua',
-    requires = { 'nvim-tree/nvim-web-devicons' },
-    tag = 'nightly',
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
     config = function()
-      require('plugins.nvim-tree')
+      require('plugins.neo-tree')
     end
   }
 

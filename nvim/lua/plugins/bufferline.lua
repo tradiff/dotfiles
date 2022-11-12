@@ -1,8 +1,8 @@
 require('bufferline').setup {
   options = {
     offsets = { {
-      filetype = 'NvimTree',
-      text = 'File Explorer'
+      filetype = 'neo-tree',
+      text = ''
     } },
     separator_style = 'thick', -- "slant" | "thick" | "thin" | { 'any', 'any' },
     always_show_bufferline = true,
