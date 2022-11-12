@@ -1,4 +1,4 @@
-persistence = require("persistence")
+local persistence = require('persistence')
 
 persistence.setup()
 

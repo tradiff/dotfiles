@@ -2,7 +2,7 @@
 vim.keymap.set('n', '<leader><leader>', ':')
 
 -- escape out of insert mode
-vim.keymap.set("i", "jj", "<ESC>")
+vim.keymap.set('i', 'jj', '<ESC>')
 
 -- <leader>w writes the current buffer to disk
 vim.keymap.set('n', '<leader>w', ':w!<CR>')
@@ -41,6 +41,6 @@ vim.keymap.set('n', '<Leader><Up>', '<C-W>k')
 vim.keymap.set('n', '<Leader><Right>', '<C-W>l')
 
 -- OS clipboard
-vim.keymap.set('v', '<leader>y', '"+y', { noremap = true})
-vim.keymap.set('n', '<leader>Y', '"+yg_', { noremap = true})
-vim.keymap.set('n', '<leader>y', '"+y', { noremap = true})
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
+vim.keymap.set('n', '<leader>Y', '"+yg_', { noremap = true })
+vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })

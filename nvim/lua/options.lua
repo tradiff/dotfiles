@@ -1,7 +1,7 @@
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
 
 -- enable the mouse (I know, I'm a terrible person)
-vim.o.mouse = "a"
+vim.o.mouse = 'a'
 
 -- disable compatibility with old-time vi
 vim.o.nocompatible = true
@@ -45,9 +45,9 @@ vim.o.termguicolors = true
 -- syntax hilighting is loaded. it's not working, the initial file loaded
 -- doesn't have syntax hilighting. still invetigating.
 local persistence_group = vim.api.nvim_create_augroup('persistence', {
-    clear = true
+  clear = true
 })
-vim.api.nvim_create_autocmd("UIEnter", {
-    command = 'lua require("persistence").load()',
-    group = persistence_group
+vim.api.nvim_create_autocmd('UIEnter', {
+  command = 'lua require("persistence").load()',
+  group = persistence_group
 })
