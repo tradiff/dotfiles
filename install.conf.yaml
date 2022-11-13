@@ -5,3 +5,4 @@
     ~/.config/nvim: nvim
     ~/.gitconfig: .gitconfig
     ~/.gitignore_global: .gitignore_global
+    ~/.config/kitty: kitty

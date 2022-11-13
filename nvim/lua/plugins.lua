@@ -162,4 +162,8 @@ return require('packer').startup(function(use)
       require('plugins.session-manager')
     end
   })
+
+  use({
+    'knubie/vim-kitty-navigator'
+  })
 end)

@@ -1,3 +1,4 @@
 nvim/plugin/**
 nvim/sessions/**
 nvim/.luarc.json
+kitty/kitty.conf.bak
