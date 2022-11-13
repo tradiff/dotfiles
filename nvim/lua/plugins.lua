@@ -6,8 +6,16 @@ return require('packer').startup(function(use)
   -- colorscheme
   use {
     'bluz71/vim-nightfly-guicolors',
+    as = 'colorscheme',
     config = function()
-      vim.cmd [[colorscheme nightfly]]
+      vim.cmd([[colorscheme nightfly]])
+
+      vim.cmd([[highlight DiffAdd gui=none guifg=none guibg=#103235]])
+      vim.cmd([[highlight DiffChange gui=none guifg=none guibg=#272D43]])
+      vim.cmd([[highlight DiffText gui=none guifg=none guibg=#394b70]])
+      vim.cmd([[highlight DiffviewDiffAddAsDelete gui=none guifg=none guibg=#3F2D3D]])
+      vim.cmd([[highlight DiffviewDiffDelete gui=none guifg=#3B4252 guibg=none]])
+      vim.cmd([[highlight DiffDelete gui=none guifg=#21252A guibg=#1A1D21]])
     end
   }
 
@@ -126,6 +134,15 @@ return require('packer').startup(function(use)
     'lewis6991/gitsigns.nvim',
     config = function()
       require('plugins.gitsigns')
+    end
+  }
+
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    after = 'colorscheme',
+    config = function()
+      require('plugins.diffview')
     end
   }
 
