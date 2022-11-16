@@ -7,13 +7,13 @@ diffview.setup({
 -- set diff deletes to use fancy diagonal lines instead of lame hyphens
 vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
 
-vim.api.nvim_create_user_command('DiffviewToggle', function(e)
+vim.api.nvim_create_user_command('DiffviewToggle', function()
   local view = require('diffview.lib').get_current_view()
 
   if view then
     vim.cmd('DiffviewClose')
   else
-    vim.cmd('DiffviewOpen ' .. e.args)
+    vim.cmd('DiffviewOpen HEAD')
   end
 end, { nargs = '*' })
 
