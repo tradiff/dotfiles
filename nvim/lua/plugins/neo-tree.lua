@@ -13,6 +13,41 @@ vim.fn.sign_define('DiagnosticSignHint',
 -- NOTE: this is changed from v1.x, which used the old style of highlight groups
 -- in the form "LspDiagnosticsSignWarning"
 
+local function getTelescopeOpts(state, path)
+  return {
+    cwd = path,
+    search_dirs = { path },
+    attach_mappings = function(prompt_bufnr, map)
+      local actions = require 'telescope.actions'
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local action_state = require 'telescope.actions.state'
+        local selection = action_state.get_selected_entry()
+        local filename = selection.filename
+        if (filename == nil) then
+          filename = selection[1]
+        end
+        require('neo-tree.sources.filesystem').navigate(state, state.path, filename)
+      end)
+      return true
+    end
+  }
+end
+
+---Gets the node parent folder recursively
+---@param tree table to look for nodes
+---@param node table to look for folder parent
+---@return table table
+local function get_folder_node(tree, node)
+  if not node then
+    node = tree:get_node()
+  end
+  if node.type == 'directory' then
+    return node
+  end
+  return get_folder_node(tree, tree:get_node(node:get_parent_id()))
+end
+
 require('neo-tree').setup({
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = 'rounded',
@@ -90,7 +125,7 @@ require('neo-tree').setup({
       ['P'] = { 'toggle_preview', config = { use_float = true } },
       ['S'] = 'open_split',
       ['s'] = 'open_vsplit',
-      ['t'] = 'open_tabnew',
+      ['t'] = 'none',
       ['w'] = 'open_with_window_picker',
       ['C'] = 'close_node',
       ['z'] = 'close_all_nodes',
@@ -118,7 +153,7 @@ require('neo-tree').setup({
       ['<Right>'] = function(state)
         local node = state.tree:get_node()
         if require('neo-tree.utils').is_expandable(node) then
-          if not node["_is_expanded"] then
+          if not node['_is_expanded'] then
             state.commands['toggle_node'](state)
           end
         end
@@ -171,8 +206,16 @@ require('neo-tree').setup({
         ['<c-x>'] = 'clear_filter',
         ['[g'] = 'prev_git_modified',
         [']g'] = 'next_git_modified',
+        ['tg'] = 'telescope_grep',
+
       }
-    }
+    },
+    commands = {
+      telescope_grep = function(state)
+        local node = get_folder_node(state.tree, state.tree:get_node())
+        require('telescope.builtin').live_grep(getTelescopeOpts(state, node.path))
+      end,
+    },
   },
   buffers = {
     follow_current_file = true, -- This will find and focus the file in the active buffer every
