@@ -43,3 +43,6 @@ vim.o.termguicolors = true
 
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+-- always show the signs column, even if empty
+vim.o.signcolumn = 'yes'
