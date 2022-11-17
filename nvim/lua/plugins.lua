@@ -19,6 +19,11 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'yamatsum/nvim-nonicons',
+    requires = { 'kyazdani42/nvim-web-devicons' }
+  }
+
   -- file tree
   use {
     'nvim-neo-tree/neo-tree.nvim',
@@ -127,8 +132,6 @@ return require('packer').startup(function(use)
   }
 
   -- git stuff
-  use { 'tpope/vim-fugitive' }
-
   -- git gutter
   use {
     'lewis6991/gitsigns.nvim',
