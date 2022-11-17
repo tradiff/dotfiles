@@ -4,7 +4,9 @@ local actions = require('telescope.actions')
 telescope.setup({
   defaults = {
     dynamic_preview_title = true,
-    path_display = { 'shorten' },
+    path_display = {
+      shorten = { len = 2 }
+    },
     layout_strategy = 'horizontal',
     layout_config = {
       horizontal = {
@@ -38,4 +40,3 @@ vim.keymap.set('n', '<leader>tg', '<cmd>Telescope live_grep<CR>')
 vim.keymap.set('n', '<leader>tb', '<cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>th', '<cmd>Telescope help_tags<CR>')
 vim.keymap.set('n', '<leader>td', '<cmd>Telescope git_status<CR>')
-
