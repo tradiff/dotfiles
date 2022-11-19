@@ -1,6 +1,14 @@
 local telescope = require('telescope')
 local actions = require('telescope.actions')
 
+vim.cmd([[highlight TelescopeSpec gui=none guifg=none guibg=#103235]])
+vim.cmd([[highlight TelescopeAdmin gui=none guifg=none guibg=#272D43]])
+
+local highlights = {
+  { 'spec/.*', 'TelescopeSpec' },
+  { 'app/admin/.*', 'TelescopeAdmin' }
+}
+
 telescope.setup({
   defaults = {
     selection_caret = '▶ ',
@@ -29,7 +37,19 @@ telescope.setup({
   },
   pickers = {
     find_files = {
-      hidden = false
+      hidden = false,
+      entry_maker = require 'plugins.telescope_make_entry'.gen_from_file(
+        {
+          highlights = highlights
+        }
+      ),
+    },
+    live_grep = {
+      entry_maker = require 'plugins.telescope_make_entry'.gen_from_vimgrep(
+        {
+          highlights = highlights
+        }
+      ),
     }
   }
 })
