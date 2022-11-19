@@ -3,10 +3,13 @@ local actions = require('telescope.actions')
 
 telescope.setup({
   defaults = {
+    selection_caret = '▶ ',
     dynamic_preview_title = true,
-    path_display = {
-      shorten = { len = 2 }
-    },
+    path_display = function(_, path)
+      local tail = require('telescope.utils').path_tail(path)
+      local directory = string.sub(path, 1, -(string.len(tail) + 1))
+      return string.format('%s (%s)', tail, directory)
+    end,
     layout_strategy = 'horizontal',
     layout_config = {
       horizontal = {
@@ -18,8 +21,6 @@ telescope.setup({
         ['<C-k>'] = actions.move_selection_previous,
         ['<C-j>'] = actions.move_selection_next,
         ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
-
-        --   ["<c-t>"] = trouble.open_with_trouble,
         ['<esc>'] = actions.close
       }
     },
