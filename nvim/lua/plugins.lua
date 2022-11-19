@@ -19,11 +19,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'yamatsum/nvim-nonicons',
-    requires = { 'kyazdani42/nvim-web-devicons' }
-  }
-
   -- file tree
   use {
     'nvim-neo-tree/neo-tree.nvim',
