@@ -1,5 +1,6 @@
 - link:
     ~/.zshrc: .zshrc
+    ~/.p10k.zsh: .p10k.zsh
     ~/.tmux.conf: .tmux.conf
     ~/.config/tmuxinator: tmuxinator
     ~/.config/nvim: nvim
