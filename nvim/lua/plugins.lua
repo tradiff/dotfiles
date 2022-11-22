@@ -77,6 +77,18 @@ return require('packer').startup(function(use)
   })
   use 'onsails/lspkind.nvim'
 
+  -- LSP loading indicator
+  use {
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup({
+        text = {
+          spinner = 'line'
+        }
+      })
+    end
+  }
+
   -- status bar
   use {
     'nvim-lualine/lualine.nvim',
