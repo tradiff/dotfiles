@@ -152,6 +152,13 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'tpope/vim-fugitive',
+    config = function()
+      require('plugins.fugitive')
+    end
+  }
+
   -- persistant sessions
   use({
     'Shatur/neovim-session-manager',
