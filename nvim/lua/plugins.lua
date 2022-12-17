@@ -43,6 +43,14 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- close buffers without closing windows
+  use {
+    'moll/vim-bbye',
+    config = function()
+      require('plugins.vim-bbye')
+    end
+  }
+
   -- comment and uncomment code
   use 'tpope/vim-commentary'
 
@@ -73,7 +81,7 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   use({
     'glepnir/lspsaga.nvim',
-    branch = 'main'
+    branch = 'main',
   })
   use 'onsails/lspkind.nvim'
 
