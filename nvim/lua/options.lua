@@ -46,3 +46,7 @@ vim.o.splitbelow = true
 
 -- always show the signs column, even if empty
 vim.o.signcolumn = 'yes'
+
+-- always show at least 7 characters around the cursor
+vim.o.scrolloff = 7
+vim.o.sidescrolloff = 7
