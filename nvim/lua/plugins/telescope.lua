@@ -1,8 +1,12 @@
 local telescope = require('telescope')
 local actions = require('telescope.actions')
 
-vim.cmd([[highlight TelescopeSpec gui=none guifg=none guibg=#103235]])
-vim.cmd([[highlight TelescopeAdmin gui=none guifg=none guibg=#272D43]])
+-- clear the selection highlight
+vim.api.nvim_set_hl(0, 'TelescopeSelection', { bg = 'bg' })
+
+-- context-specific highlights
+vim.api.nvim_set_hl(0, 'TelescopeSpec', { bg = '#103235' })
+vim.api.nvim_set_hl(0, 'TelescopeAdmin', { bg = '#272D43' })
 
 local highlights = {
   { 'spec/.*', 'TelescopeSpec' },
