@@ -102,6 +102,7 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' } },
+    after = 'colorscheme',
     config = function()
       require('plugins.telescope')
     end
@@ -112,6 +113,13 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make'
   })
+
+  use {
+    'theprimeagen/harpoon',
+    config = function()
+      require('plugins.harpoon')
+    end
+  }
 
   -- vertical lines showing indentation level
   use {

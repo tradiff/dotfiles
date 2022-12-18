@@ -26,11 +26,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-
-  -- TODO this isn't working, seems to interfere with which-key for telescope
-  vim.keymap.set('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', bufopts)
-
+  vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
