@@ -15,6 +15,9 @@ vim.o.ignorecase = true
 -- hilight search results
 vim.o.hlsearch = true
 
+-- show match while typing
+vim.opt.incsearch = true
+
 -- indent new lines the same amount as the line just typed
 vim.o.autoindent = true
 
@@ -50,3 +53,13 @@ vim.o.signcolumn = 'yes'
 -- always show at least 7 characters around the cursor
 vim.o.scrolloff = 7
 vim.o.sidescrolloff = 7
+
+-- highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
