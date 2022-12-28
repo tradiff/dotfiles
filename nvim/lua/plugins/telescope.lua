@@ -33,7 +33,9 @@ telescope.setup({
         ['<C-k>'] = actions.move_selection_previous,
         ['<C-j>'] = actions.move_selection_next,
         ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
-        ['<esc>'] = actions.close
+        ['<esc>'] = actions.close,
+        ['<C-Down>'] = actions.cycle_history_next,
+        ['<C-Up>'] = actions.cycle_history_prev,
       }
     },
     vimgrep_arguments = { 'rg', '--hidden', '--color=never', '--no-heading', '--with-filename', '--line-number',
