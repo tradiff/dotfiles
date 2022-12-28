@@ -7,9 +7,6 @@ vim.keymap.set('i', 'jj', '<ESC>')
 -- <leader>w writes the current buffer to disk
 vim.keymap.set('n', '<leader>w', ':w!<CR>')
 
--- <leader>q quits the current window
-vim.keymap.set('n', '<leader>q', ':q!<CR>')
-
 -- <leader>Q quits all windows
 vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
 
