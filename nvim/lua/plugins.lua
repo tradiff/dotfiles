@@ -131,9 +131,9 @@ return require('packer').startup(function(use)
 
   -- vertical lines showing indentation level
   use {
-    'lukas-reineke/indent-blankline.nvim',
+    'Yggdroot/indentLine',
     config = function()
-      require('plugins.indent-blankline')
+      require('plugins.indent-line')
     end
   }
 
