@@ -25,7 +25,12 @@ vim.keymap.set('n', '<C-@><C-@>', ':nohls<CR>', { silent = true })
 vim.keymap.set('n', '<C-Space><C-Space>', ':nohls<CR>', { silent = true })
 
 -- delete without copying to a register
-vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('x', 'x', '"_x')
+-- delete line without copying to a register
+vim.keymap.set('n', 'xx', 'V"_x')
+
+-- paste without copying to a register
+vim.keymap.set('x', 'p', 'pgvy')
 
 -- <Leader>h/j/k/l navigates windows
 vim.keymap.set('n', '<Leader>h', '<C-W>h')
