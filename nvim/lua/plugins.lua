@@ -192,4 +192,12 @@ return require('packer').startup(function(use)
   use({
     'knubie/vim-kitty-navigator'
   })
+
+  -- insert debug statements into code
+  use({
+    'rareitems/printer.nvim',
+    config = function()
+      require('plugins.printer')
+    end
+  })
 end)
