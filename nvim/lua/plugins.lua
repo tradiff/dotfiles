@@ -12,6 +12,14 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require('plugins.treesitter')
+    end,
+  }
+
   -- file tree
   use {
     'nvim-neo-tree/neo-tree.nvim',
