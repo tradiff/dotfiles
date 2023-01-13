@@ -208,4 +208,10 @@ return require('packer').startup(function(use)
       require('plugins.printer')
     end
   })
+
+  use({ 'windwp/nvim-autopairs',
+    config = function()
+      require('plugins.nvim-autopairs')
+    end
+  })
 end)
