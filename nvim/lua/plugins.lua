@@ -80,10 +80,6 @@ return require('packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'neovim/nvim-lspconfig'
-  use({
-    'glepnir/lspsaga.nvim',
-    branch = 'main',
-  })
   use 'onsails/lspkind.nvim'
 
   -- LSP loading indicator
