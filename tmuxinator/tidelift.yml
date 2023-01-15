@@ -1,29 +1,24 @@
 name: tidelift
-root: ~/projects
 
+startup_window: "dependencyci"
 startup_pane: "2"
 
 windows:
   - dependencyci:
       layout: tiled
+      root: ~/projects/dependencyci
       panes:
         - puma:
-          - cd dependencyci
-          - rvm use
           - bundle install
           - bundle exec rails s -p 5000
         - sidekiq:
-          - cd dependencyci
-          - rvm use
           - bundle exec sidekiq -C config/sidekiq.yml
         - terminal:
-          - cd dependencyci
   - frontend:
       layout: tiled
+      root: ~/projects/frontend
       panes:
         - dev:
-          - cd frontend
           - yarn install
           - yarn run dev:local
         - terminal:
-          - cd frontend
