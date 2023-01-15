@@ -1,4 +1,5 @@
 local gitsigns = require('gitsigns')
+local gitsigns_actions = require('gitsigns.actions')
 
 gitsigns.setup {
   signs = {
@@ -71,5 +72,7 @@ gitsigns.setup {
   },
   yadm = {
     enable = false
-  }
+  },
 }
+
+gitsigns_actions.change_base('HEAD', true)
