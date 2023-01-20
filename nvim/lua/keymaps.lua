@@ -46,3 +46,10 @@ vim.keymap.set('n', '<Leader><Right>', '<C-W>l')
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
 vim.keymap.set('n', '<leader>Y', '"+yg_', { noremap = true })
 vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
+
+-- don't clear selection after indent
+vim.keymap.set('v', '>', '>gv', { noremap = true })
+vim.keymap.set('v', '<', '<gv', { noremap = true })
+vim.keymap.set('v', '<tab>', '>gv', { noremap = true })
+vim.keymap.set('v', '<s-tab>', '<gv', { noremap = true })
+
