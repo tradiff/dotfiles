@@ -1,12 +1,13 @@
 require('bufferline').setup {
   options = {
+    filetype = false,
     close_command = 'Bdelete %d',
     right_mouse_command = 'Bdelete %d',
     offsets = { {
       filetype = 'neo-tree',
       text = ''
     } },
-    separator_style = 'thick', -- "slant" | "thick" | "thin" | { 'any', 'any' },
+    separator_style = 'slant', -- "slant" | "thick" | "thin" | { 'any', 'any' },
     always_show_bufferline = true,
     hover = {
       enabled = true,

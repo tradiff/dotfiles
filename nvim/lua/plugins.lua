@@ -20,13 +20,20 @@ return require('packer').startup(function(use)
     end,
   }
 
+  use {
+    'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('plugins.nvim-web-devicons')
+    end,
+  }
+
   -- file tree
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
     requires = {
       'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
     },
     config = function()
@@ -38,7 +45,7 @@ return require('packer').startup(function(use)
   use {
     'akinsho/bufferline.nvim',
     tag = 'v3.*',
-    requires = 'kyazdani42/nvim-web-devicons',
+    requires = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('plugins.bufferline')
     end
@@ -205,7 +212,8 @@ return require('packer').startup(function(use)
     end
   })
 
-  use({ 'windwp/nvim-autopairs',
+  use({
+    'windwp/nvim-autopairs',
     config = function()
       require('plugins.nvim-autopairs')
     end
