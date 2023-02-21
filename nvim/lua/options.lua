@@ -54,6 +54,8 @@ vim.o.signcolumn = 'yes'
 vim.o.scrolloff = 7
 vim.o.sidescrolloff = 7
 
+vim.o.cursorline = true
+
 -- highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
