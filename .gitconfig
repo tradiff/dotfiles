@@ -14,9 +14,22 @@
 
     # commit changes (if any) using the "WIP" message and check out main
     wip = !(git diff --quiet HEAD || git commit -am "WIP") && git switch main && git fetch
+    # only uncommit if the last commit was "WIP"
+    unwip = !git log -n 1 | grep -qci "WIP" && git reset HEAD~1
 
     # delete any branches that have been pushed and then deleted upstream
     cleanup = !git switch main && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+
+    # rebase to main
+    slam = !git fetch origin && git rebase origin/main
+
+[pretty]
+    minimal = format:%C(auto)%h %s %C(blue)<%an> %C(magenta)(%cr) %C(auto)%d
+    # same as above except it uses absolute date instead of relative date (%cD instead of %cr)
+    minimal-date = format:%C(auto)%h %s %C(blue)<%an> %C(magenta)(%cD) %C(auto)%d
+
+[format]
+    pretty = minimal
 
 [push]
     default = current
