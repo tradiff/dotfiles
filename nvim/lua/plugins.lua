@@ -1,5 +1,4 @@
 return require('packer').startup(function(use)
-
   -- packer can manage itself
   use 'wbthomason/packer.nvim'
 
@@ -17,6 +16,14 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     config = function()
       require('plugins.treesitter')
+    end,
+  }
+
+  -- sticky scroll
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      require('plugins.treesitter-context')
     end,
   }
 
