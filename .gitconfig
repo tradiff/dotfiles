@@ -8,14 +8,17 @@
 [alias]
     br = branch
     sw = switch
+    l = log --pretty=minimal
+
     main = !git switch main && git pull
     rs = reset --hard
     uncommit = reset --soft HEAD~1
+    unadd = reset HEAD
 
     # commit changes (if any) using the "WIP" message and check out main
-    wip = !(git diff --quiet HEAD || git commit -am "WIP") && git switch main && git fetch
+    wip = !git add . && (git diff --quiet HEAD || git commit -am "WIP") && git switch main && git fetch
     # only uncommit if the last commit was "WIP"
-    unwip = !git log -n 1 | grep -qci "WIP" && git reset HEAD~1
+    unwip = !git log -n 1 | grep -qci "WIP" && git uncommit
 
     # delete any branches that have been pushed and then deleted upstream
     cleanup = !git switch main && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
@@ -24,12 +27,15 @@
     slam = !git fetch origin && git rebase origin/main
 
 [pretty]
-    minimal = format:%C(auto)%h %s %C(blue)<%an> %C(magenta)(%cr) %C(auto)%d
-    # same as above except it uses absolute date instead of relative date (%cD instead of %cr)
-    minimal-date = format:%C(auto)%h %s %C(blue)<%an> %C(magenta)(%cD) %C(auto)%d
+    minimal = format:"%C(#0080ff)%<(12,trunc)%cr %C(#17b062)%<(15,trunc)%aN%C(reset) %s %C(auto)%D %C(#555555)%h"
+    #                                         │                          |            |          |             └─ hash (abbreviated)
+    #                                         │                          │            │          └─ decorations (branch, heads or tags)
+    #                                         │                          │            └─ message 
+    #                                         │                          └─ author name
+    #                                         └─ date (relative)
 
-[format]
-    pretty = minimal
+[branch]
+  sort = committerdate
 
 [push]
     default = current
@@ -38,3 +44,5 @@
 [fetch]
     prune = true
 
+[mailmap]
+	file = ~/.mailmap
