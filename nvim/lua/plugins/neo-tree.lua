@@ -149,8 +149,8 @@ require('neo-tree').setup({
       ['?'] = 'show_help',
       ['<'] = 'prev_source',
       ['>'] = 'next_source',
-      ['<Left>'] = 'close_node',
-      ['<Right>'] = function(state)
+      ['h'] = 'close_node',
+      ['l'] = function(state)
         local node = state.tree:get_node()
         if require('neo-tree.utils').is_expandable(node) then
           if not node['_is_expanded'] then
