@@ -1,6 +1,5 @@
 require('options')
-require('plugins')
-require('lsp.mason')
+require('lazy-plugins')
 require('lsp.lspconfig')
 require('keymaps')
 require('commands')

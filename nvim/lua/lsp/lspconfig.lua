@@ -37,7 +37,7 @@ for _, server in pairs(native_installed_servers) do
 end
 
 
-lspconfig.lua_ls.setup {
+lspconfig.lua_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
@@ -61,6 +61,7 @@ lspconfig.lua_ls.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -68,6 +69,6 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
 
 vim.cmd [[autocmd BufWritePre *.* lua vim.lsp.buf.format({ async = false })]]
