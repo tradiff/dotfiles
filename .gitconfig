@@ -9,14 +9,15 @@
     br = branch
     sw = switch
     l = log --pretty=minimal
+    conflicts = diff --name-only --diff-filter=U
 
     main = !git switch main && git pull
     rs = reset --hard
     uncommit = reset --soft HEAD~1
     unadd = reset HEAD
 
-    # commit changes (if any) using the "WIP" message and check out main
-    wip = !git add . && (git diff --quiet HEAD || git commit -am "WIP") && git switch main && git fetch
+    # commit changes (if any) using the "WIP" message
+    wip = !git add . && (git diff --quiet HEAD || git commit -m "WIP")
     # only uncommit if the last commit was "WIP"
     unwip = !git log -n 1 | grep -qci "WIP" && git uncommit
 
