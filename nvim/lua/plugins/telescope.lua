@@ -58,6 +58,9 @@ return {
           }
         },
         mappings = {
+          n = {
+                ['<C-d>'] = actions.delete_buffer,
+          },
           i = {
                 ['<C-k>'] = actions.move_selection_previous,
                 ['<C-j>'] = actions.move_selection_next,
@@ -65,6 +68,7 @@ return {
                 ['<esc>'] = actions.close,
                 ['<C-Down>'] = actions.cycle_history_next,
                 ['<C-Up>'] = actions.cycle_history_prev,
+                ['<C-d>'] = actions.delete_buffer,
           }
         },
         vimgrep_arguments = { 'rg', '--hidden', '--color=never', '--no-heading', '--with-filename', '--line-number',
