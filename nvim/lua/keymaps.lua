@@ -1,55 +1,61 @@
--- <leader><leader> is a shortcut for commands
-vim.keymap.set('n', '<leader><leader>', ':')
+local map = vim.keymap.set
+local opts = { noremap = true, silent = true }
 
 -- escape out of insert mode
-vim.keymap.set('i', 'jj', '<ESC>')
+map('i', 'jj', '<ESC>', opts)
 
 -- <leader>w writes the current buffer to disk
-vim.keymap.set('n', '<leader>w', ':w!<CR>')
+map('n', '<leader>w', ':w!<CR>', opts)
 
 -- <leader>Q quits all windows
-vim.keymap.set('n', '<leader>Q', ':qa!<CR>')
+map('n', '<leader>Q', ':qa!<CR>', opts)
 
 -- <leader>s for vertical split, <leader>S for horizontal split
-vim.keymap.set('n', '<leader>s', ':vs<CR><C-W>l')
-vim.keymap.set('n', '<leader>S', ':sp<CR><C-W>j')
+map('n', '<leader>s', ':vs<CR><C-W>l', opts)
+map('n', '<leader>S', ':sp<CR><C-W>j', opts)
 -- <leader>x to close a split
-vim.keymap.set('n', '<leader>x', ':close<CR>')
+map('n', '<leader>x', ':close<CR>', opts)
 
 -- reload vim config with <leader>V
-vim.keymap.set('n', '<leader>V', ':so ~/.config/nvim/init.lua<CR>')
+map('n', '<leader>V', ':so ~/.config/nvim/init.lua<CR>', opts)
 
 -- Hit escape twice to clear highlights
-vim.keymap.set('n', '<Esc><Esc>', ':nohls<CR>', { silent = true })
-vim.keymap.set('n', '<C-@><C-@>', ':nohls<CR>', { silent = true })
-vim.keymap.set('n', '<C-Space><C-Space>', ':nohls<CR>', { silent = true })
+map('n', '<Esc><Esc>', ':nohls<CR>', opts)
+map('n', '<C-@><C-@>', ':nohls<CR>', opts)
+map('n', '<C-Space><C-Space>', ':nohls<CR>', opts)
 
 -- delete without copying to a register
-vim.keymap.set('x', 'x', '"_x')
--- delete line without copying to a register
-vim.keymap.set('n', 'xx', 'V"_x')
+for _, mode in pairs({ 'n', 'x' }) do
+  for _, key in pairs({ 'c', 'C', 's', 'S', 'd', 'D' }) do
+    map(mode, key, string.format('"_%s', key), opts)
+  end
+end
+
+-- 'x' is the new "cut"
+map('n', 'x', 'd', opts)
+map('x', 'x', 'd', opts)
+map('n', 'xx', 'dd', opts)
+map('n', 'X', 'D', opts)
+map('x', 'X', 'D', opts)
 
 -- paste without copying to a register
-vim.keymap.set('x', 'p', 'pgvy')
+map('x', 'p', 'pgvy', opts)
+map('i', '<C-p>', '<ESC>pa', opts)
 
--- <Leader>h/j/k/l navigates windows
-vim.keymap.set('n', '<Leader>h', '<C-W>h')
-vim.keymap.set('n', '<Leader>j', '<C-W>j')
-vim.keymap.set('n', '<Leader>k', '<C-W>k')
-vim.keymap.set('n', '<Leader>l', '<C-W>l')
-vim.keymap.set('n', '<Leader><Left>', '<C-W>h')
-vim.keymap.set('n', '<Leader><Down>', '<C-W>j')
-vim.keymap.set('n', '<Leader><Up>', '<C-W>k')
-vim.keymap.set('n', '<Leader><Right>', '<C-W>l')
+
+-- navigate windows
+map('n', '<Leader><Left>', '<C-W>h', opts)
+map('n', '<Leader><Down>', '<C-W>j', opts)
+map('n', '<Leader><Up>', '<C-W>k', opts)
+map('n', '<Leader><Right>', '<C-W>l', opts)
 
 -- OS clipboard
-vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
-vim.keymap.set('n', '<leader>Y', '"+yg_', { noremap = true })
-vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
+map('x', '<leader>y', '"+y', opts)
+map('n', '<leader>Y', '"+yg_', opts)
+map('n', '<leader>y', '"+y', opts)
 
 -- don't clear selection after indent
-vim.keymap.set('v', '>', '>gv', { noremap = true })
-vim.keymap.set('v', '<', '<gv', { noremap = true })
-vim.keymap.set('v', '<tab>', '>gv', { noremap = true })
-vim.keymap.set('v', '<s-tab>', '<gv', { noremap = true })
-
+map('v', '>', '>gv', opts)
+map('v', '<', '<gv', opts)
+map('v', '<tab>', '>gv', opts)
+map('v', '<s-tab>', '<gv', opts)
