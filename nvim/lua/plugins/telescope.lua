@@ -1,6 +1,7 @@
 -- fuzzy finder over lists
 return {
   'nvim-telescope/telescope.nvim',
+  enabled = false,
   dependencies = {
     'colorscheme',
     'nvim-lua/plenary.nvim',

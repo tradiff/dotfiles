@@ -220,13 +220,13 @@ return {
                 ['<c-x>'] = 'clear_filter',
                 ['[g'] = 'prev_git_modified',
                 [']g'] = 'next_git_modified',
-                ['tg'] = 'telescope_grep',
+                ['tg'] = 'tree_grep',
           }
         },
         commands = {
-          telescope_grep = function(state)
+          tree_grep = function(state)
             local node = get_folder_node(state.tree, state.tree:get_node())
-            require('telescope.builtin').live_grep(getTelescopeOpts(state, node.path))
+            require('fzf-lua').live_grep({ cwd = node.path })
           end,
         },
       },
