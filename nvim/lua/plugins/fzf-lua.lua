@@ -23,7 +23,7 @@ return {
 
       map('n', '<leader><space>', function() fzflua.buffers() end, opts)
       map('n', '<leader>ff', function() fzflua.files() end, opts)
-      map('n', '<leader>fg', function() fzflua.live_grep({ resume = true }) end, opts)
+      map('n', '<leader>fg', function() fzflua.live_grep() end, opts)
       map('n', '<leader>fd', function() fzflua.git_status() end, opts)
 
       fzflua.setup({
