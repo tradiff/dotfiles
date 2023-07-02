@@ -115,4 +115,25 @@ export NVM_DIR="$HOME/.nvm"
 source ~/projects/infra/tidelift.sh
 tl setenv awsprod
 
+# returns the number of minutes remaining in the current sso session
+tl-lremaining() {
+  aws configure get sso_start_url --profile ${AWS_PROFILE} | xargs -I {} grep -h {} ~/.aws/sso/cache/*.json | jq .expiresAt | xargs -I {} zsh -c 'echo $(( ( $(gdate -d "{}" +'%s') - $(gdate +'%s') ) / 60 ))'
+}
+
+# tl login if needed
+tl-l() {
+  remaining_minutes=$(tl-lremaining)
+
+  if [[ $remaining_minutes -lt 10 ]]; then
+    tl login
+    remaining_minutes=$(tl-lremaining)
+  fi
+  echo "Remaining minutes: $remaining_minutes"
+}
+
+tl-console() { tl-l; tl ci-console }
+tl-db() { tl-l; tl pg-ro datagrip }
+tl-db-primary() { tl-l; tl pg-primary datagrip }
+tl-k9s() { tl-l; k9s }
+
 source ~/secrets.zsh
