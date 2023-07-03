@@ -8,7 +8,7 @@
 [alias]
     br = branch
     sw = switch
-    l = log --pretty=minimal
+    l = !git --no-pager log --pretty=minimal -20 --reverse
     conflicts = diff --name-only --diff-filter=U
 
     main = !git switch main && git pull

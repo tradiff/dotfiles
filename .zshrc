@@ -49,6 +49,7 @@ export PATH="$PATH:$HOME/bin"
 alias ls='ls -lGFhva'
 alias cls='clear && printf "\e[3J"'
 alias k="kubectl"
+alias g="git"
 alias rspecp='bundle exec turbo_tests'
 alias db-up='rails db:migrate'
 alias db-down='rails db:rollback STEP=1'
