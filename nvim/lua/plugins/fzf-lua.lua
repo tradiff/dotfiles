@@ -72,6 +72,16 @@ return {
             ['--history'] = vim.fn.stdpath('data') .. '/fzf-lua-grep-history',
           },
         },
+        buffers    = {
+          no_header = true,
+          fzf_opts = {
+            ['--header'] = [['<ctrl-x> delete unselected']],
+          },
+          actions = {
+            -- delete the unselected buffers
+            ['ctrl-x'] = { fn = fzflua.actions.buf_del, reload = true, prefix = 'toggle-all+' }
+          }
+        }
       })
     end
   }
