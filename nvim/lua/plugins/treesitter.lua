@@ -10,6 +10,9 @@ return {
       incremental_selection = {
         enable = false,
       },
+      matchup = {
+        enable = false
+      },
     })
   end,
 }

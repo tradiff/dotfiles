@@ -12,6 +12,11 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#21252A', bg = '#1A1D21' })
 
     vim.api.nvim_set_hl(0, 'NeoTreeGitUntracked', { link = 'NightflyGreyBlue' })
+
+    vim.api.nvim_set_hl(0, 'MatchParen', { link = 'NightflyEmeraldMode' })
+    vim.api.nvim_set_hl(0, 'MatchWord', { link = 'NightflyEmeraldMode' })
+    vim.api.nvim_set_hl(0, 'MatchParenCur', { link = 'NightflyEmeraldMode' })
+    vim.api.nvim_set_hl(0, 'MatchWordCur', { link = 'NightflyEmeraldMode' })
   end,
   group = custom_highlight,
 })
