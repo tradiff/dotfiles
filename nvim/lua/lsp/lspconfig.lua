@@ -13,29 +13,17 @@ local on_attach = function(_, bufnr)
     silent = true,
     buffer = bufnr
   }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', '<CMD>Glance references<CR>', bufopts)
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-local native_installed_servers = { 'solargraph' }
-local setup_opts = {
+lspconfig.solargraph.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
-
-for _, server in pairs(native_installed_servers) do
-  lspconfig[server].setup(setup_opts)
-end
-
+})
 
 lspconfig.lua_ls.setup({
   on_attach = on_attach,
@@ -71,4 +59,17 @@ lspconfig.lua_ls.setup({
   },
 })
 
-vim.cmd [[autocmd BufWritePre *.* lua vim.lsp.buf.format({ async = false })]]
+local lsp_formatting_group = vim.api.nvim_create_augroup('LspFormatting', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = lsp_formatting_group,
+  pattern = '*.*',
+  callback = function()
+    local success, error_message = pcall(function()
+      vim.lsp.buf.format({ async = false })
+    end)
+
+    if not success then
+      print('An error occurred:', error_message)
+    end
+  end,
+})
