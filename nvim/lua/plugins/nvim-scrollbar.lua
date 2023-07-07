@@ -1,128 +1,128 @@
 return {
-  'petertriho/nvim-scrollbar',
-  config = function()
-    require('scrollbar').setup({
+  "petertriho/nvim-scrollbar",
+  config = function ()
+    require("scrollbar").setup({
       show = true,
       show_in_active_only = false,
       set_highlights = true,
-      folds = 1000,                -- handle folds, set to number to disable folds if no. of lines in buffer exceeds this
-      max_lines = false,           -- disables if no. of lines in buffer exceeds this
+      folds = 1000, -- handle folds, set to number to disable folds if no. of lines in buffer exceeds this
+      max_lines = false, -- disables if no. of lines in buffer exceeds this
       hide_if_all_visible = false, -- Hides everything if all lines are visible
       throttle_ms = 100,
       handle = {
-        text = ' ',
-        blend = 80,                 -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
-        color = '#ffffff',
+        text = " ",
+        blend = 80, -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
+        color = "#ffffff",
         hide_if_all_visible = true, -- Hides handle if all lines are visible
       },
       marks = {
         Cursor = {
-          text = '•',
+          text = "•",
           priority = 0,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'Normal',
+          highlight = "Normal",
         },
         Error = {
-          text = { '-', '=' },
+          text = { "-", "=", },
           priority = 2,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'DiagnosticVirtualTextError',
+          highlight = "DiagnosticVirtualTextError",
         },
         Warn = {
-          text = { '-', '=' },
+          text = { "-", "=", },
           priority = 3,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'DiagnosticVirtualTextWarn',
+          highlight = "DiagnosticVirtualTextWarn",
         },
         Info = {
-          text = { '-', '=' },
+          text = { "-", "=", },
           priority = 4,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'DiagnosticVirtualTextInfo',
+          highlight = "DiagnosticVirtualTextInfo",
         },
         Hint = {
-          text = { '-', '=' },
+          text = { "-", "=", },
           priority = 5,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'DiagnosticVirtualTextHint',
+          highlight = "DiagnosticVirtualTextHint",
         },
         Misc = {
-          text = { '-', '=' },
+          text = { "-", "=", },
           priority = 6,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'Normal',
+          highlight = "Normal",
         },
         GitAdd = {
-          text = '-',
+          text = "-",
           priority = 7,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'GitSignsAdd',
+          highlight = "GitSignsAdd",
         },
         GitChange = {
-          text = '-',
+          text = "-",
           priority = 7,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'GitSignsChange',
+          highlight = "GitSignsChange",
         },
         GitDelete = {
-          text = '_',
+          text = "_",
           priority = 7,
           gui = nil,
           color = nil,
           cterm = nil,
           color_nr = nil, -- cterm
-          highlight = 'GitSignsDelete',
+          highlight = "GitSignsDelete",
         },
       },
       excluded_buftypes = {
-        'terminal',
+        "terminal",
       },
       excluded_filetypes = {
-        'prompt',
-        'TelescopePrompt',
-        'noice',
-        'neo-tree',
+        "prompt",
+        "TelescopePrompt",
+        "noice",
+        "neo-tree",
       },
       autocmd = {
         render = {
-          'BufWinEnter',
-          'TabEnter',
-          'TermEnter',
-          'WinEnter',
-          'CmdwinLeave',
-          'TextChanged',
-          'VimResized',
-          'WinScrolled',
+          "BufWinEnter",
+          "TabEnter",
+          "TermEnter",
+          "WinEnter",
+          "CmdwinLeave",
+          "TextChanged",
+          "VimResized",
+          "WinScrolled",
         },
         clear = {
-          'BufWinLeave',
-          'TabLeave',
-          'TermLeave',
-          'WinLeave',
+          "BufWinLeave",
+          "TabLeave",
+          "TermLeave",
+          "WinLeave",
         },
       },
       handlers = {
@@ -130,9 +130,9 @@ return {
         diagnostic = true,
         gitsigns = true, -- Requires gitsigns
         handle = true,
-        search = false,  -- Requires hlslens
-        ale = false,     -- Requires ALE
+        search = false, -- Requires hlslens
+        ale = false, -- Requires ALE
       },
     })
-  end
+  end,
 }

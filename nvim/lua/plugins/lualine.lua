@@ -1,31 +1,31 @@
 -- status bar
 return {
   {
-    'f-person/git-blame.nvim',
-    config = function()
+    "f-person/git-blame.nvim",
+    config = function ()
       vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
-      vim.g.gitblame_date_format = '%m/%d/%y'
-      vim.g.gitblame_message_template = ' <date> <author>:<summary>'
-      vim.g.gitblame_message_when_not_committed = ' Not Committed Yet'
-    end
+      vim.g.gitblame_date_format = "%m/%d/%y"
+      vim.g.gitblame_message_template = " <date> <author>:<summary>"
+      vim.g.gitblame_message_when_not_committed = " Not Committed Yet"
+    end,
   },
   {
-    'nvim-lualine/lualine.nvim',
-    config = function()
-      local lualine = require('lualine')
-      local lualine_nightfly = require('lualine.themes.nightfly')
-      local utils = require('lualine.utils.utils')
-      local git_blame = require('gitblame')
+    "nvim-lualine/lualine.nvim",
+    config = function ()
+      local lualine = require("lualine")
+      local lualine_nightfly = require("lualine.themes.nightfly")
+      local utils = require("lualine.utils.utils")
+      local git_blame = require("gitblame")
 
 
       -- new colors for theme
       local new_colors = {
-        blue = '#65D1FF',
-        green = '#3EFFDC',
-        violet = '#FF61EF',
-        yellow = '#FFDA7B',
-        black = '#000000',
-        bg = '#2C3043',
+        blue = "#65D1FF",
+        green = "#3EFFDC",
+        violet = "#FF61EF",
+        yellow = "#FFDA7B",
+        black = "#000000",
+        bg = "#2C3043",
       }
 
       -- change nightlfy theme colors
@@ -34,118 +34,118 @@ return {
       lualine_nightfly.visual.a.bg = new_colors.violet
       lualine_nightfly.command = {
         a = {
-          gui = 'bold',
+          gui = "bold",
           bg = new_colors.yellow,
-          fg = new_colors.black
-        }
+          fg = new_colors.black,
+        },
       }
 
       local function search_result()
         if vim.v.hlsearch == 0 then
-          return ''
+          return ""
         end
-        local last_search = vim.fn.getreg('/')
-        if not last_search or last_search == '' then
-          return ''
+        local last_search = vim.fn.getreg("/")
+        if not last_search or last_search == "" then
+          return ""
         end
-        local searchcount = vim.fn.searchcount { maxcount = 9999 }
-        return last_search .. '(' .. searchcount.current .. '/' .. searchcount.total .. ')'
+        local searchcount = vim.fn.searchcount { maxcount = 9999, }
+        return last_search .. "(" .. searchcount.current .. "/" .. searchcount.total .. ")"
       end
 
       local statusbar_sections = {
         lualine_a = {
           {
-            'mode',
-            separator = { left = '', right = '' },
-            padding = { left = 0, right = 0 },
+            "mode",
+            separator = { left = "", right = "", },
+            padding = { left = 0, right = 0, },
           },
         },
         lualine_b = {
-          'MatchupStatusOffscreen',
+          "MatchupStatusOffscreen",
           {
-            git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available
-          }
+            git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available,
+          },
         },
-        lualine_c = { 'branch', search_result },
+        lualine_c = { "branch", search_result, },
         lualine_x = {},
-        lualine_y = { 'progress' },
+        lualine_y = { "progress", },
         lualine_z = {
           {
-            'location',
-            separator = { left = '', right = '' },
-            padding = { left = 0, right = 0 },
-          }
-        }
+            "location",
+            separator = { left = "", right = "", },
+            padding = { left = 0, right = 0, },
+          },
+        },
       }
 
       local winbar_sections = {
         lualine_a = {},
         lualine_b = {
           {
-            'filetype',
+            "filetype",
             colored = true,
             icon_only = true,
-            icon = { align = 'right' },
-            padding = { right = 1, left = 1 },
+            icon = { align = "right", },
+            padding = { right = 1, left = 1, },
           },
           {
-            'filename',
+            "filename",
             file_status = true,
             newfile_status = false,
             path = 1,
             shorting_target = 40,
             symbols = {
-              modified = '',
-              readonly = '[-]',
-              unnamed = '[No Name]',
-              newfile = '[New]',
+              modified = "",
+              readonly = "[-]",
+              unnamed = "[No Name]",
+              newfile = "[New]",
             },
-            padding = { right = 0, left = 0 },
+            padding = { right = 0, left = 0, },
           },
           {
-            'vim.bo.modified and [[●]] or [[]]',
-            color = { fg = new_colors.yellow },
-            padding = { right = 1, left = 0 },
-          }
+            "vim.bo.modified and [[●]] or [[]]",
+            color = { fg = new_colors.yellow, },
+            padding = { right = 1, left = 0, },
+          },
         },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {
           {
-            'diagnostics',
-            sources = { 'nvim_diagnostic', 'vim_lsp' },
-            sections = { 'error', 'warn', 'info', 'hint' },
+            "diagnostics",
+            sources = { "nvim_diagnostic", "vim_lsp", },
+            sections = { "error", "warn", "info", "hint", },
             diagnostics_color = {
               -- These highlight groups don't contain a bg color, so we're doing this
               -- complicated stuff to build a color based on the highlight group.
               error = {
                 bg = new_colors.bg,
-                fg = utils.extract_highlight_colors('DiagnosticError', 'fg')
+                fg = utils.extract_highlight_colors("DiagnosticError", "fg"),
               },
               warn = {
                 bg = new_colors.bg,
-                fg = utils.extract_highlight_colors('DiagnosticWarn', 'fg')
+                fg = utils.extract_highlight_colors("DiagnosticWarn", "fg"),
               },
               info = {
                 bg = new_colors.bg,
-                fg = utils.extract_highlight_colors('DiagnosticInfo', 'fg')
+                fg = utils.extract_highlight_colors("DiagnosticInfo", "fg"),
               },
               hint = {
                 bg = new_colors.bg,
-                fg = utils.extract_highlight_colors('DiagnosticHint', 'fg')
+                fg = utils.extract_highlight_colors("DiagnosticHint", "fg"),
               },
             },
-            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+            symbols = { error = " ", warn = " ", info = " ", hint = " ", },
             colored = true,
             update_in_insert = false,
             always_visible = false,
-            padding = { left = 0, right = 0 },
+            padding = { left = 0, right = 0, },
           },
           {
-            'diff',
-            symbols = { added = '+', modified = '~', removed = '-' },
-            padding = { left = 2, right = 1 },
-          }
+            "diff",
+            symbols = { added = "+", modified = "~", removed = "-", },
+            padding = { left = 2, right = 1, },
+          },
         },
         lualine_z = {},
       }
@@ -153,13 +153,13 @@ return {
         options = {
           theme = lualine_nightfly,
           globalstatus = true,
-          component_separators = { left = '', right = '' },
-          section_separators = { left = '', right = '' },
+          component_separators = { left = "", right = "", },
+          section_separators = { left = "", right = "", },
           disabled_filetypes = {
             statusline = {},
             winbar = {
-              'qf',
-              'neo-tree',
+              "qf",
+              "neo-tree",
             },
           },
         },
@@ -167,10 +167,10 @@ return {
         winbar = winbar_sections,
         inactive_winbar = winbar_sections,
         extensions = {
-          'quickfix',
-          'neo-tree',
+          "quickfix",
+          "neo-tree",
         },
       })
-    end
-  }
+    end,
+  },
 }

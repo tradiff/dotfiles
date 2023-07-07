@@ -1,30 +1,30 @@
 return {
-  'sindrets/diffview.nvim',
+  "sindrets/diffview.nvim",
   dependencies = {
-    'colorscheme',
-    'nvim-lua/plenary.nvim',
+    "colorscheme",
+    "nvim-lua/plenary.nvim",
   },
-  config = function()
-    local diffview = require('diffview')
+  config = function ()
+    local diffview = require("diffview")
 
     diffview.setup({
       ehanced_diff_hl = true,
     })
 
     -- set diff deletes to use fancy diagonal lines instead of lame hyphens
-    vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
+    vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 
-    vim.api.nvim_create_user_command('DiffviewToggle', function()
-      local view = require('diffview.lib').get_current_view()
+    vim.api.nvim_create_user_command("DiffviewToggle", function ()
+      local view = require("diffview.lib").get_current_view()
 
       if view then
-        vim.cmd('DiffviewClose')
+        vim.cmd("DiffviewClose")
       else
-        vim.cmd('DiffviewOpen HEAD')
+        vim.cmd("DiffviewOpen HEAD")
       end
-    end, { nargs = '*' })
+    end, { nargs = "*", })
 
 
-    vim.keymap.set('n', '<Leader>d', ':DiffviewToggle<cr>')
-  end
+    vim.keymap.set("n", "<Leader>d", ":DiffviewToggle<cr>")
+  end,
 }

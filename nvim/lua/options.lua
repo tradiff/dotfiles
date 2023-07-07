@@ -1,7 +1,7 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- enable the mouse (I know, I'm a terrible person)
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- disable compatibility with old-time vi
 vim.o.nocompatible = true
@@ -25,7 +25,7 @@ vim.o.autoindent = true
 vim.o.number = true
 
 -- vertical line
-vim.o.cc = '80'
+vim.o.cc = "80"
 
 -- number of columns occupied by a tab character
 vim.o.tabstop = 2
@@ -48,7 +48,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- always show the signs column, even if empty
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 
 -- always show at least 7 characters around the cursor
 vim.o.scrolloff = 7
@@ -57,13 +57,13 @@ vim.o.sidescrolloff = 7
 vim.o.cursorline = true
 
 -- highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true, })
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function ()
     vim.highlight.on_yank()
   end,
   group = highlight_group,
-  pattern = '*',
+  pattern = "*",
 })
 
 -- don't add a comment character after using o or O in normal mode

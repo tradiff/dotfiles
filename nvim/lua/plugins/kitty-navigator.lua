@@ -1,1 +1,3 @@
-return 'knubie/vim-kitty-navigator'
+return {
+  "knubie/vim-kitty-navigator",
+}
