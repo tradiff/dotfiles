@@ -5,6 +5,7 @@ return {
     opts = {
       ensure_instaleld = {
         'solargraph',
+        'rubocop',
         'lua-ls',
       }
     }

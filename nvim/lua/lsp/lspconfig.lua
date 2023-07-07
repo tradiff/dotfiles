@@ -21,6 +21,15 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 lspconfig.solargraph.setup({
+  init_options = {
+    formatting = false,
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+lspconfig.rubocop.setup({
+  cmd = { 'rubocop', '--lsp' },
   on_attach = on_attach,
   capabilities = capabilities,
 })
