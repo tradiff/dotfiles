@@ -1,22 +1,21 @@
 -- file tree
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  branch = "v2.x",
+  branch = "v3.x",
   dependencies = {
-    -- 'nvim-lualine/lualine.nvim',
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
   init = function ()
-    -- use - to toggle the tree
-    vim.api.nvim_set_keymap("n", "-", ":Neotree focus reveal<CR>", { noremap = true, silent = true, })
+    -- use - to toggle the tree.
+    -- I'm not using `:Neotree toggle` because I want a slightly different
+    -- behavior if the tree is already open but not focused. I want to send
+    -- focus to it in that case, where `toggle` would have closed it.
+    -- Opening is defined here, closing is in the window mappings below.
+    vim.api.nvim_set_keymap("n", "-", ":Neotree reveal<CR>", { noremap = true, silent = true, })
   end,
   config = function ()
-    -- Unless you are still migrating, remove the deprecated commands from v1.x
-    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
-    -- If you want icons for diagnostic errors, you'll need to define them somewhere:
     vim.fn.sign_define("DiagnosticSignError",
       { text = " ", texthl = "DiagnosticSignError", })
     vim.fn.sign_define("DiagnosticSignWarn",
@@ -25,29 +24,6 @@ return {
       { text = " ", texthl = "DiagnosticSignInfo", })
     vim.fn.sign_define("DiagnosticSignHint",
       { text = "", texthl = "DiagnosticSignHint", })
-    -- NOTE: this is changed from v1.x, which used the old style of highlight groups
-    -- in the form "LspDiagnosticsSignWarning"
-
-    local function getTelescopeOpts(state, path)
-      return {
-        cwd = path,
-        search_dirs = { path, },
-        attach_mappings = function (prompt_bufnr, map)
-          local actions = require "telescope.actions"
-          actions.select_default:replace(function ()
-            actions.close(prompt_bufnr)
-            local action_state = require "telescope.actions.state"
-            local selection = action_state.get_selected_entry()
-            local filename = selection.filename
-            if (filename == nil) then
-              filename = selection[1]
-            end
-            require("neo-tree.sources.filesystem").navigate(state, state.path, filename)
-          end)
-          return true
-        end,
-      }
-    end
 
     ---Gets the node parent folder recursively
     ---@param tree table to look for nodes
@@ -68,6 +44,8 @@ return {
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
+      enable_normal_mode_for_inputs = false, -- Enable normal mode for input dialogs.
+      open_files_do_not_replace_types = { "terminal", "trouble", "qf", }, -- when opening files, do not use windows containing these filetypes or buftypes
       sort_case_insensitive = false, -- used when sorting files and directories in the tree
       sort_function = nil, -- use a custom function for sorting files and directories in the tree
       default_component_configs = {
@@ -112,16 +90,17 @@ return {
             added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
             modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
             deleted = "✖", -- this can only be used in the git_status source
-            renamed = "", -- this can only be used in the git_status source
+            renamed = "󰁕", -- this can only be used in the git_status source
             -- Status type
             untracked = "",
             ignored = "",
-            unstaged = "",
+            unstaged = "󰄱",
             staged = "",
             conflict = "",
           },
         },
       },
+      commands = {},
       window = {
         position = "left",
         width = 40,
@@ -136,17 +115,17 @@ return {
           },
           ["<2-LeftMouse>"] = "open",
           ["<cr>"] = "open",
-          ["<esc>"] = "revert_preview",
+          ["<esc>"] = "cancel", -- close preview or floating neo-tree window
           ["P"] = { "toggle_preview", config = { use_float = true, }, },
+          ["l"] = "focus_preview",
           ["S"] = "open_split",
           ["s"] = "open_vsplit",
           ["t"] = "none",
-          ["w"] = "open_with_window_picker",
+          ["w"] = "none",
           ["C"] = "close_node",
           ["z"] = "close_all_nodes",
           ["a"] = {
             "add",
-            -- some commands may take optional config options, see `:h neo-tree-mappings` for details
             config = {
               show_path = "none", -- "none", "relative", "absolute"
             },
@@ -160,19 +139,12 @@ return {
           ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
           ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
           ["-"] = "close_window",
+          ["q"] = "close_window",
           ["R"] = "refresh",
           ["?"] = "show_help",
           ["<"] = "prev_source",
           [">"] = "next_source",
           ["h"] = "close_node",
-          ["l"] = function (state)
-            local node = state.tree:get_node()
-            if require("neo-tree.utils").is_expandable(node) then
-              if not node["_is_expanded"] then
-                state.commands["toggle_node"](state)
-              end
-            end
-          end,
         },
       },
       nesting_rules = {},
@@ -200,8 +172,10 @@ return {
             --".null-ls_*",
           },
         },
-        follow_current_file = false, -- This will find and focus the file in the active buffer every
-        -- time the current file is changed while the tree is open.
+        follow_current_file = {
+          enabled = false,
+          leave_dirs_open = false,
+        },
         group_empty_dirs = false, -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
@@ -231,8 +205,10 @@ return {
         },
       },
       buffers = {
-        follow_current_file = true, -- This will find and focus the file in the active buffer every
-        -- time the current file is changed while the tree is open.
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = false,
+        },
         group_empty_dirs = true, -- when true, empty folders will be grouped together
         show_unloaded = true,
         window = {
@@ -255,6 +231,12 @@ return {
             ["gg"] = "git_commit_and_push",
           },
         },
+      },
+
+      sources = {
+        "filesystem",
+        "buffers",
+        "git_status",
       },
       source_selector = {
         winbar = true,
