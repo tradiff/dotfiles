@@ -36,6 +36,9 @@ lspconfig.rubocop.setup({
   on_new_config = function (new_config, new_root_dir)
     new_config.cmd = { "rubocop", "--lsp", }
   end,
+  init_options = {
+    layoutMode = true,
+  },
 })
 
 lspconfig.lua_ls.setup({
@@ -79,7 +82,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function ()
     local success, error_message = pcall(function ()
       vim.lsp.buf.format({ async = false, })
-    end)
+          end)
 
     if not success then
       print("An error occurred:", error_message)
