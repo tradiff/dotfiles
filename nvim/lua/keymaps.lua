@@ -59,3 +59,9 @@ map("v", "<", "<gv")
 map("v", "<tab>", ">gv")
 map("v", "<s-tab>", "<gv")
 
+
+local function toggle_relative_line_numbers()
+  vim.o.relativenumber = not vim.o.relativenumber
+end
+
+map("n", "<leader>rn", toggle_relative_line_numbers, "Toggle relative line numbers")

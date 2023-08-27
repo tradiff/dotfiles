@@ -23,6 +23,7 @@ vim.o.autoindent = true
 
 -- add line numbers
 vim.o.number = true
+vim.o.relativenumber = true
 
 -- vertical line
 vim.o.cc = "80"
