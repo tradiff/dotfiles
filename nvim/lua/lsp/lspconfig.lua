@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local map = require("map")
 
 -- enable keybinds for available lsp server
 local on_attach = function (_, bufnr)
@@ -13,9 +14,10 @@ local on_attach = function (_, bufnr)
     silent = true,
     buffer = bufnr,
   }
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-  vim.keymap.set("n", "gr", "<CMD>Glance references<CR>", bufopts)
+  map("n", "gd", vim.lsp.buf.definition, bufopts)
+  map("n", "K", vim.lsp.buf.hover, bufopts)
+  map("i", "<C-k>", vim.lsp.buf.hover, bufopts)
+  map("n", "gr", "<CMD>Glance references<CR>", bufopts)
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()

@@ -1,3 +1,4 @@
+local map = require("map")
 -- file tree
 return {
   "nvim-neo-tree/neo-tree.nvim",
@@ -13,7 +14,7 @@ return {
     -- behavior if the tree is already open but not focused. I want to send
     -- focus to it in that case, where `toggle` would have closed it.
     -- Opening is defined here, closing is in the window mappings below.
-    vim.api.nvim_set_keymap("n", "-", ":Neotree reveal<CR>", { noremap = true, silent = true, })
+    map("n", "-", ":Neotree reveal<CR>")
   end,
   config = function ()
     vim.fn.sign_define("DiagnosticSignError",
