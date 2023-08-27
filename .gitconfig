@@ -12,7 +12,7 @@
     conflicts = diff --name-only --diff-filter=U
 
     main = !git switch main && git pull
-    rs = reset --hard
+    rs = !git reset --hard && git clean -df
     uncommit = reset --soft HEAD~1
     unadd = reset HEAD
 
