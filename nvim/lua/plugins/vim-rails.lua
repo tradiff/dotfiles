@@ -1,10 +1,11 @@
+local map = require("map")
 -- alternate files, among other things
 return {
   "tpope/vim-rails",
   config = function ()
-    -- alternate file
-    -- create the file if it's missing
-    vim.keymap.set("n", "<leader>a", ':execute "e " . eval("rails#buffer().alternate()")<cr>', { noremap = true, })
+    map("n", "<leader>a", ":A<cr>", "Alternate file")
+    map("n", "<leader>A", ':execute "e " . eval("rails#buffer().alternate()")<cr>',
+      "Alternate file, create if missing")
 
     vim.g.rails_projections = {
       ["app/controllers/*_controller.rb"] = {
