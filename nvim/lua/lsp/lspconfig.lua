@@ -14,7 +14,7 @@ local on_attach = function (_, bufnr)
     silent = true,
     buffer = bufnr,
   }
-  map("n", "gd", vim.lsp.buf.definition, bufopts)
+  map("n", "gd", "<CMD>Glance definitions<CR>", bufopts)
   map("n", "K", vim.lsp.buf.hover, bufopts)
   map("i", "<C-k>", vim.lsp.buf.hover, bufopts)
   map("n", "gr", "<CMD>Glance references<CR>", bufopts)
@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function ()
     local success, error_message = pcall(function ()
       vim.lsp.buf.format({ async = false, })
-          end)
+    end)
 
     if not success then
       print("An error occurred:", error_message)
