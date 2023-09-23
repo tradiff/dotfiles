@@ -20,7 +20,7 @@ return {
       if view then
         vim.cmd("DiffviewClose")
       else
-        vim.cmd("DiffviewOpen HEAD")
+        vim.cmd("DiffviewOpen")
       end
     end, { nargs = "*", })
 
