@@ -1,0 +1,321 @@
+add_newline = true
+
+
+# $line_break\
+# $character\
+# """
+
+# right_format = """\
+
+format = """\
+$directory\
+${custom.giticon}\
+$git_branch\
+${custom.wip}\
+$git_status\
+$git_commit\
+$git_state\
+$sudo\
+$status\
+$fill\
+$cmd_duration\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+
+$line_break\
+$character\
+"""
+[custom.giticon]
+description = "Display icon for remote Git server"
+command = """
+    # Check if a remote tracking branch exists
+    GIT_NO_REMOTE=$(git rev-list --count --right-only @{u}.. 2> /dev/null)
+    
+    if [[ -z "$GIT_NO_REMOTE" ]]; then
+        GIT_REMOTE_SYMBOL=" "
+    else
+        GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+        if [[ "$GIT_REMOTE" =~ "github" ]]; then
+            GIT_REMOTE_SYMBOL="" # nf-fa-github
+        elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+            GIT_REMOTE_SYMBOL="" # nf-fa-gitlab
+        elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+            GIT_REMOTE_SYMBOL="" # nf-fa-bitbucket
+        elif [[ "$GIT_REMOTE" =~ "git" ]]; then
+            GIT_REMOTE_SYMBOL="" # nf-fa-git_square
+        else
+            GIT_REMOTE_SYMBOL="󰊢 " # nf-md-git
+        fi
+    fi
+    echo "$GIT_REMOTE_SYMBOL "
+"""
+require_repo = true
+when = true
+format = "[$output ](fg:green)"
+
+[custom.wip]
+command = "echo \"wip \""
+format = "[$output](yellow bold) "
+when = "git log -1 --pretty=%B | grep -i \"wip\" >/dev/null"
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[fill]
+symbol = '-'
+style = '#333333'
+
+[sudo]
+style = 'fg:green'
+symbol = "  "
+format = "[$symbol]($style)"
+disabled = false
+
+[cmd_duration]
+min_time = 0
+format = " [󰔟 $duration](grey) "
+
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+repo_root_style = "#0087af"
+fish_style_pwd_dir_length = 2
+style = "#00afff"
+# Repo format
+repo_root_format = "[$before_root_path]($repo_root_style)[$repo_root]($style)[$path]($style)[$read_only]($read_only_style) "
+# Non repo format
+format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "red"
+
+[directory.substitutions]
+
+[status]
+format = " [$symbol$status]($style)"
+disabled = false
+symbol = ""
+
+#───────────────────────────────────────────────────────────────────────────────
+# GIT
+
+# conflicts or rebasing
+[git_state]
+style = 'fg:yellow'
+
+# checkout
+[git_commit]
+style = "fg:purple"
+only_detached = true
+format = "[󰘬 $hash]($style) "
+
+# branch
+[git_branch]
+only_attached = true
+# symbol = " "
+# symbol = "󰘬 "                        # 
+style = "fg:green"
+format = "[$branch]($style) "
+
+# files
+[git_status]
+stashed = '[*$count ](fg:yellow)'
+untracked = '[+$count ](fg:green)'
+deleted = '[-$count ](fg:red)'
+modified = '[~$count ](fg:208)'
+renamed = '[󰑕  $count ](fg:blue)'
+staged = '[+$count ](fg:green)'
+conflicted = '[  $count ](fg:red)'
+diverged = '[󰃻 $count ](fg:red)'
+ahead = '[󰶣 $count ](fg:cyan)'
+behind = '[󰶡 $count ](fg:yellow)'
+style = 'fg:purple bold'
+format = '[$ahead_behind$conflicted$stashed$staged$untracked$renamed$modified$deleted]($style)'
+
+# lines
+[git_metrics]
+disabled = false
+added_style = "fg:green"
+deleted_style = "fg:red"
+format = '(\([+$added]($added_style)/[-$deleted]($deleted_style)\) )'
+
+#───────────────────────────────────────────────────────────────────────────────
+# right side
+#───────────────────────────────────────────────────────────────────────────────
+
+[aws]
+disabled = true
+symbol = "  "
+
+[buf]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[c]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[conda]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[dart]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[docker_context]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[elixir]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[elm]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[fossil_branch]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[gcloud]
+disabled = true
+symbol = "  "
+
+[golang]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[guix_shell]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[haskell]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[haxe]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[hg_branch]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[hostname]
+ssh_symbol = " "
+format = "[$symbol($version )]($style)"
+
+[java]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[julia]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[lua]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[memory_usage]
+symbol = "󰍛 "
+format = "[$symbol($version )]($style)"
+
+[meson]
+symbol = "󰔷 "
+format = "[$symbol($version )]($style)"
+
+[nim]
+symbol = "󰆥 "
+format = "[$symbol($version )]($style)"
+
+[nix_shell]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[package]
+symbol = "󰏗 "
+format = "[$symbol($version )]($style)"
+
+[pijul_channel]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[python]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[rlang]
+symbol = "󰟔 "
+format = "[$symbol($version )]($style)"
+
+[ruby]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[rust]
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[scala]
+symbol = " "
+format = "[$symbol($version )]($style)"
