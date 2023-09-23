@@ -8,3 +8,4 @@
     ~/.gitignore_global: .gitignore_global
     ~/.config/kitty: kitty
     ~/.config/starship.toml: starship.toml
+    ~/.config/wezterm: wezterm
