@@ -6,46 +6,17 @@ return {
     local gitsigns_actions = require("gitsigns.actions")
 
     gitsigns.setup {
+
       signs = {
-        add = {
-          hl = "GitSignsAdd",
-          text = "▍",
-          numhl = "GitSignsAddNr",
-          linehl = "GitSignsAddLn",
-        },
-        change = {
-          hl = "GitSignsChange",
-          text = "▍",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
-        },
-        delete = {
-          hl = "GitSignsDelete",
-          text = "_",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
-        },
-        topdelete = {
-          hl = "GitSignsDelete",
-          text = "‾",
-          numhl = "GitSignsDeleteNr",
-          linehl = "GitSignsDeleteLn",
-        },
-        changedelete = {
-          hl = "GitSignsChange",
-          text = "▍",
-          numhl = "GitSignsChangeNr",
-          linehl = "GitSignsChangeLn",
-        },
-        untracked = {
-          hl = "GitSignsAdd",
-          text = "┆",
-          numhl = "GitSignsAddNr",
-          linehl = "GitSignsAddLn",
-        },
+        add = { text = "▍", },
+        change = { hl = "GitSignsChange", text = "▍", },
+        delete = { hl = "GitSignsDelete", text = "▁", },
+        topdelete = { hl = "GitSignsDelete", text = "▔", },
+        changedelete = { hl = "GitSignsChange", text = "▍", },
+        untracked = { hl = "GitSignsAdd", text = "▍", },
       },
       signcolumn = true,
-      numhl = true,
+      numhl = false,
       linehl = false,
       word_diff = false,
       watch_gitdir = {

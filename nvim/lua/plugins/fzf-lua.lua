@@ -26,22 +26,13 @@ return {
       map("n", "<leader>fg", function () fzflua.live_grep() end, opts)
       map("n", "<leader>fd", function () fzflua.git_status() end, opts)
 
+      -- Command to open fzf-lua with the current highlights
+      vim.api.nvim_create_user_command("Highlights", function () fzflua.highlights() end, { nargs = 0, })
+
       fzflua.setup({
         winopts = {
           border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│", },
           fullscreen = true,
-          hl = {
-            normal = hl_validate "TelescopeNormal",
-            border = hl_validate "TelescopeBorder",
-            help_normal = hl_validate "TelescopeNormal",
-            help_border = hl_validate "TelescopeBorder",
-            -- builtin preview only
-            cursor = hl_validate "Cursor",
-            cursorline = hl_validate "TelescopePreviewLine",
-            cursorlinenr = hl_validate "TelescopePreviewLine",
-            search = hl_validate "IncSearch",
-            title = hl_validate "TelescopeTitle",
-          },
           preview = {
             wrap = "wrap",
           },
