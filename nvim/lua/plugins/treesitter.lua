@@ -11,7 +11,7 @@ return {
         enable = false,
       },
       matchup = {
-        enable = false,
+        enable = true,
       },
     })
   end,
