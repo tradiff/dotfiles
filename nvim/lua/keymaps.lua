@@ -59,6 +59,8 @@ map("v", "<", "<gv")
 map("v", "<tab>", ">gv")
 map("v", "<s-tab>", "<gv")
 
+map("n", "U", "<C-R>", "Redo last change")
+
 
 local function toggle_relative_line_numbers()
   vim.o.relativenumber = not vim.o.relativenumber
