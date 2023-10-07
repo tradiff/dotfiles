@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -40,11 +40,14 @@ set-window-title() {
   echo -ne "$window_title"
 }
 
+autoload -U add-zsh-hook
 set-window-title
 add-zsh-hook precmd set-window-title
 
 # add ~/bin to PATH
 export PATH="$PATH:$HOME/bin"
+# add ~/go/bin to PATH
+export PATH="$PATH:$HOME/go/bin"
 
 alias ls='ls -lGFhva'
 alias cls='clear && printf "\e[3J"'
@@ -136,5 +139,7 @@ tl-console() { tl-l; tl ci-console }
 tl-db() { tl-l; tl pg-ro datagrip }
 tl-db-primary() { tl-l; tl pg-primary datagrip }
 tl-k9s() { tl-l; k9s }
+
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
 source ~/secrets.zsh
