@@ -35,14 +35,18 @@ autoload -Uz compinit && compinit
 
 zstyle ':completion:*' menu select
 
-set-window-title() {
-  window_title="\e]0;${${PWD/#"$HOME"/~}##*/}\a"
-  echo -ne "$window_title"
+set-title-from-cwd() {
+  cwd_title="${${PWD/#"$HOME"/~}##*/}"
+  set-title $cwd_title
 }
 
+set-title() {
+  echo -ne "\e]0;$1\a"; 
+}
+
+export DISABLE_AUTO_TITLE=true
 autoload -U add-zsh-hook
-set-window-title
-add-zsh-hook precmd set-window-title
+add-zsh-hook precmd set-title-from-cwd
 
 # add ~/bin to PATH
 export PATH="$PATH:$HOME/bin"
@@ -135,10 +139,10 @@ tl-l() {
   echo "Remaining minutes: $remaining_minutes"
 }
 
-tl-console() { tl-l; tl ci-console }
-tl-db() { tl-l; tl pg-ro datagrip }
-tl-db-primary() { tl-l; tl pg-primary datagrip }
-tl-k9s() { tl-l; k9s }
+tl-console() { set-title "$0"; tl-l; tl ci-console }
+tl-db() { set-title "$0"; tl-l; tl pg-ro datagrip }
+tl-db-primary() { set-title "$0"; tl-l; tl pg-primary datagrip }
+tl-k9s() { set-title "$0"; tl-l; k9s }
 
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
