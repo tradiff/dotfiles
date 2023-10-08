@@ -9,3 +9,4 @@
     ~/.config/kitty: kitty
     ~/.config/starship.toml: starship.toml
     ~/.config/wezterm: wezterm
+    ~/.config/karabiner/karabiner.json: karabiner/karabiner.json

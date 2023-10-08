@@ -72,8 +72,8 @@ never_indent_comment_on_if_branch = false
 
 # [line space]
 # The following configuration supports four expressions
-# keep  
-# fixed(n)   
+# keep
+# fixed(n)
 # min(n)
 # max(n)
 # for eg. min(2)
@@ -95,3 +95,7 @@ break_before_braces = false
 # [preference]
 ignore_space_after_colon = false
 remove_call_expression_list_finish_comma = false
+
+[*.json]
+indent_style = space
+indent_size = 2
