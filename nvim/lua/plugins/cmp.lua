@@ -19,6 +19,11 @@ return {
       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
 
+    local function check_backspace()
+      local col = vim.fn.col(".") - 1
+      return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+    end
+
     local kind_icons = {
       Text = "󰉿",
       Method = "󰆧",
@@ -68,7 +73,7 @@ return {
       },
       -- Accept currently selected item. If none selected, `select` first item.
       -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm { select = true, },
+      ["<CR>"] = cmp.mapping.confirm { select = false, },
       ["<Tab>"] = cmp.mapping(function (fallback)
         if cmp.visible() then
           cmp.select_next_item()
