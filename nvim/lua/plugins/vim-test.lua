@@ -4,7 +4,8 @@ return {
   config = function ()
     vim.g["test#neovim#start_normal"] = 1
     vim.g["test#preserve_screen"] = 0
-    vim.g["test#strategy"] = "kitty"
+    vim.g["test#strategy"] = "shtuff"
+    vim.g["shtuff_receiver"] = "vim-test"
 
     vim.g["test#ruby#rspec#executable"] = "cls; ./bin/rspec"
 

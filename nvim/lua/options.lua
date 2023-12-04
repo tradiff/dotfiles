@@ -71,3 +71,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- don't add a comment character after using o or O in normal mode
 vim.cmd([[autocmd BufEnter * set formatoptions-=o]])
+
+vim.o.modeline = false

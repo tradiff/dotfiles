@@ -34,7 +34,7 @@ lspconfig.rubocop.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   on_new_config = function (new_config, new_root_dir)
-    new_config.cmd = { "rubocop", "--lsp", }
+    new_config.cmd = { "bundle", "exec", "rubocop", "--lsp", }
   end,
   init_options = {
     layoutMode = true,
@@ -70,6 +70,29 @@ lspconfig.lua_ls.setup({
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
         enable = false,
+      },
+    },
+  },
+})
+
+
+lspconfig.rust_analyzer.setup({
+  on_attach = on_attach,
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true,
       },
     },
   },
