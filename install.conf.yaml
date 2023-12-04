@@ -9,4 +9,13 @@
     ~/.config/kitty: kitty
     ~/.config/starship.toml: starship.toml
     ~/.config/wezterm: wezterm
-    ~/.config/karabiner/karabiner.json: karabiner/karabiner.json
+    ~/.config/karabiner/karabiner.json:
+      if: '[ `uname` = Darwin ]'
+      path: karabiner/karabiner.json
+    ~/.config/yabai/yabairc:
+      if: '[ `uname` = Darwin ]'
+      path: yabai/yabairc
+    ~/.config/skhd/skhdrc:
+      if: '[ `uname` = Darwin ]'
+      path: skhd/skhdrc
+    ~/.hammerspoon:
