@@ -5,6 +5,9 @@
     editor = code --wait
     excludesFile = ~/.gitignore_global
 
+[blame]
+    date = relative
+
 [alias]
     br = branch
     sw = switch
@@ -26,6 +29,8 @@
 
     # rebase to main
     slam = !git fetch origin && git rebase origin/main
+
+    bump = "!f() { if [ -z \"$1\" ]; then echo \"Usage: git bump <start-commit-sha>\"; return 1; fi; GIT_SEQUENCE_EDITOR=: git rebase -i $1^ --exec \"GIT_COMMITTER_DATE='$(date)' git commit --amend --no-edit --date '$(date)'\"; }; f"
 
 [pretty]
     minimal = format:"%C(#0080ff)%<(12,trunc)%cr %C(#17b062)%<(15,trunc)%aN%C(reset) %s %C(auto)%D %C(#555555)%h"

@@ -53,7 +53,7 @@ export PATH="$PATH:$HOME/bin"
 # add ~/go/bin to PATH
 export PATH="$PATH:$HOME/go/bin"
 
-alias ls='ls -lGFhva'
+alias ls='exa -lFha --git --group-directories-first'
 alias cls='clear && printf "\e[3J"'
 alias k="kubectl"
 alias g="git"
