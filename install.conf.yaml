@@ -19,3 +19,6 @@
     ~/.config/skhd/skhdrc:
       if: '[ `uname` = Darwin ]'
       path: skhd/skhdrc
+    ~/.config/hypr:
+      if: '[ `uname` = Linux ]'
+      path: hypr
