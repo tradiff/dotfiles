@@ -1,5 +1,6 @@
 - link:
     ~/.zshrc: .zshrc
+    ~/.zshrc-tl: .zshrc-tl
     ~/.p10k.zsh: .p10k.zsh
     ~/.tmux.conf: .tmux.conf
     ~/.config/tmuxinator: tmuxinator
@@ -18,4 +19,3 @@
     ~/.config/skhd/skhdrc:
       if: '[ `uname` = Darwin ]'
       path: skhd/skhdrc
-    ~/.hammerspoon:

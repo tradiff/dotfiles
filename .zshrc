@@ -5,18 +5,32 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+case `uname` in
+  Darwin)
+    source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+    source /opt/homebrew/opt/asdf/libexec/asdf.sh
+  ;;
+  Linux)
+    source ~/powerlevel10k/powerlevel10k.zsh-theme
+    eval "$(rbenv init - zsh)"
+    source /usr/share/nvm/init-nvm.sh
+  ;;
+esac
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 setopt autocd
-setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_EXPIRE_DUPS_FIRST 
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
+
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -114,36 +128,13 @@ bindkey "^[^[[D" backward-word
 
 bindkey "^[" kill-whole-line
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source ~/projects/infra/tidelift.sh
-tl setenv awsprod
-
-# returns the number of minutes remaining in the current sso session
-tl-lremaining() {
-  aws configure get sso_start_url --profile ${AWS_PROFILE} | xargs -I {} grep -h {} ~/.aws/sso/cache/*.json | jq .expiresAt | xargs -I {} zsh -c 'echo $(( ( $(gdate -d "{}" +'%s') - $(gdate +'%s') ) / 60 ))'
-}
-
-# tl login if needed
-tl-l() {
-  remaining_minutes=$(tl-lremaining)
-
-  if [[ $remaining_minutes -lt 10 ]]; then
-    tl login
-    remaining_minutes=$(tl-lremaining)
-  fi
-  echo "Remaining minutes: $remaining_minutes"
-}
-
-tl-console() { set-title "$0"; tl-l; tl ci-console }
-tl-db() { set-title "$0"; tl-l; tl pg-ro datagrip }
-tl-db-primary() { set-title "$0"; tl-l; tl pg-primary datagrip }
-tl-k9s() { set-title "$0"; tl-l; k9s }
-
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
 source ~/secrets.zsh
+source ~/.zshrc-tl
+
