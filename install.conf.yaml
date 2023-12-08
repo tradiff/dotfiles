@@ -25,3 +25,6 @@
     ~/.config/rofi:
       if: '[ `uname` = Linux ]'
       path: rofi
+    ~/.config/dunst:
+      if: '[ `uname` = Linux ]'
+      path: dunst
