@@ -22,3 +22,6 @@
     ~/.config/hypr:
       if: '[ `uname` = Linux ]'
       path: hypr
+    ~/.config/rofi:
+      if: '[ `uname` = Linux ]'
+      path: rofi
