@@ -1,0 +1,163 @@
+{
+  "layer": "top",
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/submap",
+    "custom/media"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "mpd",
+    "group/hardware",
+    "pulseaudio",
+    "backlight",
+    "network",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "group/hardware": {
+    "on-click": "wezterm -e btop",
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory",
+      "temperature"
+    ]
+  },
+  "hyprland/workspaces": {
+    "on-click": "activate"
+  },
+  "hyprland/submap": {
+    "format": "✌️ {}",
+    "max-length": 8,
+    "tooltip": false
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+    "unknown-tag": "N/A",
+    "interval": 2,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+  "cpu": {
+    "format": "C {usage}%   "
+  },
+  "memory": {
+    "format": "M {}%   "
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "T {temperatureC}°C"
+  },
+  "pulseaudio": {
+    "format": "{icon}   {volume}%{format_source}",
+    "format-bluetooth": "{icon} {volume}% {format_source}",
+    "format-bluetooth-muted": "{icon}  {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "backlight": {
+    "format": "󰌶 {percent}%"
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "   {signalStrength}%",
+    "tooltip-format": "{essid} {ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "interval": 1,
+    "format": "{icon} {capacity}% ({power:.1f}W)",
+    "format-charging": "󰂄 {capacity}% ({power:.1f}W)",
+    "format-plugged": "   {capacity}% ({power:.1f}W)",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "󰁺", // 10
+      "󰁻", // 20
+      "󰁼", // 30
+      "󰁽", // 40
+      "󰁾", // 50
+      "󰁿", // 60
+      "󰂀", // 70
+      "󰂁", // 80
+      "󰂂", // 90
+      "󰁹" // 100
+    ]
+    // "format-icons": [
+    //   "",
+    //   "",
+    //   "",
+    //   "",
+    //   ""
+    // ]
+  },
+  "clock": {
+    "format": "{:%a %b %d   %I:%M %p}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b></b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "tray": {
+    "spacing": 10
+  }
+}

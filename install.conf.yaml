@@ -28,3 +28,6 @@
     ~/.config/dunst:
       if: '[ `uname` = Linux ]'
       path: dunst
+    ~/.config/waybar:
+      if: '[ `uname` = Linux ]'
+      path: waybar

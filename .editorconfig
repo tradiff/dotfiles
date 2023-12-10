@@ -96,6 +96,6 @@ break_before_braces = false
 ignore_space_after_colon = false
 remove_call_expression_list_finish_comma = false
 
-[*.json]
+[*.json, *.jsonc]
 indent_style = space
 indent_size = 2
