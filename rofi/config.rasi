@@ -2,8 +2,9 @@
 
 configuration {
     show-icons:      true;
-    display-drun:    "";
+    display-drun:    "Applications";
     disable-history: false;
+    modi: "drun,emoji,calc";
 }
 
 * {
