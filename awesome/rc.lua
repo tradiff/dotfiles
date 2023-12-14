@@ -1,0 +1,42 @@
+pcall(require, "luarocks.loader")
+local awful = require("awful")
+require("awful.autofocus")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
+local key_binds = require("key_binds")
+require("mouse_binds")
+
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
+if awesome.startup_errors then
+  naughty.notify({
+    preset = naughty.config.presets.critical,
+    title = "Oops, there were errors during startup!",
+    text = awesome.startup_errors,
+  })
+end
+
+do
+  local in_error = false
+  awesome.connect_signal("debug::error", function (err)
+    -- Make sure we don't go into an endless error loop
+    if in_error then return end
+    in_error = true
+
+    naughty.notify({
+      preset = naughty.config.presets.critical,
+      title = "Oops, an error happened!",
+      text = tostring(err),
+    })
+    in_error = false
+  end)
+end
+
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
+require("bar")
+root.keys(key_binds.global)
+require("client_rules")
+
+
+client.connect_signal("focus", function (c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function (c) c.border_color = beautiful.border_normal end)

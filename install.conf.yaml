@@ -31,3 +31,6 @@
     ~/.config/waybar:
       if: '[ `uname` = Linux ]'
       path: waybar
+    ~/.config/awesome:
+      if: '[ `uname` = Linux ]'
+      path: awesome
