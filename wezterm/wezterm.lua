@@ -22,8 +22,24 @@ config.colors = {
 }
 config.use_fancy_tab_bar = false
 
-config.font = wezterm.font("MesloLGS Nerd Font")
-config.font_size = 13.0
+function is_mac()
+  return wezterm.target_triple == "aarch64-apple-darwin"
+end
+
+function is_linux()
+  return wezterm.target_triple == "x86_64-unknown-linux-gnu"
+end
+
+if is_mac() then
+  config.font = wezterm.font("MesloLGS Nerd Font")
+  config.font_size = 13.0
+elseif is_linux() then
+  config.font = wezterm.font("MesloLGS NF")
+  config.font_size = 10.5
+else
+  -- default font
+end
+
 config.warn_about_missing_glyphs = false
 
 config.use_resize_increments = false
@@ -121,7 +137,16 @@ end)
 
 config.default_cwd = wezterm.home_dir
 config.swallow_mouse_click_on_pane_focus = true
-config.scrollback_lines = 10000
+if is_mac() then
+  config.scrollback_lines = 10000
+end
+
+local mod_key = "CTRL"
+
+if is_mac() then
+  mod_key = "CMD"
+end
+
 
 config.mouse_bindings = {
   -- Change the default click behavior so that it only selects
@@ -133,13 +158,13 @@ config.mouse_bindings = {
   },
   -- and make CTRL-Click open hyperlinks
   {
-    mods = "CMD",
+    mods = mod_key,
     event = { Up = { streak = 1, button = "Left", }, },
     action = wezterm.action.OpenLinkAtMouseCursor,
   },
   -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
   {
-    mods = "CMD",
+    mods = mod_key,
     event = { Down = { streak = 1, button = "Left", }, },
     action = wezterm.action.Nop,
   },
@@ -147,52 +172,58 @@ config.mouse_bindings = {
 
 config.keys = {
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "f",
     action = wezterm.action.TogglePaneZoomState,
   },
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "s",
     action = wezterm.action.SplitHorizontal,
   },
   {
-    mods = "CMD|SHIFT",
+    mods = mod_key .. "|SHIFT",
     key = "s",
     action = wezterm.action.SplitVertical,
   },
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "k",
     action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
   },
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "t",
     action = wezterm.action.SpawnCommandInNewTab({
       cwd = wezterm.home_dir,
     }),
   },
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "[",
     action = wezterm.action.MoveTabRelative(-1),
   },
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "]",
     action = wezterm.action.MoveTabRelative(1),
   },
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "UpArrow",
     action = wezterm.action.ScrollByLine(-5),
   },
   {
-    mods = "CMD",
+    mods = mod_key,
     key = "DownArrow",
     action = wezterm.action.ScrollByLine(5),
   },
+  {
+    mods = mod_key,
+    key = "v",
+    action = wezterm.action.PasteFrom "Clipboard",
+  },
+
 }
 
 return config
