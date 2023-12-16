@@ -1,10 +1,15 @@
 pcall(require, "luarocks.loader")
+local beautiful = require("beautiful")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
+
 local awful = require("awful")
 require("awful.autofocus")
-local beautiful = require("beautiful")
+require("bar")
+require("client_rules")
 local naughty = require("naughty")
 local key_binds = require("key_binds")
 require("mouse_binds")
+require("remember_tag")
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
@@ -32,11 +37,4 @@ do
   end)
 end
 
-beautiful.init("~/.config/awesome/themes/default/theme.lua")
-require("bar")
 root.keys(key_binds.global)
-require("client_rules")
-
-
-client.connect_signal("focus", function (c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function (c) c.border_color = beautiful.border_normal end)

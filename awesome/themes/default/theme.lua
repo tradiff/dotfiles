@@ -1,50 +1,54 @@
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
-
+local gears = require("gears")
 local gfs = require("gears.filesystem")
+local naughty = require("naughty")
+local xresources = require("beautiful.xresources")
+
+local dpi = xresources.apply_dpi
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
-theme.systray_icon_spacing = 5
-
 theme.font = "CaskaydiaCove Nerd Font 12"
-
-theme.fg = "#a9b1d6"
-theme.bg = "#24283b"
-theme.bg_normal = "#24283b"
-theme.fg_normal = "#a9b1d6"
-theme.bg_focus = "#535d6c"
-theme.fg_focus = "#a9b1d6"
-theme.border_width = 1
+theme.bg = "#1D1F28"
+theme.bg_alt = "#1F222B"
+theme.fg = "#FDFDFD"
 theme.border_normal = "#000000"
 theme.border_focus = "#33ccff"
-theme.background_dark = "#1a1b26"
-theme.background_lighter = "#24283b"
-theme.white = "#a9b1d6"
-theme.blueish_white = "#89b4fa"
-theme.red = "#F7768E"
-theme.green = "#73daca"
-theme.yellow = "#E0AF68"
-theme.blue = "#7AA2F7"
-theme.magenta = "#BB9AF7"
-theme.cyan = "#7dcfff"
-theme.bg_systray = theme.background_light
-
+theme.background_dark = theme.bg
+theme.background_lighter = theme.bg
+theme.red = "#F37F97"
+theme.green = "#90CEAA"
+theme.yellow = "#F2A272"
+theme.blue = "#8897F4"
+theme.magenta = "#B043D1"
+theme.cyan = "#79E6F3"
 
 theme.useless_gap = dpi(5)
 theme.border_width = dpi(2)
 
+theme.segment_bg = "#1F222Bdd"
+theme.segment_border_color = theme.bg
+theme.segment_border_width = dpi(2)
+theme.segment_radius = dpi(8)
+
+theme.wibar_bg = "#00000000" -- fully transparent
+
+theme.taglist_spacing = 0
+theme.taglist_shape_border_width = 3
 theme.taglist_bg_empty = theme.background_light
 theme.taglist_fg_empty = theme.white
 theme.taglist_bg_occupied = theme.background_light
 theme.taglist_fg_occupied = theme.white
-theme.taglist_fg_focus = theme.background_dark
 theme.taglist_bg_focus = theme.cyan
+theme.taglist_fg_focus = "#000000aa"
 theme.taglist_bg_urgent = theme.red
-theme.taglist_fg_urgent = "#00000080"
--- Other Taglist settings
-theme.taglist_spacing = 0
-theme.taglist_shape_border_width = 3
+theme.taglist_fg_urgent = "#000000aa"
+
+-- Define the icon theme for application icons. If not set then the icons
+-- from /usr/share/icons and /usr/share/icons/hicolor will be used.
+theme.icon_theme = nil
+theme.systray_icon_spacing = 5
+theme.systray_icon_size = dpi(16)
+theme.bg_systray = theme.segment_bg
 
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
 theme.layout_fairv = themes_path .. "default/layouts/fairvw.png"
@@ -62,25 +66,30 @@ theme.layout_cornernw = themes_path .. "default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path .. "default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path .. "default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
-
-
--- Define the icon theme for application icons. If not set then the icons
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+theme.layout_image_size = dpi(16)
 
 theme.notification_font = "Ubuntu Nerd Font 14"
-theme.notification_fg = "#a9b1d6"
+theme.notification_fg = theme.fg
 theme.notification_position = "top_right"
 theme.notification_margin = dpi(10)
 theme.notification_border_width = dpi(0)
 theme.notification_spacing = dpi(15)
 theme.notification_icon_resize_strategy = "center"
 theme.notification_icon_size = dpi(300)
+theme.notification_width = dpi(300)
 
---Shortcut key list popup theme
-theme.hotkeys_font = "Ubuntu Nerd font bold 12"
-theme.hotkeys_description_font = "Ubuntu nerd font 12"
-theme.hotkeys_group_margin = dpi(20)
-theme.hotkeys_modifiers_fg = theme.blueish_white
+naughty.config.defaults.shape = function (cr, w, h)
+  gears.shape.rounded_rect(cr, w, h, dpi(6))
+end
+
+-- Apply theme variables
+naughty.config.padding = dpi(8)
+naughty.config.spacing = dpi(8)
+naughty.config.icon_dirs = {
+  "/usr/share/icons/Papirus-Dark/",
+}
+naughty.config.icon_formats = { "svg", "png", "jpg", "gif", }
+
+theme.client_border_radius = dpi(8)
 
 return theme
