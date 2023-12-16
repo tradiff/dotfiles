@@ -25,10 +25,11 @@ theme.cyan = "#79E6F3"
 theme.useless_gap = dpi(5)
 theme.border_width = dpi(2)
 
-theme.segment_bg = "#1F222Bdd"
-theme.segment_border_color = theme.bg
-theme.segment_border_width = dpi(2)
-theme.segment_radius = dpi(8)
+theme.widget_container_bg = "#1F222Bdd"
+theme.widget_container_bg_opaque = theme.bg_alt
+theme.widget_container_border_color = theme.bg
+theme.widget_container_border_width = dpi(2)
+theme.widget_container_radius = dpi(8)
 
 theme.wibar_bg = "#00000000" -- fully transparent
 
@@ -47,8 +48,7 @@ theme.taglist_fg_urgent = "#000000aa"
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 theme.systray_icon_spacing = 5
-theme.systray_icon_size = dpi(16)
-theme.bg_systray = theme.segment_bg
+theme.bg_systray = theme.widget_container_bg
 
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
 theme.layout_fairv = themes_path .. "default/layouts/fairvw.png"

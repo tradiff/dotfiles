@@ -2,6 +2,7 @@ local awful = require("awful")
 require("awful.autofocus")
 local beautiful = require("beautiful")
 require("evil.battery")
+require("evil.brightness")
 require("evil.volume")
 local gears = require("gears")
 local helpers = require("helpers")
@@ -20,14 +21,14 @@ local function create_widget_container(body)
     right = beautiful.useless_gap * 2,
     {
       widget = wibox.container.background,
-      bg = beautiful.segment_bg,
-      shape = helpers.rrect(beautiful.segment_radius),
-      shape_border_color = beautiful.segment_border_color,
-      shape_border_width = beautiful.segment_border_width,
+      bg = beautiful.widget_container_bg,
+      shape = helpers.rrect(beautiful.widget_container_radius),
+      shape_border_color = beautiful.widget_container_border_color,
+      shape_border_width = beautiful.widget_container_border_width,
       {
         widget = wibox.container.margin,
-        top = beautiful.segment_border_width + beautiful.useless_gap,
-        bottom = beautiful.segment_border_width + beautiful.useless_gap,
+        top = beautiful.widget_container_border_width + beautiful.useless_gap,
+        bottom = beautiful.widget_container_border_width + beautiful.useless_gap,
         left = dpi(15),
         right = dpi(15),
         body,
@@ -49,7 +50,7 @@ local function create_taglist_widget(screen)
       screen = screen,
       filter = function (t) return t.selected or #t:clients() > 0 end,
       style = {
-        shape = helpers.rrect(beautiful.segment_radius),
+        shape = helpers.rrect(beautiful.widget_container_radius),
         shape_border_width = 0,
       },
 
@@ -74,12 +75,11 @@ end
 local battery_widget = wibox.widget {
   widget = wibox.widget.textbox,
   markup = "",
-  align = "center",
-  valign = "center",
 }
 
 local battery_percentage_text = ""
 local battery_plugged_text = ""
+
 local function update_battery_widget()
   battery_widget.markup = battery_plugged_text .. battery_percentage_text
 end
@@ -126,9 +126,6 @@ end)
 local volume_widget = wibox.widget {
   widget = wibox.widget.textbox,
   markup = "",
-  align = "center",
-  valign = "center",
-  forced_width = dpi(70),
 }
 
 awesome.connect_signal("evil::volume", function (volume, muted)
@@ -149,6 +146,39 @@ awesome.connect_signal("evil::volume", function (volume, muted)
 
   volume_widget.markup = helpers.colorized_markup(icon, beautiful.blue) .. " " .. volume_display
 end)
+
+-- Brightness widget
+-- ===================================================================
+local brightness_widget = wibox.widget {
+  widget = wibox.widget.textbox,
+  markup = "",
+}
+
+awesome.connect_signal("evil::brightness", function (value, _icon)
+  brightness_widget.markup = helpers.colorized_markup("󰌶", beautiful.yellow) .. " " .. value
+end)
+
+
+-- Systray widget
+-- ===================================================================
+local create_systray_widget = function ()
+  local widget = create_widget_container(
+    {
+      widget = wibox.container.margin,
+      margins = dpi(4),
+
+      {
+        widget = wibox.widget.systray,
+      },
+    }
+  )
+
+  -- systray cannot be transparent so it's container also needs to be not
+  -- transparent or it'll look weird.
+  widget.children[1].bg = beautiful.widget_container_bg_opaque
+
+  return widget
+end
 
 -- Layout widget
 -- ===================================================================
@@ -171,7 +201,7 @@ end
 -- ===================================================================
 awful.screen.connect_for_each_screen(function (screen)
   local bar = awful.wibar({
-    height = dpi(32) + (beautiful.useless_gap * 3) + (beautiful.segment_border_width * 2),
+    height = dpi(32) + (beautiful.useless_gap * 3) + (beautiful.widget_container_border_width * 2),
     position = "top",
     screen = screen,
   })
@@ -197,27 +227,14 @@ awful.screen.connect_for_each_screen(function (screen)
         layout = wibox.layout.fixed.horizontal,
         create_widget_container(
           {
-            widget = wibox.container.margin,
-            left = dpi(15),
-            {
-              layout = wibox.layout.fixed.horizontal,
-              battery_widget,
-              volume_widget,
-            },
+            layout = wibox.layout.fixed.horizontal,
+            spacing = dpi(20),
+            battery_widget,
+            volume_widget,
+            brightness_widget,
           }),
 
-        create_widget_container(
-          {
-            widget = wibox.container.margin,
-            margins = dpi(4),
-
-            {
-              widget = wibox.widget.systray,
-              base_size = beautiful.systray_icon_size,
-              forced_width = 170, -- hack
-            },
-          }
-        ),
+        create_systray_widget(),
 
         create_widget_container(
           wibox.widget.textclock(
