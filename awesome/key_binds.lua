@@ -93,6 +93,9 @@ local global_keys = gears.table.join(
   ),
   awful.key({}, "XF86MonBrightnessDown",
     function () awful.spawn.with_shell("brightnessctl set 1%-") end
+  ),
+  awful.key({}, "Print",
+    function () awful.util.spawn("flameshot gui") end
   )
 )
 
