@@ -108,7 +108,13 @@ awesome.connect_signal("evil::battery", function (percentage)
     icon = "󰁹"
   end
 
-  battery_percentage_text = helpers.colorized_markup(icon, beautiful.green) .. " " .. percentage
+  if percentage < 20 then
+    battery_percentage_text =
+      '<span background="' ..
+      beautiful.red .. '" foreground="' .. "#000000aa" .. '">' .. icon .. " " .. percentage .. "</span>"
+  else
+    battery_percentage_text = helpers.colorized_markup(icon, beautiful.green) .. " " .. percentage
+  end
   update_battery_widget()
 end)
 
