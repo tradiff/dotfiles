@@ -1,4 +1,5 @@
 nvim/plugin/**
 nvim/sessions/**
 nvim/.luarc.json
+nvim/lazy-lock.json
 kitty/kitty.conf.bak
