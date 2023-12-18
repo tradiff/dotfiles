@@ -4,7 +4,7 @@ local naughty = require("naughty")
 local xresources = require("beautiful.xresources")
 
 local dpi = xresources.apply_dpi
-local themes_path = gfs.get_themes_dir()
+local theme_dir = os.getenv("HOME") .. "/.config/awesome/themes/default/"
 
 local theme = {}
 theme.font = "CaskaydiaCove Nerd Font 12"
@@ -50,22 +50,22 @@ theme.icon_theme = nil
 theme.systray_icon_spacing = 5
 theme.bg_systray = theme.widget_container_bg
 
-theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
-theme.layout_fairv = themes_path .. "default/layouts/fairvw.png"
-theme.layout_floating = themes_path .. "default/layouts/floatingw.png"
-theme.layout_magnifier = themes_path .. "default/layouts/magnifierw.png"
-theme.layout_max = themes_path .. "default/layouts/maxw.png"
-theme.layout_fullscreen = themes_path .. "default/layouts/fullscreenw.png"
-theme.layout_tilebottom = themes_path .. "default/layouts/tilebottomw.png"
-theme.layout_tileleft = themes_path .. "default/layouts/tileleftw.png"
-theme.layout_tile = themes_path .. "default/layouts/tilew.png"
-theme.layout_tiletop = themes_path .. "default/layouts/tiletopw.png"
-theme.layout_spiral = themes_path .. "default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path .. "default/layouts/dwindlew.png"
-theme.layout_cornernw = themes_path .. "default/layouts/cornernww.png"
-theme.layout_cornerne = themes_path .. "default/layouts/cornernew.png"
-theme.layout_cornersw = themes_path .. "default/layouts/cornersww.png"
-theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
+theme.layout_fairh = theme_dir .. "layouts/fairhw.png"
+theme.layout_fairv = theme_dir .. "layouts/fairvw.png"
+theme.layout_floating = theme_dir .. "layouts/floatingw.png"
+theme.layout_magnifier = theme_dir .. "layouts/magnifierw.png"
+theme.layout_max = theme_dir .. "layouts/maxw.png"
+theme.layout_fullscreen = theme_dir .. "layouts/fullscreenw.png"
+theme.layout_tilebottom = theme_dir .. "layouts/tilebottomw.png"
+theme.layout_tileleft = theme_dir .. "layouts/tileleftw.png"
+theme.layout_tile = theme_dir .. "layouts/tilew.png"
+theme.layout_tiletop = theme_dir .. "layouts/tiletopw.png"
+theme.layout_spiral = theme_dir .. "layouts/spiralw.png"
+theme.layout_dwindle = theme_dir .. "layouts/dwindlew.png"
+theme.layout_cornernw = theme_dir .. "layouts/cornernww.png"
+theme.layout_cornerne = theme_dir .. "layouts/cornernew.png"
+theme.layout_cornersw = theme_dir .. "layouts/cornersww.png"
+theme.layout_cornerse = theme_dir .. "layouts/cornersew.png"
 theme.layout_image_size = dpi(16)
 
 theme.notification_font = "Ubuntu Nerd Font 14"

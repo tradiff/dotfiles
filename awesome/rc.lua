@@ -10,6 +10,7 @@ local naughty = require("naughty")
 local key_binds = require("key_binds")
 require("mouse_binds")
 require("remember_tag")
+require("titlebar")
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
