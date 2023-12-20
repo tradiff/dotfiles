@@ -38,6 +38,18 @@ awful.rules.rules = {
     },
     properties = { floating = true, },
   },
+
+  {
+    rule_any = {
+      name = {
+        "Picture in picture",
+      },
+    },
+    properties = {
+      floating = true,
+      buttons = mouse_binds.pip,
+    },
+  },
 }
 
 -- Signal function to execute when a new client appears.

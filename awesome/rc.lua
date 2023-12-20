@@ -2,13 +2,11 @@ pcall(require, "luarocks.loader")
 local beautiful = require("beautiful")
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
-local awful = require("awful")
 require("awful.autofocus")
 require("bar")
 require("client_rules")
 local naughty = require("naughty")
 local key_binds = require("key_binds")
-require("mouse_binds")
 require("remember_tag")
 require("titlebar")
 
