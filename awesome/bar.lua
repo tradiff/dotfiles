@@ -12,7 +12,7 @@ local wibox = require("wibox")
 local xresources = require("beautiful.xresources")
 
 local dpi = xresources.apply_dpi
-local modkey = key_binds.modkey
+local modkey = helpers.key.MOD
 
 local function create_widget_container(body)
   return wibox.widget {
@@ -56,15 +56,15 @@ local function create_taglist_widget(screen)
 
       buttons = gears.table.join(
       -- left click to view tag
-        awful.button({}, 1, function (t) t:view_only() end),
+        awful.button({}, helpers.mouse.MB_LEFT, function (t) t:view_only() end),
         -- mod + left click to send the focused client to the tag
-        awful.button({ modkey, }, 1, function (t)
+        awful.button({ modkey, }, helpers.mouse.MB_LEFT, function (t)
           if client.focus then
             client.focus:move_to_tag(t)
           end
         end),
         -- right click to toggle
-        awful.button({}, 3, awful.tag.viewtoggle)
+        awful.button({}, helpers.mouse.MB_RIGHT, awful.tag.viewtoggle)
       ),
     }
   )
@@ -132,6 +132,11 @@ end)
 local volume_widget = wibox.widget {
   widget = wibox.widget.textbox,
   markup = "",
+  buttons = gears.table.join(
+    awful.button({}, helpers.mouse.MB_LEFT, function ()
+      awful.spawn.with_shell("killall pavucontrol; pavucontrol")
+    end)
+  ),
 }
 
 awesome.connect_signal("evil::volume", function (volume, muted)
@@ -196,8 +201,8 @@ local function create_layout_widget(screen)
     valign = "center",
     layout = wibox.container.place,
     buttons = gears.table.join(
-      awful.button({}, 1, function () awful.layout.inc(1) end),
-      awful.button({}, 3, function () awful.layout.inc(-1) end)
+      awful.button({}, helpers.mouse.MB_LEFT, function () awful.layout.inc(1) end),
+      awful.button({}, helpers.mouse.MB_RIGHT, function () awful.layout.inc(-1) end)
     ),
   }
 end

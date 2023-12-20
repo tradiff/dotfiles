@@ -1,7 +1,8 @@
-local gears = require("gears")
 local awful = require("awful")
+local gears = require("gears")
+local helpers = require("helpers")
 local hotkeys_popup = require("awful.hotkeys_popup.keys")
-local modkey = "Mod4"
+local modkey = helpers.key.MOD
 
 local global_keys = gears.table.join(
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
@@ -146,7 +147,6 @@ local client_keys = gears.table.join(
 )
 
 return {
-  modkey = modkey,
   global = global_keys,
   client = client_keys,
 }
