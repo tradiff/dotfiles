@@ -117,6 +117,11 @@ client.connect_signal("request::titlebars", function (c)
 end)
 
 client.connect_signal("property::sticky", function (c)
+  local tag = awful.screen.focused().selected_tag
+  if tag then
+    c:tags({ tag, })
+  end
+
   c:emit_signal("request::titlebars")
 end)
 
