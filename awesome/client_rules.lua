@@ -36,18 +36,10 @@ awful.rules.rules = {
       role = {
       },
     },
-    properties = { floating = true, },
-  },
-
-  {
-    rule_any = {
-      name = {
-        "Picture in picture",
-      },
-    },
     properties = {
+      sticky = true,
+      ontop = true,
       floating = true,
-      buttons = mouse_binds.pip,
     },
   },
 }

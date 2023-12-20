@@ -1,5 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
+local helpers = require("helpers")
 local wibox = require("wibox")
 local xresources = require("beautiful.xresources")
 
@@ -26,12 +27,10 @@ local function titlebar_button(icon, tooltip, click_fn)
     widget = wibox.container.background,
     bg = "#ffffff00",
     {
-
       widget = wibox.container.margin,
-      left = dpi(10),
-      right = dpi(10),
+      left = dpi(10), right = dpi(10),
       buttons = gears.table.join(
-        awful.button({}, 1, click_fn)
+        awful.button({}, helpers.mouse.MB_LEFT, click_fn)
       ),
       {
         widget = wibox.widget.textbox,
@@ -64,29 +63,36 @@ client.connect_signal("request::titlebars", function (c)
   -- Default
   -- buttons for the titlebar
   local buttons = gears.table.join(
-    awful.button({}, 1, function ()
+    awful.button({}, helpers.mouse.MB_LEFT, function ()
       c:emit_signal("request::activate", "titlebar", { raise = true, })
       awful.mouse.client.move(c)
     end),
-    awful.button({}, 3, function ()
+    awful.button({}, helpers.mouse.MB_RIGHT, function ()
       c:emit_signal("request::activate", "titlebar", { raise = true, })
       awful.mouse.client.resize(c)
     end)
   )
 
-  awful.titlebar(c, { size = 16, }):setup {
+  awful.titlebar(c, { size = 32, }):setup {
     { -- Left
-      layout = wibox.layout.fixed.horizontal,
-      awful.titlebar.widget.iconwidget(c),
-      awful.titlebar.widget.titlewidget(c),
-      buttons = buttons,
+      widget = wibox.container.margin,
+      top = dpi(5), bottom = dpi(5),
+      {
+        layout = wibox.layout.fixed.horizontal,
+        {
+          widget = wibox.container.margin,
+          left = dpi(5), right = dpi(5),
+          awful.titlebar.widget.iconwidget(c),
+        },
+        awful.titlebar.widget.titlewidget(c),
+        buttons = buttons,
+      },
     },
     { -- Middle
       layout = wibox.layout.flex.horizontal,
       buttons = buttons,
     },
     { -- Right
-
       widget = wibox.container.margin,
       right = dpi(0),
       {
@@ -94,23 +100,26 @@ client.connect_signal("request::titlebars", function (c)
         titlebar_button(
           get_sticky_icon(c),
           "Sticky",
-          function ()
-            c.sticky = not c.sticky
-            c:emit_signal("request::titlebars")
-          end),
+          function () c.sticky = not c.sticky end
+        ),
         titlebar_button(
           get_ontop_icon(c),
           "On Top",
-          function ()
-            c.ontop = not c.ontop
-            c:emit_signal("request::titlebars")
-          end),
+          function () c.ontop = not c.ontop end
+        ),
         titlebar_button(
-          "", "Close", function ()
-            c:kill()
-          end),
+          "", "Close", function () c:kill() end
+        ),
       },
     },
     layout = wibox.layout.align.horizontal,
   }
+end)
+
+client.connect_signal("property::sticky", function (c)
+  c:emit_signal("request::titlebars")
+end)
+
+client.connect_signal("property::ontop", function (c)
+  c:emit_signal("request::titlebars")
 end)
