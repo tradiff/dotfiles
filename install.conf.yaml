@@ -34,3 +34,12 @@
     ~/.config/awesome:
       if: '[ `uname` = Linux ]'
       path: awesome
+    ~/.xprofile:
+      if: '[ `uname` = Linux ]'
+      path: xorg/.xprofile
+    ~/bin:
+      if: '[ `uname` = Linux ]'
+      path: bin
+    ~/.local/share/applications/user:
+      if: '[ `uname` = Linux ]'
+      path: applications

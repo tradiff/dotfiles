@@ -12,8 +12,6 @@ require("mouse_binds")
 require("remember_tag")
 require("titlebar")
 
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-
 if awesome.startup_errors then
   naughty.notify({
     preset = naughty.config.presets.critical,

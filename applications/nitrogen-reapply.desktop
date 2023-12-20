@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Nitrogen Restore
+Categories=Wallpaper
+Exec=nitrogen --restore &
+Icon=nitrogen
+Terminal=false

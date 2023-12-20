@@ -113,7 +113,7 @@ back() {
 
 export WORKER_TIMEOUT=3600
 
-export EDITOR="code -w"
+export EDITOR="nvim"
 
 # iterm2
 bindkey "^[[H" beginning-of-line

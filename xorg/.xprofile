@@ -1,0 +1,14 @@
+#!/bin/sh
+
+~/bin/display-single.sh
+
+xinput set-prop 'VEN_04F3:00 04F3:32AA Touchpad' 'libinput Accel Speed' 0
+
+xcalib -d :0 /usr/share/color/icc/colord/1D20G_156XG01_01.icm
+
+nm-applet &
+flameshot &
+nitrogen --restore &
+slack &
+discord &
+
