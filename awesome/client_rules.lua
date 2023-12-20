@@ -70,7 +70,13 @@ client.connect_signal("unfocus", function (c) c.border_color = beautiful.border_
 
 -- turn titlebars on when client is floating
 client.connect_signal("property::floating",
-  function (c) if c.floating and not c.requests_no_titlebar then awful.titlebar.show(c) else awful.titlebar.hide(c) end end
+  function (c)
+    if c.floating and not c.requests_no_titlebar and not c.maximized then
+      awful.titlebar.show(c)
+    else
+      awful.titlebar.hide(c)
+    end
+  end
 )
 
 -- turn tilebars on when layout is floating
