@@ -1,8 +1,10 @@
 local awful = require("awful")
+local beautiful = require("beautiful")
 local gears = require("gears")
 local helpers = require("helpers")
 local hotkeys_popup = require("awful.hotkeys_popup.keys")
 local modkey = helpers.key.MOD
+local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 
 local global_keys = gears.table.join(
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
@@ -97,6 +99,19 @@ local global_keys = gears.table.join(
   ),
   awful.key({}, "Print",
     function () awful.util.spawn("flameshot gui") end
+  ),
+  awful.key({}, "XF86PowerOff",
+    function ()
+      logout_popup.launch({
+        icon_size = 40,
+        icon_margin = 16,
+        bg_color = beautiful.bg,
+        accent_color = "#ff79c6",
+        text_color = beautiful.fg,
+        label_color = beautiful.fg,
+        onlock = function () awful.spawn.with_shell("betterlockscreen --lock dim") end,
+      })
+    end
   )
 )
 
