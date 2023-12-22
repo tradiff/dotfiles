@@ -9,6 +9,7 @@ local helpers = require("helpers")
 require("layouts")
 local wibox = require("wibox")
 local xresources = require("beautiful.xresources")
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 
 local dpi = xresources.apply_dpi
 local modkey = helpers.key.MOD
@@ -245,6 +246,11 @@ awful.screen.connect_for_each_screen(function (screen)
       -- right
       {
         layout = wibox.layout.fixed.horizontal,
+
+        create_widget_container(
+          cpu_widget()
+        ),
+
         create_widget_container(
           {
             layout = wibox.layout.fixed.horizontal,

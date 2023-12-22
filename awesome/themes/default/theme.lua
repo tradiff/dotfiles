@@ -11,6 +11,7 @@ theme.font = "CaskaydiaCove Nerd Font 12"
 theme.bg = "#1D1F28"
 theme.bg_alt = "#1F222B"
 theme.fg = "#FDFDFD"
+theme.fg_normal = theme.fg
 theme.border_normal = "#000000"
 theme.border_focus = "#33ccff"
 theme.background_dark = theme.bg
