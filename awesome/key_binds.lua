@@ -92,10 +92,10 @@ local global_keys = gears.table.join(
     function () awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle") end
   ),
   awful.key({}, "XF86MonBrightnessUp",
-    function () awful.spawn.with_shell("brightnessctl set 1%+") end
+    function () awful.spawn.with_shell("brightnessctl -e set 5%+") end
   ),
   awful.key({}, "XF86MonBrightnessDown",
-    function () awful.spawn.with_shell("brightnessctl set 1%-") end
+    function () awful.spawn.with_shell("brightnessctl -e set 5%-") end
   ),
   awful.key({}, "Print",
     function () awful.util.spawn("flameshot gui") end
