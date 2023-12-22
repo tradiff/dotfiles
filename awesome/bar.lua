@@ -6,7 +6,6 @@ require("evil.brightness")
 require("evil.volume")
 local gears = require("gears")
 local helpers = require("helpers")
-local key_binds = require("key_binds")
 require("layouts")
 local wibox = require("wibox")
 local xresources = require("beautiful.xresources")
@@ -69,6 +68,15 @@ local function create_taglist_widget(screen)
     }
   )
 end
+
+-- New tag widget
+local new_tag_widget = wibox.widget({
+  widget = wibox.widget.textbox,
+  markup = " ",
+  buttons = gears.table.join(
+    awful.button({}, helpers.mouse.MB_LEFT, helpers.switch_new_tag)
+  ),
+})
 
 -- Battery widget
 -- ===================================================================
@@ -228,6 +236,7 @@ awful.screen.connect_for_each_screen(function (screen)
       {
         layout = wibox.layout.fixed.horizontal,
         create_taglist_widget(screen),
+        new_tag_widget,
       },
 
       -- middle

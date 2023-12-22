@@ -9,8 +9,9 @@ local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popu
 local global_keys = gears.table.join(
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome", }),
-  awful.key({ modkey, }, "Left", awful.tag.viewprev),
-  awful.key({ modkey, }, "Right", awful.tag.viewnext),
+  awful.key({ modkey, }, "Left", function () helpers.switch_tag(-1) end),
+  awful.key({ modkey, }, "Right", function () helpers.switch_tag(1) end),
+  awful.key({ modkey, }, "Up", helpers.switch_new_tag),
   awful.key({ modkey, }, "Escape", awful.tag.history.restore,
     { description = "go back", group = "tag", }
   ),
