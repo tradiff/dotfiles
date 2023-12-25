@@ -93,24 +93,20 @@ client.connect_signal("request::titlebars", function (c)
       buttons = buttons,
     },
     { -- Right
-      widget = wibox.container.margin,
-      right = dpi(0),
-      {
-        layout = wibox.layout.fixed.horizontal,
-        titlebar_button(
-          get_sticky_icon(c),
-          "Sticky",
-          function () c.sticky = not c.sticky end
-        ),
-        titlebar_button(
-          get_ontop_icon(c),
-          "On Top",
-          function () c.ontop = not c.ontop end
-        ),
-        titlebar_button(
-          "", "Close", function () c:kill() end
-        ),
-      },
+      layout = wibox.layout.fixed.horizontal,
+      titlebar_button(
+        get_sticky_icon(c),
+        "Sticky",
+        function () c.sticky = not c.sticky end
+      ),
+      titlebar_button(
+        get_ontop_icon(c),
+        "On Top",
+        function () c.ontop = not c.ontop end
+      ),
+      titlebar_button(
+        " ", "Close", function () c:kill() end
+      ),
     },
     layout = wibox.layout.align.horizontal,
   }
