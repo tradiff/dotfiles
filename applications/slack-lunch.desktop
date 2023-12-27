@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=slack-status lunch
+Exec=sh -c '. ~/secrets.zsh && ~/bin/slack-status.sh lunch'
+Terminal=false

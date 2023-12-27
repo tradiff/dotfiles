@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=slack-status afk
+Exec=sh -c '. ~/secrets.zsh && ~/bin/slack-status.sh afk'
+Terminal=false

@@ -77,40 +77,6 @@ alias db-down='rails db:rollback STEP=1'
 alias db-redo='rails db:migrate:redo'
 alias db-status='rails db:migrate:status'
 
-
-slack-status() {
-  # $1 = emoji (:hamburger:)
-  # $2 = status message ("out to lunch")
-  # $3 = presence (away/auto)
-  curl -X POST -H "Authorization: $SLACK_AUTH_HEADER" \
-    -H 'Content-type: application/json' \
-    --data "{
-      \"profile\": {
-        \"status_emoji\": \"$1\",
-        \"status_text\": \"$2\",
-        \"status_expiration\": 0
-      }
-    }" \
-    https://slack.com/api/users.profile.set
-
-  curl -X POST -H "Authorization: $SLACK_AUTH_HEADER" \
-    -H 'Content-type: application/json' \
-    --data "{\"presence\": \"$3\"}" \
-    https://slack.com/api/users.setPresence
-}
-
-lunch() {
-  slack-status ":hamburger:" "out to lunch" "away"
-}
-
-afk() {
-  slack-status ":afk:" "afk" "away"
-}
-
-back() {
-  slack-status "" "" "auto"
-}
-
 export WORKER_TIMEOUT=3600
 
 export EDITOR="nvim"
