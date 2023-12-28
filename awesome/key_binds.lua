@@ -54,9 +54,9 @@ local global_keys = gears.table.join(
     { description = "increase the number of master clients", group = "layout", }),
   awful.key({ modkey, "Shift", }, "l", function () awful.tag.incnmaster(-1, nil, true) end,
     { description = "decrease the number of master clients", group = "layout", }),
-  awful.key({ modkey, "Control", }, "h", function () awful.tag.incncol(1, nil, true) end,
+  awful.key({ modkey, "Control", }, "Up", function () awful.tag.incncol(1, nil, true) end,
     { description = "increase the number of columns", group = "layout", }),
-  awful.key({ modkey, "Control", }, "l", function () awful.tag.incncol(-1, nil, true) end,
+  awful.key({ modkey, "Control", }, "Down", function () awful.tag.incncol(-1, nil, true) end,
     { description = "decrease the number of columns", group = "layout", }),
   awful.key({ modkey, }, "space", function () awful.layout.inc(1) end,
     { description = "select next", group = "layout", }),
@@ -113,6 +113,16 @@ local global_keys = gears.table.join(
         onlock = function () awful.spawn.with_shell("betterlockscreen --lock dim") end,
       })
     end
+  ),
+  awful.key({ modkey, }, "F12", function ()
+      local screen = awful.screen.focused()
+      if screen.padding.bottom == 0 then
+        screen.padding = { bottom = 200, }
+      else
+        screen.padding = { bottom = 0, }
+      end
+    end,
+    { description = "Toggle bottom screen padding", group = "layout", }
   )
 )
 
