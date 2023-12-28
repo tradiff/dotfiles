@@ -18,10 +18,11 @@ theme.background_dark = theme.bg
 theme.background_lighter = theme.bg
 theme.red = "#F37F97"
 theme.green = "#90CEAA"
-theme.yellow = "#F2A272"
+theme.yellow = "#e0da37"
 theme.blue = "#8897F4"
 theme.magenta = "#B043D1"
 theme.cyan = "#79E6F3"
+theme.orange = "#f1af5f"
 
 theme.useless_gap = dpi(5)
 theme.border_width = dpi(2)

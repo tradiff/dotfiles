@@ -4,9 +4,11 @@ local beautiful = require("beautiful")
 local brightness_widget = require("bar.widgets.brightness")
 local cpu_widget = require("bar.widgets.cpu")
 local layout_widget = require("bar.widgets.layoutbox")
+local memory_widget = require("bar.widgets.memory")
 local new_tag_widget = require("bar.widgets.new_tag")
 local systray_widget = require("bar.widgets.systray")
 local taglist_widget = require("bar.widgets.taglist")
+local temperature_widget = require("bar.widgets.temperature")
 local volume_widget = require("bar.widgets.volume")
 local wibox = require("wibox")
 local widget_container = require("bar.widgets.widget_container")
@@ -34,7 +36,13 @@ local right = function (screen)
     layout = wibox.layout.fixed.horizontal,
 
     widget_container(
-      cpu_widget()
+      {
+        layout = wibox.layout.fixed.horizontal,
+        spacing = dpi(20),
+        temperature_widget(),
+        cpu_widget(),
+        memory_widget(),
+      }
     ),
 
     widget_container(
