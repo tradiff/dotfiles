@@ -78,25 +78,19 @@ local global_keys = gears.table.join(
 
   -- media
   awful.key({}, "XF86AudioRaiseVolume",
-    function ()
-      awful.spawn.with_shell(
-        "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +5%")
-    end
+    function () helpers.change_volume(1) end
   ),
   awful.key({}, "XF86AudioLowerVolume",
-    function ()
-      awful.spawn.with_shell(
-        "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -5%")
-    end
+    function () helpers.change_volume(-1) end
   ),
   awful.key({}, "XF86AudioMute",
     function () awful.spawn.with_shell("pactl set-sink-mute @DEFAULT_SINK@ toggle") end
   ),
   awful.key({}, "XF86MonBrightnessUp",
-    function () awful.spawn.with_shell("brightnessctl -e set 5%+") end
+    function () helpers.change_brightness(1) end
   ),
   awful.key({}, "XF86MonBrightnessDown",
-    function () awful.spawn.with_shell("brightnessctl -e set 5%-") end
+    function () helpers.change_brightness(-1) end
   ),
   awful.key({}, "Print",
     function () awful.util.spawn("flameshot gui") end

@@ -12,7 +12,13 @@ return function ()
     buttons = gears.table.join(
       awful.button({}, helpers.mouse.MB_LEFT, function ()
         awful.spawn.with_shell("killall pavucontrol; pavucontrol")
-      end)
+      end),
+      awful.button({}, helpers.mouse.MB_SCROLL_UP,
+        function () helpers.change_volume(-1) end
+      ),
+      awful.button({}, helpers.mouse.MB_SCROLL_DOWN,
+        function () helpers.change_volume(1) end
+      )
     ),
   }
 

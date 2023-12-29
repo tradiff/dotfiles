@@ -56,4 +56,30 @@ helpers.switch_new_tag = function ()
   end
 end
 
+helpers.change_volume = function (direction)
+  local amount = ""
+  if direction < 0 then
+    amount = "-5%"
+  else
+    amount = "+5%"
+  end
+
+  awful.spawn.with_shell(
+    "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ " .. amount
+  )
+end
+
+helpers.change_brightness = function (direction)
+  local amount = ""
+  if direction < 0 then
+    amount = "5%-"
+  else
+    amount = "5%+"
+  end
+
+  awful.spawn.with_shell(
+    "brightnessctl -e set " .. amount
+  )
+end
+
 return helpers
