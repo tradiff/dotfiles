@@ -1,0 +1,47 @@
+[
+  {
+    "name": "nitrogen restore wallpaper",
+    "icon": "preferences-desktop-wallpaper",
+    "command": "exec nitrogen --restore"
+  },
+  {
+    "name": "display single",
+    "icon": "video-display",
+    "command": "exec $HOME/bin/display-single.sh"
+  },
+  {
+    "name": "display ultrawide",
+    "icon": "video-display",
+    "command": "exec $HOME/bin/display-ultrawide.sh"
+  },
+  {
+    "name": "display tv-mirror",
+    "icon": "video-display",
+    "command": "exec $HOME/bin/display-tv-mirror.sh"
+  },
+  {
+    "name": "slack afk",
+    "icon": "slack",
+    "command": "exec $HOME/bin/slack-status.sh afk"
+  },
+  {
+    "name": "slack lunch",
+    "icon": "slack",
+    "command": "exec $HOME/bin/slack-status.sh lunch"
+  },
+  {
+    "name": "slack back",
+    "icon": "slack",
+    "command": "exec $HOME/bin/slack-status.sh back"
+  },
+  {
+    "name": "battery 80%",
+    "icon": "battery-good-charging",
+    "command": "exec $HOME/bin/battery-80%.sh"
+  },
+  {
+    "name": "battery 100%",
+    "icon": "battery-good-charging",
+    "command": "exec $HOME/bin/battery-max.sh"
+  }
+]

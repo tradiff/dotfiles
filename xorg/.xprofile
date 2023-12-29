@@ -14,4 +14,6 @@ flameshot &
 nitrogen --restore &
 slack &
 discord &
+lxpolkit &
 
+source ~/secrets.zsh

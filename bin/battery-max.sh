@@ -1,0 +1,1 @@
+sudo cctk --PrimaryBattChargeCfg=Standard

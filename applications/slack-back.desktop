@@ -1,6 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=slack-status back
-Exec=sh -c '. ~/secrets.zsh && ~/bin/slack-status.sh back'
-Terminal=false

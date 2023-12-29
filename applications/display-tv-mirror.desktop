@@ -1,6 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=display tv mirror
-Exec=~/bin/display-tv-mirror.sh
-Terminal=true

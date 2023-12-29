@@ -2,9 +2,11 @@
 
 configuration {
     show-icons:      true;
-    display-drun:    "Applications";
+    display-drun:    "App";
+    display-combi:   "";
     disable-history: false;
-    modi: "drun,emoji,calc";
+    modi: "combi,emoji,calc";
+    combi-modi: "drun,:~/.config/rofi/scripts/tasks.sh";
 }
 
 * {
