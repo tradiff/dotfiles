@@ -24,6 +24,9 @@ theme.magenta = "#B043D1"
 theme.cyan = "#79E6F3"
 theme.orange = "#f1af5f"
 
+theme.titlebar_bg = "#29333d"
+theme.titlebar_border = "#040506"
+
 theme.useless_gap = dpi(5)
 theme.border_width = dpi(2)
 

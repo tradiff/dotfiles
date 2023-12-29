@@ -1,4 +1,5 @@
 local awful = require("awful")
+local beautiful = require("beautiful")
 local gears = require("gears")
 local helpers = require("helpers")
 local wibox = require("wibox")
@@ -74,41 +75,47 @@ client.connect_signal("request::titlebars", function (c)
   )
 
   awful.titlebar(c, { size = 32, }):setup {
-    { -- Left
-      widget = wibox.container.margin,
-      top = dpi(5), bottom = dpi(5),
-      {
-        layout = wibox.layout.fixed.horizontal,
+    widget = wibox.container.background,
+    bg = beautiful.titlebar_bg,
+    shape_border_color = beautiful.titlebar_border,
+    shape_border_width = dpi(1),
+    {
+      layout = wibox.layout.align.horizontal,
+      { -- Left
+        widget = wibox.container.margin,
+        top = dpi(5), bottom = dpi(5),
         {
-          widget = wibox.container.margin,
-          left = dpi(5), right = dpi(5),
-          awful.titlebar.widget.iconwidget(c),
+          layout = wibox.layout.fixed.horizontal,
+          {
+            widget = wibox.container.margin,
+            left = dpi(5), right = dpi(5),
+            awful.titlebar.widget.iconwidget(c),
+          },
+          awful.titlebar.widget.titlewidget(c),
+          buttons = buttons,
         },
-        awful.titlebar.widget.titlewidget(c),
+      },
+      { -- Middle
+        layout = wibox.layout.flex.horizontal,
         buttons = buttons,
       },
+      { -- Right
+        layout = wibox.layout.fixed.horizontal,
+        titlebar_button(
+          get_sticky_icon(c),
+          "Sticky",
+          function () c.sticky = not c.sticky end
+        ),
+        titlebar_button(
+          get_ontop_icon(c),
+          "On Top",
+          function () c.ontop = not c.ontop end
+        ),
+        titlebar_button(
+          " ", "Close", function () c:kill() end
+        ),
+      },
     },
-    { -- Middle
-      layout = wibox.layout.flex.horizontal,
-      buttons = buttons,
-    },
-    { -- Right
-      layout = wibox.layout.fixed.horizontal,
-      titlebar_button(
-        get_sticky_icon(c),
-        "Sticky",
-        function () c.sticky = not c.sticky end
-      ),
-      titlebar_button(
-        get_ontop_icon(c),
-        "On Top",
-        function () c.ontop = not c.ontop end
-      ),
-      titlebar_button(
-        " ", "Close", function () c:kill() end
-      ),
-    },
-    layout = wibox.layout.align.horizontal,
   }
 end)
 
