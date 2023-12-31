@@ -1,1 +1,1 @@
-sudo cctk --PrimaryBattChargeCfg=Custom:70-80
+cctk --PrimaryBattChargeCfg=Custom:70-80

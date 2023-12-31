@@ -37,11 +37,11 @@
   {
     "name": "battery 80%",
     "icon": "battery-good-charging",
-    "command": "exec $HOME/bin/battery-80%.sh"
+    "command": "exec gksudo -- $HOME/bin/battery-80%.sh"
   },
   {
     "name": "battery 100%",
     "icon": "battery-good-charging",
-    "command": "exec $HOME/bin/battery-max.sh"
+    "command": "exec gksudo -- $HOME/bin/battery-max.sh"
   }
 ]
