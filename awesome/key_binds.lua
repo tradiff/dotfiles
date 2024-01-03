@@ -2,7 +2,7 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
 local helpers = require("helpers")
-local hotkeys_popup = require("awful.hotkeys_popup.keys")
+local hotkeys_popup = require("awful.hotkeys_popup")
 local modkey = helpers.key.MOD
 local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
 

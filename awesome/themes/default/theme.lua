@@ -97,4 +97,9 @@ naughty.config.icon_formats = { "svg", "png", "jpg", "gif", }
 
 theme.client_border_radius = dpi(8)
 
+theme.hotkeys_bg = theme.bg
+theme.hotkeys_fg = theme.fg
+theme.hotkeys_modifiers_fg = theme.fg
+theme.hotkeys_border_color = theme.border_focus
+theme.hotkeys_group_margin = dpi(50)
 return theme
