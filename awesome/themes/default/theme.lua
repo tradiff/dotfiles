@@ -31,7 +31,6 @@ theme.useless_gap = dpi(5)
 theme.border_width = dpi(2)
 
 theme.widget_container_bg = "#1F222Bdd"
-theme.widget_container_bg_opaque = theme.bg_alt
 theme.widget_container_border_color = theme.bg
 theme.widget_container_border_width = dpi(2)
 theme.widget_container_radius = dpi(8)

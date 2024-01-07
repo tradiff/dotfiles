@@ -14,9 +14,5 @@ return function ()
     },
   }
 
-  -- systray cannot be transparent so it's container also needs to be not
-  -- transparent or it'll look weird.
-  widget.bg = beautiful.widget_container_bg_opaque
-
   return widget
 end
