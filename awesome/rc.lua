@@ -9,6 +9,7 @@ local naughty = require("naughty")
 local key_binds = require("key_binds")
 require("remember_tag")
 require("titlebar")
+require("notifications")
 
 if awesome.startup_errors then
   naughty.notify({
