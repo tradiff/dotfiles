@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 return {
-  "bluz71/vim-nightfly-guicolors",
+  "bluz71/vim-nightfly-colors",
   name = "colorscheme",
   lazy = false,
   priority = 1000,
