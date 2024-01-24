@@ -40,3 +40,6 @@
     ~/bin:
       if: '[ `uname` = Linux ]'
       path: bin
+    ~/.config/espanso:
+      if: '[ `uname` = Linux ]'
+      path: espanso

@@ -1,0 +1,34 @@
+matches:
+  - trigger: "`shrug"
+    replace: "¯\\_(ツ)_/¯"
+    word: true
+  - trigger: "`flip"
+    replace: "(╯°□°)╯︵ ┻━┻"
+    word: true
+  - trigger: "`unflip"
+    replace: "┬─┬ノ(ಠ_ಠノ)"
+    word: true
+  - trigger: "`deg"
+    replace: "°"
+    word: true
+  - trigger: "`c"
+    replace: "©"
+    word: true
+  - trigger: "`r"
+    replace: "®"
+    word: true
+  - trigger: "`tm"
+    replace: "™"
+    word: true
+  - trigger: "`2"
+    replace: "²"
+    word: true
+
+  - trigger: "`date"
+    replace: "{{mydate}}"
+    word: true
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
