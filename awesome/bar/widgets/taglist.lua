@@ -22,7 +22,7 @@ return function (screen)
     -- left click to view tag
       awful.button({}, helpers.mouse.MB_LEFT, function (t) t:view_only() end),
       -- mod + left click to send the focused client to the tag
-      awful.button({ modkey, }, helpers.mouse.MB_LEFT, function (t)
+      awful.button({ helpers.key.MOD, }, helpers.mouse.MB_LEFT, function (t)
         if client.focus then
           client.focus:move_to_tag(t)
         end
