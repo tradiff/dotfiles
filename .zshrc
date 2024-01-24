@@ -62,10 +62,9 @@ export DISABLE_AUTO_TITLE=true
 autoload -U add-zsh-hook
 add-zsh-hook precmd set-title-from-cwd
 
-# add ~/bin to PATH
 export PATH="$PATH:$HOME/bin"
-# add ~/go/bin to PATH
 export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 alias ls='exa -lFha --git --group-directories-first'
 alias cls='clear && printf "\e[3J"'
@@ -80,6 +79,7 @@ alias db-status='rails db:migrate:status'
 export WORKER_TIMEOUT=3600
 
 export EDITOR="nvim"
+export DIFFPROG="nvim -d $1"
 
 # iterm2
 bindkey "^[[H" beginning-of-line
