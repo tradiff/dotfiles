@@ -35,6 +35,9 @@ local global_keys = gears.table.join(
   awful.key({ modkey, }, "Return", function () awful.spawn("wezterm") end,
     { description = "open a terminal", group = "launcher", }
   ),
+  awful.key({ modkey, }, "e", function () awful.spawn("thunar") end,
+    { description = "open a file browser", group = "launcher", }
+  ),
   awful.key({ modkey, }, "r", function ()
       awful.spawn.with_shell("killall rofi || rofi -show combi")
     end,
