@@ -66,7 +66,7 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
-alias ls='exa -lFha --git --group-directories-first'
+alias ls='exa -lha -F=always --git --group-directories-first'
 alias cls='clear && printf "\e[3J"'
 alias k="kubectl"
 alias g="git"
