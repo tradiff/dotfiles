@@ -14,7 +14,11 @@ local function emit_volume_info()
   -- This is why we are using `awk` to print them.
   awful.spawn.easy_async_with_shell("wpctl get-volume @DEFAULT_AUDIO_SINK@",
     function (stdout)
-      local volume = tonumber(string.match(stdout:match("(%d%.%d+)") * 100, "(%d+)"))
+      local value = stdout:match("(%d%.%d+)")
+      if value == nil then
+        return
+      end
+      local volume = tonumber(string.match(value * 100, "(%d+)"))
       local muted = stdout:match("MUTED")
       local muted_int = muted and 1 or 0
       local volume_int = tonumber(volume)
@@ -51,4 +55,3 @@ awful.spawn.easy_async({ "pkill", "--full", "--uid", os.getenv("USER"), "^pactl 
     end,
   })
 end)
-
