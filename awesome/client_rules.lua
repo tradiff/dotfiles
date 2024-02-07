@@ -27,9 +27,26 @@ awful.rules.rules = {
       instance = {
       },
       class = {
+        "zoom",
+      },
+      name = {
+      },
+      role = {
+      },
+    },
+    properties = {
+      sticky = false,
+      ontop = true,
+      floating = true,
+    },
+  },
+  {
+    rule_any = {
+      instance = {
+      },
+      class = {
         "Pavucontrol",
         "Blueman-manager",
-        "zoom",
       },
       name = {
         "Picture in picture",
