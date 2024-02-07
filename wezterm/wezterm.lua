@@ -6,8 +6,10 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = "Dracula"
+config.color_scheme = "Catppuccin Mocha" -- Mocha, Macchiato, Frappe, Latte
+
 config.colors = {
+  foreground = "#f8f8f2", -- didn't like the fg color of catppuccin mocha
   cursor_bg = "#CD974C",
   cursor_border = "#CD974C",
   cursor_fg = "black",
@@ -185,11 +187,6 @@ config.keys = {
     mods = mod_key .. "|SHIFT",
     key = "s",
     action = wezterm.action.SplitVertical,
-  },
-  {
-    mods = mod_key,
-    key = "k",
-    action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
   },
   {
     mods = mod_key,
