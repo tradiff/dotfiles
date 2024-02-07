@@ -93,6 +93,7 @@ naughty.config.icon_dirs = {
   "/usr/share/icons/Papirus-Dark/",
 }
 naughty.config.icon_formats = { "svg", "png", "jpg", "gif", }
+naughty.config.defaults.hide_on_right_click = true
 
 theme.client_border_radius = dpi(8)
 
