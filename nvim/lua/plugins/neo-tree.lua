@@ -8,7 +8,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  init = function ()
+  init = function()
     -- use - to toggle the tree.
     -- I'm not using `:Neotree toggle` because I want a slightly different
     -- behavior if the tree is already open but not focused. I want to send
@@ -16,7 +16,7 @@ return {
     -- Opening is defined here, closing is in the window mappings below.
     map("n", "-", ":Neotree reveal<CR>")
   end,
-  config = function ()
+  config = function()
     vim.fn.sign_define("DiagnosticSignError",
       { text = " ", texthl = "DiagnosticSignError", })
     vim.fn.sign_define("DiagnosticSignWarn",
@@ -45,10 +45,9 @@ return {
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
-      enable_normal_mode_for_inputs = false, -- Enable normal mode for input dialogs.
       open_files_do_not_replace_types = { "terminal", "trouble", "qf", }, -- when opening files, do not use windows containing these filetypes or buftypes
-      sort_case_insensitive = false, -- used when sorting files and directories in the tree
-      sort_function = nil, -- use a custom function for sorting files and directories in the tree
+      sort_case_insensitive = false,                                      -- used when sorting files and directories in the tree
+      sort_function = nil,                                                -- use a custom function for sorting files and directories in the tree
       default_component_configs = {
         container = {
           enable_character_fade = true,
@@ -177,7 +176,7 @@ return {
           enabled = false,
           leave_dirs_open = false,
         },
-        group_empty_dirs = false, -- when true, empty folders will be grouped together
+        group_empty_dirs = false,               -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_current",  -- netrw disabled, opening a directory opens within the
@@ -199,7 +198,7 @@ return {
           },
         },
         commands = {
-          tree_grep = function (state)
+          tree_grep = function(state)
             local node = get_folder_node(state.tree, state.tree:get_node())
             require("fzf-lua").live_grep({ cwd = node.path, })
           end,
