@@ -10,7 +10,7 @@ return {
       "junegunn/fzf",
       "nvim-tree/nvim-web-devicons",
     },
-    config = function ()
+    config = function()
       local fzflua = require("fzf-lua")
       local utils = require("fzf-lua").utils
 
@@ -21,13 +21,13 @@ return {
       local map = vim.keymap.set
       local opts = { noremap = true, silent = true, }
 
-      map("n", "<leader><space>", function () fzflua.buffers() end, opts)
-      map("n", "<leader>ff", function () fzflua.files() end, opts)
-      map("n", "<leader>fg", function () fzflua.live_grep() end, opts)
-      map("n", "<leader>fd", function () fzflua.git_status() end, opts)
+      map("n", "<leader><space>", function() fzflua.buffers() end, opts)
+      map("n", "<leader>ff", function() fzflua.files() end, opts)
+      map("n", "<leader>fg", function() fzflua.live_grep() end, opts)
+      map("n", "<leader>fd", function() fzflua.git_status() end, opts)
 
       -- Command to open fzf-lua with the current highlights
-      vim.api.nvim_create_user_command("Highlights", function () fzflua.highlights() end, { nargs = 0, })
+      vim.api.nvim_create_user_command("Highlights", function() fzflua.highlights() end, { nargs = 0, })
 
       fzflua.setup({
         winopts = {
@@ -66,7 +66,7 @@ return {
         buffers = {
           no_header = true,
           fzf_opts = {
-            ["--header"] = [['<ctrl-x> delete unselected']],
+            ["--header"] = [[<ctrl-x> delete unselected]],
           },
           actions = {
             -- delete the unselected buffers
