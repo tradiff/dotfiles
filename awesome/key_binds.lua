@@ -5,6 +5,7 @@ local helpers = require("helpers")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local modkey = helpers.key.MOD
 local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
+local screens = require("screens")
 
 local global_keys = gears.table.join(
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
@@ -120,6 +121,11 @@ local global_keys = gears.table.join(
       end
     end,
     { description = "Toggle bottom screen padding", group = "layout", }
+  ),
+
+  awful.key({ modkey, }, "g",
+    function () screens.gather_clients() end,
+    { description = "Gather tags and clients to one screen", group = "layout", }
   )
 )
 
