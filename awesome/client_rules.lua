@@ -10,6 +10,9 @@ awful.rules.rules = {
   {
     rule = {},
     properties = {
+      sticky = false,
+      ontop = false,
+      floating = false,
       border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
@@ -77,6 +80,11 @@ client.connect_signal("manage", function (c)
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
   end
+
+  if c.first_tag.layout.name == "floating" then
+    c.floating = true
+    c.ontop = false
+  end
 end)
 
 local update_border = function (c)
@@ -116,7 +124,15 @@ client.connect_signal("property::maximized", maybe_show_titlebar)
 awful.tag.attached_connect_signal(nil, "property::layout",
   function (t)
     local float = t.layout.name == "floating"
-    for _, c in pairs(t:clients()) do c.floating = float end
+
+    for _, c in pairs(t:clients()) do
+      if float then
+        c.floating = true
+        c.ontop = false
+      else
+        awful.rules.apply(c)
+      end
+    end
   end
 )
 
