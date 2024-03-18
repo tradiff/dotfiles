@@ -3,7 +3,7 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local map = require("map")
 
 -- enable keybinds for available lsp server
-local on_attach = function (_, bufnr)
+local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -33,7 +33,7 @@ lspconfig.solargraph.setup({
 lspconfig.rubocop.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  on_new_config = function (new_config, new_root_dir)
+  on_new_config = function(new_config, new_root_dir)
     new_config.cmd = { "bundle", "exec", "rubocop", "--lsp", }
   end,
   init_options = {
@@ -49,8 +49,6 @@ lspconfig.lua_ls.setup({
       format = {
         enable = true,
         defaultConfig = {
-          indent_style = "space",
-          indent_size = "2",
           quote_style = "double",
         },
       },
@@ -102,8 +100,8 @@ local lsp_formatting_group = vim.api.nvim_create_augroup("LspFormatting", { clea
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = lsp_formatting_group,
   pattern = "*.*",
-  callback = function ()
-    local success, error_message = pcall(function ()
+  callback = function()
+    local success, error_message = pcall(function()
       vim.lsp.buf.format({ async = false, })
     end)
 
