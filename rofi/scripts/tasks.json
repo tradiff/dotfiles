@@ -43,5 +43,20 @@
     "name": "battery 100%",
     "icon": "battery-good-charging",
     "command": "exec gksudo -- $HOME/bin/battery-max.sh"
+  },
+  {
+    "name": "audio sink laptop",
+    "icon": "computer",
+    "command": "exec $HOME/bin/audio-sink.sh laptop"
+  },
+  {
+    "name": "audio sink headphones",
+    "icon": "audio-headphones",
+    "command": "exec $HOME/bin/audio-sink.sh headphones"
+  },
+  {
+    "name": "audio sink earbuds",
+    "icon": "bluetooth",
+    "command": "exec $HOME/bin/audio-sink.sh earbuds"
   }
 ]
