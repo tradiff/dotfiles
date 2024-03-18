@@ -15,3 +15,5 @@ xrandr --dpi 96 \
   --output DP-2 --primary --mode 5120x1440 --pos 0x0 --rate 100.00 --rotate normal --scale 0.9999x0.9999 \
   --output DP-3 --off \
   --output DP-4 --off
+
+nitrogen --restore
