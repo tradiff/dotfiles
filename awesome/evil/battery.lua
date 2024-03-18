@@ -65,4 +65,3 @@ awful.spawn.easy_async_with_shell(
     )
   end
 )
-

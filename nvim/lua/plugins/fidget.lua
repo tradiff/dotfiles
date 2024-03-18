@@ -2,7 +2,7 @@
 return {
   "j-hui/fidget.nvim",
   tag = "legacy",
-  config = function ()
+  config = function()
     require("fidget").setup({
       text = {
         spinner = "line",

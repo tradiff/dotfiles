@@ -4,7 +4,7 @@ return {
     "colorscheme",
     "nvim-lua/plenary.nvim",
   },
-  config = function ()
+  config = function()
     local diffview = require("diffview")
 
     diffview.setup({
@@ -14,7 +14,7 @@ return {
     -- set diff deletes to use fancy diagonal lines instead of lame hyphens
     vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 
-    vim.api.nvim_create_user_command("DiffviewToggle", function ()
+    vim.api.nvim_create_user_command("DiffviewToggle", function()
       local view = require("diffview.lib").get_current_view()
 
       if view then

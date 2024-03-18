@@ -1,7 +1,7 @@
 -- better quickfix
 
 -- When using `dd` in the quickfix list, remove the item from the quickfix list.
-local delete_qf_entry = function ()
+local delete_qf_entry = function()
   local idx = vim.fn.line(".")
   local qfl = vim.fn.getqflist()
   table.remove(qfl, idx)
@@ -11,14 +11,14 @@ end
 
 vim.api.nvim_create_autocmd("Filetype", {
   pattern = "qf",
-  callback = function ()
-    vim.keymap.set("n", "dd", function () delete_qf_entry() end, { desc = "delete quickfix entry", buffer = 0, })
+  callback = function()
+    vim.keymap.set("n", "dd", function() delete_qf_entry() end, { desc = "delete quickfix entry", buffer = 0, })
   end,
 })
 
 return {
   "kevinhwang91/nvim-bqf",
-  config = function ()
+  config = function()
     require("bqf").setup({
       preview = {
         auto_preview = false,

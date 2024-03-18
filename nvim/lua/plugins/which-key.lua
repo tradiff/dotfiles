@@ -1,7 +1,7 @@
 -- halp
 return {
   "folke/which-key.nvim",
-  config = function ()
+  config = function()
     require("which-key").setup {}
   end,
 }

@@ -8,22 +8,22 @@ return {
     },
     event = "BufReadPost",
     opts = {
-      provider_selector = function ()
+      provider_selector = function()
         return { "treesitter", "indent", }
       end,
     },
 
-    init = function ()
+    init = function()
       vim.o.foldcolumn = "1"
       vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-      vim.keymap.set("n", "zR", function ()
+      vim.keymap.set("n", "zR", function()
         require("ufo").openAllFolds()
       end)
-      vim.keymap.set("n", "zM", function ()
+      vim.keymap.set("n", "zM", function()
         require("ufo").closeAllFolds()
       end)
     end,

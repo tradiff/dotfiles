@@ -11,7 +11,7 @@ return {
       build = "make",
     },
   },
-  config = function ()
+  config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
 
@@ -36,7 +36,7 @@ return {
       defaults = {
         selection_caret = "▶ ",
         dynamic_preview_title = true,
-        path_display = function (_, path)
+        path_display = function(_, path)
           local tail = require("telescope.utils").path_tail(path)
           local directory = string.sub(path, 1, -(string.len(tail) + 1))
           return string.format("%s (%s)", tail, directory)
@@ -101,7 +101,7 @@ return {
     keymap("n", "<leader>fh", tb.help_tags, { desc = "[F]ind [H]elp", }, opts)
     keymap("n", "<leader>fw", tb.grep_string, { desc = "[F]ind current [W]ord", }, opts)
     keymap("n", "<leader>fg", tb.live_grep, { desc = "[F]ind by [G]rep", }, opts)
-    keymap("v", "<leader>fg", function ()
+    keymap("v", "<leader>fg", function()
       local text = getVisualSelection()
       tb.live_grep({ default_text = text, desc = "[F]ind by [G]rep", })
     end, opts)

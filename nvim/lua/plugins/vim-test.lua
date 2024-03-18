@@ -1,7 +1,7 @@
 -- unit tests
 return {
   "vim-test/vim-test",
-  config = function ()
+  config = function()
     vim.g["test#neovim#start_normal"] = 1
     vim.g["test#preserve_screen"] = 0
     vim.g["test#strategy"] = "shtuff"

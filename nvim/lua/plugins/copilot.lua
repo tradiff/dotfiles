@@ -4,7 +4,7 @@ return {
     enabled = true,
     cmd = "Copilot",
     event = "InsertEnter",
-    config = function ()
+    config = function()
       require("copilot").setup({
 
         suggestion = { enabled = false, },

@@ -2,7 +2,7 @@ local map = require("map")
 -- alternate files, among other things
 return {
   "tpope/vim-rails",
-  config = function ()
+  config = function()
     map("n", "<leader>a", ":A<cr>", "Alternate file")
     map("n", "<leader>A", ':execute "e " . eval("rails#buffer().alternate()")<cr>',
       "Alternate file, create if missing")

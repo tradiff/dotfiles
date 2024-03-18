@@ -1,7 +1,7 @@
 -- status bar
 return {
   "nvim-lualine/lualine.nvim",
-  config = function ()
+  config = function()
     local lualine = require("lualine")
     local lualine_nightfly = require("lualine.themes.nightfly")
     local utils = require("lualine.utils.utils")

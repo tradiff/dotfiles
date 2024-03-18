@@ -1,7 +1,7 @@
 return {
   "windwp/nvim-autopairs",
   enabled = false,
-  config = function ()
+  config = function()
     require("nvim-autopairs").setup({
       -- leverage treesitter
       check_ts = true,
