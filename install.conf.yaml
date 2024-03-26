@@ -43,3 +43,6 @@
     ~/.config/espanso:
       if: '[ `uname` = Linux ]'
       path: espanso
+    ~/.config/wireplumber:
+      if: '[ `uname` = Linux ]'
+      path: wireplumber
