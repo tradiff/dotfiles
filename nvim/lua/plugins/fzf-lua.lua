@@ -6,6 +6,7 @@ return {
 
   {
     "ibhagwan/fzf-lua",
+    enabled = false,
     dependencies = {
       "junegunn/fzf",
       "nvim-tree/nvim-web-devicons",

@@ -1,54 +1,42 @@
--- fuzzy finder over lists
 return {
   "nvim-telescope/telescope.nvim",
-  enabled = false,
+  event = "VimEnter",
   dependencies = {
-    "colorscheme",
     "nvim-lua/plenary.nvim",
-    "nvim-lua/popup.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
+      cond = function()
+        return vim.fn.executable "make" == 1
+      end,
     },
+    { "nvim-telescope/telescope-ui-select.nvim" },
+    { "nvim-tree/nvim-web-devicons" },
   },
   config = function()
-    local telescope = require("telescope")
     local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
 
-    -- clear the selection highlight
-    vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "bg", })
-
-    -- used to feed the current selected text into telescope
-    local function getVisualSelection()
-      vim.cmd('noau normal! "vy"')
-      local text = vim.fn.getreg("v")
-      vim.fn.setreg("v", {})
-
-      text = string.gsub(text, "\n", "")
-      if #text > 0 then
-        return text
+    -- If there is a multi selection, put the selected ones into the quickfix
+    -- window; else, open the file in the current buffer.
+    local function my_smart_select(prompt_bufnr)
+      local picker = action_state.get_current_picker(prompt_bufnr)
+      local num_selections = table.getn(picker:get_multi_selection())
+      if num_selections > 1 then
+        actions.send_selected_to_qflist(prompt_bufnr)
+        actions.open_qflist()
+        -- jump to the first qf match.
+        vim.cmd.cc()
       else
-        return ""
+        actions.file_edit(prompt_bufnr)
       end
     end
 
-    telescope.setup({
+    require("telescope").setup({
       defaults = {
         selection_caret = "▶ ",
         dynamic_preview_title = true,
-        path_display = function(_, path)
-          local tail = require("telescope.utils").path_tail(path)
-          local directory = string.sub(path, 1, -(string.len(tail) + 1))
-          return string.format("%s (%s)", tail, directory)
-        end,
-        border = true,
-        borderchars = {
-          prompt = { "─", "│", "x", "│", "╭", "┬", "│", "│", },
-          results = { "─", "│", "─", "│", "├", "┤", "┴", "╰", },
-          preview = { "─", "│", "─", " ", "─", "╮", "╯", "─", },
-        },
         results_title = false,
-        layout_strategy = "horizontal",
         sorting_strategy = "ascending",
         layout_config = {
           horizontal = {
@@ -58,58 +46,50 @@ return {
             preview_width = 0.7,
           },
         },
+
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--vimgrep",
+          "--multiline",
+        },
         mappings = {
           n = {
             ["<C-d>"] = actions.delete_buffer,
           },
           i = {
-            ["<C-k>"] = actions.move_selection_previous,
             ["<C-j>"] = actions.move_selection_next,
-            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-n>"] = actions.cycle_history_next,
+            ["<C-p>"] = actions.cycle_history_prev,
             ["<esc>"] = actions.close,
-            ["<C-Down>"] = actions.cycle_history_next,
-            ["<C-Up>"] = actions.cycle_history_prev,
+            ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+            ["<cr>"] = my_smart_select,
             ["<C-d>"] = actions.delete_buffer,
           },
-        },
-        vimgrep_arguments = { "rg", "--hidden", "--color=never", "--no-heading", "--with-filename", "--line-number",
-          "--column", "--smart-case", },
-      },
-      pickers = {
-        find_files = {
-          hidden = false,
-        },
-        live_grep = {
-        },
-        lsp_references = {
-          show_line = false,
         },
       },
     })
 
-    telescope.load_extension("fzf")
+    pcall(require("telescope").load_extension, "fzf")
+    pcall(require("telescope").load_extension, "ui-select")
 
-    local keymap = vim.keymap.set
-    local tb = require("telescope.builtin")
-    local opts = { noremap = true, silent = true, }
-
-    keymap("n", "<leader>?", tb.oldfiles, { desc = "[?] Find recently opened files", }, opts)
-    keymap("n", "<leader><space>", tb.buffers, { desc = "[ ] Find existing buffers", }, opts)
-    keymap("n", "<leader>/", tb.current_buffer_fuzzy_find,
-      { desc = "[/] Fuzzily search in current buffer]", }, opts)
-    keymap("n", "<leader>ff", tb.find_files, { desc = "[F]ind [F]iles", }, opts)
-    keymap("n", "<leader>fh", tb.help_tags, { desc = "[F]ind [H]elp", }, opts)
-    keymap("n", "<leader>fw", tb.grep_string, { desc = "[F]ind current [W]ord", }, opts)
-    keymap("n", "<leader>fg", tb.live_grep, { desc = "[F]ind by [G]rep", }, opts)
-    keymap("v", "<leader>fg", function()
-      local text = getVisualSelection()
-      tb.live_grep({ default_text = text, desc = "[F]ind by [G]rep", })
-    end, opts)
-
-    keymap("n", "<leader>fd", tb.git_status, { desc = "Git Status", }, opts)
-    keymap("n", "<leader>fs", tb.lsp_document_symbols, { desc = "[F]ind LSP [S]ymbols", }, opts)
-
-    vim.cmd [[autocmd User TelescopePreviewerLoaded setlocal wrap]]
-    vim.cmd [[autocmd User TelescopePreviewerLoaded setlocal number]]
+    local builtin = require("telescope.builtin")
+    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
+    vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
+    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
+    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
+    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
+    vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
+    vim.keymap.set("n", "<leader><leader>",
+      function() builtin.buffers({ sort_mru = true, ignore_current_buffer = true }) end,
+      { desc = "[ ] Find existing buffers" })
+    vim.keymap.set("n", "<leader>fd", builtin.git_status, { desc = "[G]it Status" })
+    vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "[F]ind LSP [S]ymbols", })
   end,
 }
