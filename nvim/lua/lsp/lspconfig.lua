@@ -1,5 +1,4 @@
 local lspconfig = require("lspconfig")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local map = require("map")
 
 -- enable keybinds for available lsp server
@@ -20,7 +19,9 @@ local on_attach = function(_, bufnr)
   map("n", "gr", "<CMD>Glance references<CR>", bufopts)
 end
 
-local capabilities = cmp_nvim_lsp.default_capabilities()
+-- local capabilities = cmp_nvim_lsp.default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 lspconfig.solargraph.setup({
   init_options = {

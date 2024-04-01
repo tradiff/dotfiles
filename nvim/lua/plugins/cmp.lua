@@ -1,28 +1,31 @@
 return {
   "hrsh7th/nvim-cmp",
   enabled = true,
+  event = "InsertEnter",
   dependencies = {
+    {
+      "L3MON4D3/LuaSnip",
+      build = (function()
+        return "make install_jsregexp"
+      end)(),
+      dependencies = {
+        {
+          "rafamadriz/friendly-snippets",
+          config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+          end,
+        },
+      },
+    },
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
   },
   config = function()
     local cmp = require("cmp")
-    local lspkind = require("lspkind")
     local luasnip = require("luasnip")
-
-    local has_words_before = function()
-      unpack = unpack or table.unpack
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
-
-    local function check_backspace()
-      local col = vim.fn.col(".") - 1
-      return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-    end
+    luasnip.config.setup {}
 
     local kind_icons = {
       Text = "󰉿",
@@ -54,70 +57,54 @@ return {
       Copilot = " ",
     }
 
-    local mapping = {
-      ["<C-k>"] = cmp.mapping.select_prev_item(),
-      ["<C-j>"] = cmp.mapping.select_next_item(),
-      ["<Up>"] = cmp.mapping.select_prev_item(),
-      ["<Down>"] = cmp.mapping.select_next_item(),
-      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c", }),
-      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c", }),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c", }),
-      ["<C-y>"] = cmp.config.disable, -- remove the default `<C-y>` mapping.
-      ["<C-e>"] = cmp.mapping {
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      },
-      ["<esc>"] = cmp.mapping {
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      },
-      -- Accept currently selected item. If none selected, `select` first item.
-      -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm { select = false, },
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expandable() then
-          luasnip.expand()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif check_backspace() then
-          fallback()
-        else
-          fallback()
-        end
-      end, {
-        "i",
-        "s",
-      }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, {
-        "i",
-        "s",
-      }),
-    }
+
 
     cmp.setup({
       snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-          require("luasnip").lsp_expand(args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
-      mapping = mapping,
+      completion = { completeopt = "menu,menuone,noinsert" },
+
+      mapping = cmp.mapping.preset.insert {
+        -- Select the [n]ext item
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        -- Select the [p]revious item
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+
+        -- Scroll the documentation window [b]ack / [f]orward
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+
+        -- Accept ([y]es) the completion.
+        --  This will auto-import if your LSP supports it.
+        --  This will expand snippets if the LSP sent a snippet.
+        ["<C-y>"] = cmp.mapping.confirm { select = true },
+
+        -- Manually trigger a completion from nvim-cmp.
+        --  Generally you don't need this, because nvim-cmp will display
+        --  completions whenever it has completion options available.
+        ["<C-Space>"] = cmp.mapping.complete {},
+
+        -- <c-l> and <c-h> cycle through the expansion locations.
+        ["<C-l>"] = cmp.mapping(function()
+          if luasnip.expand_or_locally_jumpable() then
+            luasnip.expand_or_jump()
+          end
+        end, { "i", "s" }),
+        ["<C-h>"] = cmp.mapping(function()
+          if luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          end
+        end, { "i", "s" }),
+
+      },
       sources = {
         { name = "copilot", },
         { name = "luasnip", },
         { name = "nvim_lsp", },
         { name = "path", },
-        { name = "buffer", },
       },
 
       formatting = {
@@ -135,19 +122,6 @@ return {
           return vim_item
         end,
       },
-      confirm_opts = {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
-      },
-    })
-
-    cmp.setup.cmdline(":", {
-      mapping = mapping,
-      sources = cmp.config.sources({
-        { name = "path", },
-      }, {
-        { name = "cmdline", },
-      }),
     })
   end,
 }
