@@ -40,6 +40,30 @@ return {
       return get_folder_node(tree, tree:get_node(node:get_parent_id()))
     end
 
+
+    local function getTelescopeOpts(state, path)
+      return {
+        cwd = path,
+        search_dirs = { path },
+        attach_mappings = function(prompt_bufnr, map)
+          local actions = require "telescope.actions"
+          actions.select_default:replace(function()
+            actions.close(prompt_bufnr)
+            local action_state = require "telescope.actions.state"
+            local selection = action_state.get_selected_entry()
+            local filename = selection.filename
+            if (filename == nil) then
+              filename = selection[1]
+            end
+            -- any way to open the file without triggering auto-close event of neo-tree?
+            require("neo-tree.sources.filesystem").navigate(state, state.path, filename)
+          end)
+          return true
+        end
+      }
+    end
+
+
     require("neo-tree").setup({
       close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
       popup_border_style = "rounded",
@@ -200,7 +224,7 @@ return {
         commands = {
           tree_grep = function(state)
             local node = get_folder_node(state.tree, state.tree:get_node())
-            require("fzf-lua").live_grep({ cwd = node.path, })
+            require("telescope.builtin").live_grep(getTelescopeOpts(state, node.path))
           end,
         },
       },
