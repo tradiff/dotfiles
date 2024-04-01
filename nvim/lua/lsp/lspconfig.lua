@@ -96,17 +96,3 @@ lspconfig.rust_analyzer.setup({
   },
 })
 
-local lsp_formatting_group = vim.api.nvim_create_augroup("LspFormatting", { clear = true, })
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = lsp_formatting_group,
-  pattern = "*.*",
-  callback = function()
-    local success, error_message = pcall(function()
-      vim.lsp.buf.format({ async = false, })
-    end)
-
-    if not success then
-      print("An error occurred:", error_message)
-    end
-  end,
-})
