@@ -64,6 +64,14 @@ awful.rules.rules = {
       floating = true,
     },
   },
+  {
+    rule = { role = "GtkFileChooserDialog", },
+    properties = { floating = true, ontop = true, },
+    callback = function (c)
+      awful.placement.centered(c, nil)
+      awful.client.movetotag(tags[mouse.screen][awful.tag.getidx()], c)
+    end,
+  },
 }
 
 -- Signal function to execute when a new client appears.
