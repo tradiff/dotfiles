@@ -5,6 +5,7 @@ local config = {}
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
+config.check_for_updates = false
 
 config.color_scheme = "Catppuccin Mocha" -- Mocha, Macchiato, Frappe, Latte
 
