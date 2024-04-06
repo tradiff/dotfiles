@@ -20,5 +20,5 @@ windows:
       panes:
         - dev:
           - yarn install
-          - yarn run dev:local
+          - yarn run dev:local-ssl
         - terminal:
