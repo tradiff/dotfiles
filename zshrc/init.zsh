@@ -12,8 +12,6 @@ case `uname` in
   ;;
   Linux)
     source ~/powerlevel10k/powerlevel10k.zsh-theme
-    eval "$(rbenv init - zsh)"
-    source /usr/share/nvm/init-nvm.sh
   ;;
 esac
 
