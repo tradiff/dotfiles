@@ -6,14 +6,14 @@ return {
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
-      cond = function()
+      cond = function ()
         return vim.fn.executable "make" == 1
       end,
     },
-    { "nvim-telescope/telescope-ui-select.nvim" },
-    { "nvim-tree/nvim-web-devicons" },
+    { "nvim-telescope/telescope-ui-select.nvim", },
+    { "nvim-tree/nvim-web-devicons", },
   },
-  config = function()
+  config = function ()
     local actions = require("telescope.actions")
     local action_state = require("telescope.actions.state")
 
@@ -28,7 +28,7 @@ return {
         -- jump to the first qf match.
         vim.cmd.cc()
       else
-        actions.file_edit(prompt_bufnr)
+        actions.select_default(prompt_bufnr)
       end
     end
 
@@ -80,16 +80,17 @@ return {
     pcall(require("telescope").load_extension, "ui-select")
 
     local builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
-    vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
-    vim.keymap.set("n", "<leader>ff", function() builtin.find_files({ hidden = true }) end, { desc = "[F]ind [F]iles" })
-    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
-    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
-    vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
+    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp", })
+    vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps", })
+    vim.keymap.set("n", "<leader>ff", function () builtin.find_files({ hidden = true, }) end,
+      { desc = "[F]ind [F]iles", })
+    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord", })
+    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep", })
+    vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume", })
     vim.keymap.set("n", "<leader><leader>",
-      function() builtin.buffers({ sort_mru = true, ignore_current_buffer = true }) end,
-      { desc = "[ ] Find existing buffers" })
-    vim.keymap.set("n", "<leader>fd", builtin.git_status, { desc = "[G]it Status" })
+      function () builtin.buffers({ sort_mru = true, ignore_current_buffer = true, }) end,
+      { desc = "[ ] Find existing buffers", })
+    vim.keymap.set("n", "<leader>fd", builtin.git_status, { desc = "[G]it Status", })
     vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "[F]ind LSP [S]ymbols", })
   end,
 }
