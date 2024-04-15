@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 local map = require("map")
+-- vim.lsp.set_log_level("debug")
 
 -- enable keybinds for available lsp server
 local on_attach = function(_, bufnr)
@@ -102,16 +103,34 @@ local vue_language_server_path = mason_registry.get_package("vue-language-server
     "/node_modules/@vue/language-server"
 
 lspconfig.tsserver.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
   init_options = {
     plugins = {
       {
         name = "@vue/typescript-plugin",
         location = vue_language_server_path,
-        languages = { "vue" },
+        languages = { "javascript", "typescript", "vue" },
       },
     },
   },
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 })
 
-lspconfig.volar.setup({})
+
+lspconfig.volar.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.cssls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "css", "scss", "less", "sass", "vue" },
+})
+
+lspconfig.cssmodules_ls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "css", "scss", "less", "sass", "vue" },
+})
