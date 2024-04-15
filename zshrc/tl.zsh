@@ -24,3 +24,4 @@ tl-db-primary() { set-title "$0"; tl-l; tl pg-primary datagrip }
 tl-k9s() { set-title "$0"; tl-l; k9s }
 
 export DD_TRACE_STARTUP_LOGS=false
+export TIDELIFT_CI_CONSOLE_IRBRC=$HOME/projects/dependencyci/.irbrc.prod.rb
