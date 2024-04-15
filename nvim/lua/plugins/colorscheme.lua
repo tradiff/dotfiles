@@ -1,6 +1,5 @@
 -- colorscheme
 
-
 return {
   "folke/tokyonight.nvim",
   name = "colorscheme",
@@ -15,6 +14,8 @@ return {
         hl.DiffChange = { bg = "#272D43", }
         hl.DiffText = { bg = "#394B70", }
         hl.DiffviewDiffDelete = { fg = "#3B4252", }
+        hl.Comment = { fg = "#727ca7" }     -- bit more contrast
+        hl.NormalFloat = { bg = "#1f2335" } -- bit more contrast
       end,
     })
 
