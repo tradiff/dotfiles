@@ -2,6 +2,7 @@ local awful = require("awful")
 local battery_widget = require("bar.widgets.battery")
 local beautiful = require("beautiful")
 local brightness_widget = require("bar.widgets.brightness")
+local default_sink_widget = require("bar.widgets.default_sink")
 local cpu_widget = require("bar.widgets.cpu")
 local layout_widget = require("bar.widgets.layoutbox")
 local memory_widget = require("bar.widgets.memory")
@@ -51,6 +52,7 @@ local right = function (screen)
         spacing = dpi(20),
         battery_widget(),
         volume_widget(),
+        default_sink_widget(),
         brightness_widget(),
       }),
 
