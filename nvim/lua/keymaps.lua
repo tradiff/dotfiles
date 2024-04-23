@@ -15,6 +15,11 @@ map("n", "<leader>S", ":sp<CR><C-W>j")
 -- <leader>x to close a split
 map("n", "<leader>x", ":close<CR>")
 
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
+
 -- reload vim config with <leader>V
 map("n", "<leader>V", ":so ~/.config/nvim/init.lua<CR>", "Reload vim config")
 

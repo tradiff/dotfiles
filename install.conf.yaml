@@ -46,3 +46,5 @@
     ~/.config/wireplumber:
       if: '[ `uname` = Linux ]'
       path: wireplumber
+    ~/.config/zellij:
+      path: zellij

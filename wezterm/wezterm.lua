@@ -181,23 +181,6 @@ config.keys = {
   },
   {
     mods = mod_key,
-    key = "s",
-    action = wezterm.action.SplitHorizontal,
-  },
-  {
-    mods = mod_key .. "|SHIFT",
-    key = "s",
-    action = wezterm.action.SplitVertical,
-  },
-  {
-    mods = mod_key,
-    key = "t",
-    action = wezterm.action.SpawnCommandInNewTab({
-      cwd = wezterm.home_dir,
-    }),
-  },
-  {
-    mods = mod_key,
     key = "[",
     action = wezterm.action.MoveTabRelative(-1),
   },
