@@ -134,6 +134,7 @@ keybinds clear-defaults=true {
         bind "Alt 9" { GoToTab 9; SwitchToMode "Normal"; }
         bind "Alt Left" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "Alt Right" { GoToNextTab; SwitchToMode "Normal"; }
+        bind "Alt f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
