@@ -1,0 +1,28 @@
+import = [
+  "~/.config/alacritty/tokyonight_night.toml",
+  "~/.config/alacritty/zellij.toml"
+]
+
+[font]
+size = 8
+
+normal = { family = "MesloLGS NF", style = "Regular" }
+
+[colors.cursor]
+cursor = "#CD974C"
+text = "#000000"
+
+[cursor]
+unfocused_hollow = false
+
+[cursor.style]
+blinking = "Off"
+shape = "Beam"
+
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 1
+y = 1
+

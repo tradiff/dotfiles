@@ -10,6 +10,7 @@
     ~/.config/kitty: kitty
     ~/.config/starship.toml: starship.toml
     ~/.config/wezterm: wezterm
+    ~/.config/alacritty: alacritty
     ~/.config/karabiner/karabiner.json:
       if: '[ `uname` = Darwin ]'
       path: karabiner/karabiner.json

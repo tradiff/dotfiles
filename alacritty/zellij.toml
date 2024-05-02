@@ -1,0 +1,3 @@
+[shell]
+program = "zellij"
+args = ["-l", "welcome"]
