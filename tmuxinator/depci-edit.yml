@@ -1,0 +1,14 @@
+name: depci-edit
+
+windows:
+  - depci-edit:
+      layout: tiled
+      panes:
+        - edit:
+          - cd ~/projects/dependencyci
+          - nvim
+        - vim-test:
+          - cd ~/projects/dependencyci
+          - shtuff as vim-test
+        - terminal:
+          - cd ~/projects/dependencyci
