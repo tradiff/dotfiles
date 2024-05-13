@@ -50,6 +50,7 @@ awful.rules.rules = {
       class = {
         "Pavucontrol",
         "Blueman-manager",
+        "re.sonny.Junction",
       },
       name = {
         "Picture in picture",
