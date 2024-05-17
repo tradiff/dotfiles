@@ -47,16 +47,18 @@ awful.rules.rules = {
     rule_any = {
       instance = {
       },
+      type = { "dialog", "splash", },
       class = {
         "Pavucontrol",
         "Blueman-manager",
         "re.sonny.Junction",
       },
-      name = {
-        "Picture in picture",
-      },
       role = {
         "pop-up",
+      },
+      _NET_WM_WINDOW_TYPE = {
+        "_NET_WM_WINDOW_TYPE_DIALOG",
+        "_NET_WM_WINDOW_TYPE_SPLASH",
       },
     },
     properties = {
@@ -72,6 +74,17 @@ awful.rules.rules = {
       awful.placement.centered(c, nil)
       awful.client.movetotag(tags[mouse.screen][awful.tag.getidx()], c)
     end,
+  },
+  {
+    rule = { name = "Picture in picture", },
+    properties = {
+      floating = true,
+      ontop = true,
+      x = mouse.screen.workarea.width - 445,
+      y = 40,
+      width = 500,
+      height = 280,
+    },
   },
 }
 
