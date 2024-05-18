@@ -58,5 +58,10 @@
     "name": "audio sink earbuds",
     "icon": "bluetooth",
     "command": "exec $HOME/bin/audio-sink.sh earbuds"
+  },
+  {
+    "name": "bluetooth",
+    "icon": "bluetooth",
+    "command": "exec rofi-bluetooth"
   }
 ]
