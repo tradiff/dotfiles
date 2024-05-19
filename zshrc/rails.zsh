@@ -2,7 +2,7 @@ eval "$(rbenv init - zsh)"
 
 function rspecp {
     local start=$(date +%s)
-    bundle exec turbo_tests -n10
+    bundle exec turbo_tests -n10 --require ~/.config/ruby/rspec_formatter.rb --format RspecFormatter "$@"
     local test_status=$?
     local end=$(date +%s)
     local duration=$((end - start))

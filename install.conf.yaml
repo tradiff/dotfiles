@@ -49,3 +49,5 @@
       path: wireplumber
     ~/.config/zellij:
       path: zellij
+    ~/.config/ruby:
+      path: ruby
