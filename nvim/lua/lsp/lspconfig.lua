@@ -20,28 +20,27 @@ local on_attach = function(_, bufnr)
   map("n", "gr", "<CMD>Glance references<CR>", bufopts)
 end
 
--- local capabilities = cmp_nvim_lsp.default_capabilities()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 lspconfig.solargraph.setup({
   init_options = {
-    formatting = false,
+    -- formatting = false,
   },
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
-lspconfig.rubocop.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  on_new_config = function(new_config, new_root_dir)
-    new_config.cmd = { "bundle", "exec", "rubocop", "--lsp", }
-  end,
-  init_options = {
-    layoutMode = true,
-  },
-})
+-- lspconfig.rubocop.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   on_new_config = function(new_config, new_root_dir)
+--     new_config.cmd = { "bundle", "exec", "rubocop", "--lsp", }
+--   end,
+--   init_options = {
+--     layoutMode = true,
+--   },
+-- })
 
 lspconfig.lua_ls.setup({
   on_attach = on_attach,
