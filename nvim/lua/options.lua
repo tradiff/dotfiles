@@ -3,9 +3,6 @@ vim.g.mapleader = " "
 -- enable the mouse (I know, I'm a terrible person)
 vim.o.mouse = "a"
 
--- disable compatibility with old-time vi
-vim.o.nocompatible = true
-
 -- show matching brackets
 vim.o.showmatch = true
 
