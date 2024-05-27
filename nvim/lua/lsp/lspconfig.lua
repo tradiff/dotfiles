@@ -15,8 +15,6 @@ local on_attach = function(_, bufnr)
     buffer = bufnr,
   }
   map("n", "gd", "<CMD>Glance definitions<CR>", bufopts)
-  map("n", "K", vim.lsp.buf.hover, bufopts)
-  map("i", "<C-k>", vim.lsp.buf.hover, bufopts)
   map("n", "gr", "<CMD>Glance references<CR>", bufopts)
 end
 
@@ -25,28 +23,31 @@ capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp"
 
 lspconfig.solargraph.setup({
   init_options = {
-    -- formatting = false,
+    formatting = false,
   },
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
--- lspconfig.rubocop.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   on_new_config = function(new_config, new_root_dir)
---     new_config.cmd = { "bundle", "exec", "rubocop", "--lsp", }
---   end,
---   init_options = {
---     layoutMode = true,
---   },
--- })
+lspconfig.rubocop.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  on_new_config = function(new_config)
+    new_config.cmd = { "rubocop", "--lsp", }
+  end,
+  init_options = {
+    layoutMode = true,
+  },
+})
 
 lspconfig.lua_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {
+      hint = {
+        enable = true,
+      },
       format = {
         enable = true,
         defaultConfig = {
@@ -132,4 +133,11 @@ lspconfig.cssmodules_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "css", "scss", "less", "sass", "vue" },
+})
+
+vim.api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
+  callback = function(args)
+    local enabled = args.event ~= "InsertEnter"
+    vim.lsp.inlay_hint.enable(enabled, { bufnr = args.buf })
+  end,
 })
