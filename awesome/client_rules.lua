@@ -49,7 +49,7 @@ awful.rules.rules = {
       },
       type = { "dialog", "splash", },
       class = {
-        "Pavucontrol",
+        "pavucontrol",
         "Blueman-manager",
         "re.sonny.Junction",
       },
