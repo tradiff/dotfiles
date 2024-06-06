@@ -12,7 +12,5 @@ discord &
 lxpolkit &
 dunst &
 
-source ~/secrets.zsh
-
 exec awesome &> /tmp/awesome.log
 

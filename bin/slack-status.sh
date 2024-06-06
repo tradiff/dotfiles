@@ -2,6 +2,7 @@
 
 # expects to find an environment variable called SLACK_AUTH_HEADER
 # with the value "Bearer xoxp-TOKEN-HERE"
+source ~/secrets.zsh
 
 slack_set_status() {
   local status_emoji="$1"

@@ -14,5 +14,3 @@ slack &
 discord &
 lxpolkit &
 dunst &
-
-source ~/secrets.zsh
