@@ -4,6 +4,7 @@
   border-radius: 0;
   min-height: 0;
   font-size: 13px;
+  font-family: 'MesloLGS NF';
 }
 
 window#waybar {
@@ -69,8 +70,26 @@ window#waybar.hidden {
 }
 
 #tray {
-  margin: 6px 3px;
-  padding: 6px 12px;
+  padding-right: 7px;
+  padding-left: 7px;
+}
+
+#tray menu {
+  background-color: #1E2031;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #3D415A;
+  border-radius: 3px;
+}
+
+#tray menu menuitem:hover {
+  background-color: #464965;
+}
+
+#tray menu menuitem {
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 tooltip {
