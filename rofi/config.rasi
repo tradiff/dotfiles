@@ -5,7 +5,7 @@ configuration {
     display-drun:    "App";
     display-combi:   "";
     disable-history: false;
-    modi: "combi,emoji,calc";
+    modi: "combi,emoji,calc,window";
     combi-modi: "drun,:~/.config/rofi/scripts/tasks.sh";
 }
 
@@ -29,6 +29,7 @@ configuration {
     border-radius:    6;
     border-color:     @bordercolor;
     padding:          15;
+    width: 800px;
 }
 #mainbox {
     border:  0;

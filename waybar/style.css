@@ -41,6 +41,10 @@ window#waybar.hidden {
   padding: 6px 12px;
 }
 
+#battery {
+  min-width: 110px;
+}
+
 #custom-power {
   margin-right: 6px;
 }
