@@ -1,140 +1,176 @@
 {
   "layer": "top",
+  "position": "top",
+  "margin": 5,
+  "height": 20,
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/submap",
-    "custom/media"
+    "hyprland/window"
   ],
   "modules-center": [],
   "modules-right": [
-    "mpd",
-    "group/hardware",
-    "pulseaudio",
-    "backlight",
-    "network",
-    "battery",
-    "clock",
-    "tray"
+    "group/group_hardware",
+    "group/group_inputs",
+    "tray",
+    "clock"
   ],
-  "group/hardware": {
-    "on-click": "wezterm -e btop",
-    "orientation": "horizontal",
-    "modules": [
-      "cpu",
-      "memory",
-      "temperature"
-    ]
-  },
   "hyprland/workspaces": {
     "on-click": "activate"
   },
-  "hyprland/submap": {
-    "format": "✌️ {}",
-    "max-length": 8,
-    "tooltip": false
+  "hyprland/window": {
+    "format": "{class}",
+    "rewrite": {
+      "brave-browser": "Brave",
+      "discord": "Discord"
+    },
+    "separate-outputs": true
   },
-  "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-    "format-disconnected": "Disconnected ",
-    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-    "unknown-tag": "N/A",
-    "interval": 2,
-    "consume-icons": {
-      "on": " "
-    },
-    "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " "
-    },
-    "repeat-icons": {
-      "on": " "
-    },
-    "single-icons": {
-      "on": "1 "
-    },
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
+  "group/group_hardware": {
+    "on-click": "alacritty -e btop",
+    "orientation": "horizontal",
+    "modules": [
+      "temperature#icon",
+      "temperature#value",
+      "cpu#icon",
+      "cpu#value",
+      "memory#icon",
+      "memory#value"
+    ]
   },
-  "cpu": {
-    "format": "C {usage}%   "
-  },
-  "memory": {
-    "format": "M {}%   "
-  },
-  "temperature": {
+  "temperature#icon": {
     "critical-threshold": 80,
-    "format": "T {temperatureC}°C"
+    "format": "󰔏"
   },
-  "pulseaudio": {
-    "format": "{icon}   {volume}%{format_source}",
-    "format-bluetooth": "{icon} {volume}% {format_source}",
-    "format-bluetooth-muted": "{icon}  {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": "",
-    "format-source-muted": "",
+  "temperature#value": {
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C"
+  },
+  "cpu#icon": {
+    "interval": 1,
+    "format": "",
+    "states": {
+      "warning": 40,
+      "critical": 80
+    }
+  },
+  "cpu#value": {
+    "interval": 1,
+    "format": "{usage}%",
+    "states": {
+      "warning": 40,
+      "critical": 80
+    }
+  },
+  "memory#icon": {
+    "format": "󰍛",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  "memory#value": {
+    "format": "{}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  "group/group_inputs": {
+    "orientation": "horizontal",
+    "modules": [
+      "battery#icon",
+      "battery#value",
+      "group/group_pulseaudio",
+      "backlight#icon",
+      "backlight#value"
+    ]
+  },
+  "battery#icon": {
+    "interval": 1,
+    "states": {
+      "warning": 20,
+      "critical": 18
+    },
+    "format": "{icon}",
+    "format-charging": "{icon} ",
+    "format-plugged": " {icon}",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
+  },
+  "battery#value": {
+    "states": {
+      "warning": 20,
+      "critical": 18
+    },
+    "interval": 1,
+    "format": "{capacity} (-{power:4.1f}W)",
+    "format-charging": "{capacity}% (+{power:4.1f}W)",
+    "format-plugged": "{capacity}% ({power:4.1f}W)"
+  },
+  "group/group_pulseaudio": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio#icon1",
+      "pulseaudio#icon2",
+      "pulseaudio#value"
+    ],
+    "on-click": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ +2%"
+  },
+  "pulseaudio#icon1": {
+    "format": "",
+    "format-muted": "󰸈",
+    "format-bluetooth": "",
+    "format-bluetooth-muted": "󰸈"
+  },
+  "pulseaudio#icon2": {
+    "format": "{icon}",
+    "format-muted": "{icon}",
+    "format-bluetooth": "{icon}",
+    "format-bluetooth-muted": "{icon}",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": " ",
+      "headphone": "󰋋",
+      "hands-free": "וֹ",
+      "headset": "󰋋",
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-    "on-click": "pavucontrol"
+      "default": "󰌢"
+    }
   },
-  "backlight": {
-    "format": "󰌶 {percent}%"
+  "pulseaudio#value": {
+    "format": "{volume}",
+    "format-muted": "0",
+    "format-bluetooth": "{volume}",
+    "format-bluetooth-muted": "0"
   },
-  "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "   {signalStrength}%",
-    "tooltip-format": "{essid} {ifname} via {gwaddr} ",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
-  },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "interval": 1,
-    "format": "{icon} {capacity}% ({power:.1f}W)",
-    "format-charging": "󰂄 {capacity}% ({power:.1f}W)",
-    "format-plugged": "   {capacity}% ({power:.1f}W)",
-    "format-alt": "{time} {icon}",
+  "backlight#icon": {
+    "format": "{icon}",
     "format-icons": [
-      "󰁺", // 10
-      "󰁻", // 20
-      "󰁼", // 30
-      "󰁽", // 40
-      "󰁾", // 50
-      "󰁿", // 60
-      "󰂀", // 70
-      "󰂁", // 80
-      "󰂂", // 90
-      "󰁹" // 100
-    ]
-    // "format-icons": [
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   ""
-    // ]
+      "󰌶"
+    ],
+    "on-scroll-down": "brightnessctl -c backlight set -2%",
+    "on-scroll-up": "brightnessctl -c backlight set +2%"
+  },
+  "backlight#value": {
+    "format": "{percent}",
+    "on-scroll-down": "brightnessctl -c backlight set -2%",
+    "on-scroll-up": "brightnessctl -c backlight set +2%"
   },
   "clock": {
-    "format": "{:%a %b %d   %I:%M %p}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format": "{:%a %b %d  %I:%M %p}",
+    "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
