@@ -4,7 +4,7 @@ return {
     enabled = true,
     cmd = "Copilot",
     event = "InsertEnter",
-    config = function()
+    config = function ()
       require("copilot").setup({
 
         suggestion = { enabled = false, },
@@ -13,6 +13,7 @@ return {
           ["*"] = false, -- disable for all other filetypes
           lua = true,
           ruby = true,
+          typescript = true,
         },
       })
     end,

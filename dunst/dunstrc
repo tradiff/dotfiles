@@ -33,7 +33,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 5x55
+    offset = 5x0
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -432,3 +432,7 @@
 [slack]
   appname = Slack
   new_icon = 'slack'
+
+[ignore_flameshot_warning]
+    body = "grim's screenshot component is implemented based on wlroots, it may not be used in GNOME or similar desktop environments"
+    format = ""

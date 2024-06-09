@@ -51,3 +51,4 @@
       path: zellij
     ~/.config/ruby:
       path: ruby
+    ~/.config/wlogout: wlogout

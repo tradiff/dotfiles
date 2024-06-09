@@ -63,5 +63,10 @@
     "name": "bluetooth",
     "icon": "bluetooth",
     "command": "exec rofi-bluetooth"
+  },
+  {
+    "name": "Power",
+    "icon": "",
+    "command": "exec wlogout"
   }
 ]
