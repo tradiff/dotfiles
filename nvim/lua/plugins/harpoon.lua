@@ -54,7 +54,7 @@ return {
         end,
         desc = "Harpoon: UI",
       },
-      { "<leader>ha", function() require("harpoon"):list():append() end,  desc = "Harpoon: Add", },
+      { "<leader>ha", function() require("harpoon"):list():add() end,     desc = "Harpoon: Add", },
       { "<leader>1",  function() require("harpoon"):list():select(1) end, desc = "Harpoon: Nav 1", },
       { "<leader>2",  function() require("harpoon"):list():select(2) end, desc = "Harpoon: Nav 2", },
       { "<leader>3",  function() require("harpoon"):list():select(3) end, desc = "Harpoon: Nav 3", },
