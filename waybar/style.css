@@ -170,7 +170,7 @@ inspect classes: `GTK_DEBUG=interactive waybar`
  #pulseaudio.icon2 {
    font-size: 15px;
    color: #66ACED;
-   padding-right: 3px;
+   padding-right: 10px;
  }
 
  #pulseaudio.value {
