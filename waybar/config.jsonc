@@ -124,15 +124,14 @@
       "pulseaudio#icon2",
       "pulseaudio#value"
     ],
-    "on-click": "pavucontrol",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ +2%"
+    "on-click": "pavucontrol"
   },
   "pulseaudio#icon1": {
     "format": "",
     "format-muted": "󰸈",
     "format-bluetooth": "",
-    "format-bluetooth-muted": "󰸈"
+    "format-bluetooth-muted": "󰸈",
+    "reverse-scrolling": true
   },
   "pulseaudio#icon2": {
     "format": "{icon}",
@@ -147,29 +146,32 @@
       "portable": "",
       "car": "",
       "default": "󰌢"
-    }
+    },
+    "reverse-scrolling": true
   },
   "pulseaudio#value": {
     "format": "{volume}",
     "format-muted": "0",
     "format-bluetooth": "{volume}",
-    "format-bluetooth-muted": "0"
+    "format-bluetooth-muted": "0",
+    "reverse-scrolling": true
   },
   "backlight#icon": {
     "format": "{icon}",
     "format-icons": [
       "󰌶"
     ],
-    "on-scroll-down": "brightnessctl -c backlight set -2%",
-    "on-scroll-up": "brightnessctl -c backlight set +2%"
+    "on-scroll-down": "brightnessctl -e set 5%+",
+    "on-scroll-up": "brightnessctl -e set 5%-"
   },
   "backlight#value": {
     "format": "{percent}",
-    "on-scroll-down": "brightnessctl -c backlight set -2%",
-    "on-scroll-up": "brightnessctl -c backlight set +2%"
+    "on-scroll-down": "brightnessctl -e set 5%+",
+    "on-scroll-up": "brightnessctl -e set 5%-"
   },
   "clock": {
     "format": "{:%a %b %d  %I:%M %p}",
+    "interval": 1,
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "year",
