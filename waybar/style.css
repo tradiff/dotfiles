@@ -23,7 +23,7 @@ inspect classes: `GTK_DEBUG=interactive waybar`
  window#waybar {
    background-color: rgba(0, 0, 0, 0);
    color: #dfdfdf;
-   font-family: MesloLGS NF;
+   font-family: monospace;
    font-size: 14px;
  }
 

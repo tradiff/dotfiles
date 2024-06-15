@@ -33,11 +33,10 @@ function is_linux()
   return wezterm.target_triple == "x86_64-unknown-linux-gnu"
 end
 
+config.font = wezterm.font("monospace")
 if is_mac() then
-  config.font = wezterm.font("MesloLGS Nerd Font")
   config.font_size = 13.0
 elseif is_linux() then
-  config.font = wezterm.font("MesloLGS NF")
   config.font_size = 10.5
 else
   -- default font

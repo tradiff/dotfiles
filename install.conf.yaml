@@ -52,3 +52,4 @@
     ~/.config/ruby:
       path: ruby
     ~/.config/wlogout: wlogout
+    ~/.config/fontconfig: fontconfig
