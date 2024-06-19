@@ -47,10 +47,13 @@ inspect classes: `GTK_DEBUG=interactive waybar`
  * -------------------------------------------------------------------------- */
 
  #custom-distro_icon.arch {
+   font-size: 20px;
    color: #1793d1;
+   padding-right: 1em;
  }
 
  #custom-distro_icon.tumbleweed {
+   font-size: 20px;
    color: #73ba25;
    padding-right: 1em;
  }

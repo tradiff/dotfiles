@@ -8,12 +8,12 @@ return {
     gitsigns.setup {
 
       signs = {
-        add = { text = "▍", },
-        change = { hl = "GitSignsChange", text = "▍", },
-        delete = { hl = "GitSignsDelete", text = "▁", },
-        topdelete = { hl = "GitSignsDelete", text = "▔", },
-        changedelete = { hl = "GitSignsChange", text = "▍", },
-        untracked = { hl = "GitSignsAdd", text = "▍", },
+        add = { text = "▍" },
+        change = { text = "▍" },
+        delete = { text = "▁" },
+        topdelete = { text = "▔" },
+        changedelete = { text = "▍" },
+        untracked = { text = "▍" },
       },
       signcolumn = true,
       numhl = false,
@@ -43,9 +43,6 @@ return {
         relative = "cursor",
         row = 0,
         col = 1,
-      },
-      yadm = {
-        enable = false,
       },
     }
 
