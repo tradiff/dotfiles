@@ -9,10 +9,16 @@ return {
 
     diffview.setup({
       ehanced_diff_hl = true,
+      hooks = {
+        diff_buf_read = function()
+          -- Change local options in diff buffers
+          vim.opt_local.cursorline = false
+        end
+      }
     })
 
-    -- set diff deletes to use fancy diagonal lines instead of lame hyphens
-    vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
+    -- set diff deletes to use whitespace instead of lame hyphens
+    vim.opt.fillchars = vim.opt.fillchars + "diff: "
 
     vim.api.nvim_create_user_command("DiffviewToggle", function()
       local view = require("diffview.lib").get_current_view()
