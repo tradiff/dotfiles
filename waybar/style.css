@@ -28,6 +28,7 @@ inspect classes: `GTK_DEBUG=interactive waybar`
  }
 
  /* Every modules */
+ #custom-distro_icon,
  #workspaces,
  #window,
  #group_hardware,
@@ -45,11 +46,19 @@ inspect classes: `GTK_DEBUG=interactive waybar`
  * Modules styles
  * -------------------------------------------------------------------------- */
 
+ #custom-distro_icon.arch {
+   color: #1793d1;
+ }
+
+ #custom-distro_icon.tumbleweed {
+   color: #73ba25;
+   padding-right: 1em;
+ }
+
  #workspaces {}
 
  #workspaces button {
    font-weight: bold;
-   /* font-size: 16px; */
    border-bottom: 3px solid transparent;
    margin-bottom: 0px;
    margin: 0;

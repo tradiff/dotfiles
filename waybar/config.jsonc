@@ -4,6 +4,7 @@
   "margin": 5,
   "height": 20,
   "modules-left": [
+    "custom/distro_icon",
     "hyprland/workspaces",
     "hyprland/window"
   ],
@@ -14,10 +15,20 @@
     "tray",
     "clock"
   ],
+  "custom/distro_icon": {
+    "return-type":"json",
+    "interval": "once",
+    "exec": "~/.config/waybar/scripts/distro-icon.sh",
+    "tooltip": true
+  },
+
   "hyprland/workspaces": {
     "on-click": "activate"
   },
   "hyprland/window": {
+    "icon": true,
+    "icon-size": 16,
+    "max-length": 32,
     "format": "{class}",
     "rewrite": {
       "brave-browser": "Brave",
