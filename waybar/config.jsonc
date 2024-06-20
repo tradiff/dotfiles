@@ -1,8 +1,6 @@
 {
   "layer": "top",
   "position": "top",
-  "margin": 5,
-  "height": 20,
   "modules-left": [
     "custom/distro_icon",
     "hyprland/workspaces",
