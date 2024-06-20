@@ -3,7 +3,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
-      ensure_instaleld = {
+      ensure_installed = {
         "solargraph",
         "rubocop",
         "lua-ls",

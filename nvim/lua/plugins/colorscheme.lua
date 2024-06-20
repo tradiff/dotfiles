@@ -16,6 +16,10 @@ return {
         hl.Comment = { fg = "#727ca7" } -- bit more contrast
         hl.Folded = { bg = "#1a1b26" }  -- line used for closed folds
       end,
+
+      on_colors = function(colors)
+        colors.bg_float = "#1f202d"
+      end
     })
 
     vim.cmd([[colorscheme tokyonight]])
