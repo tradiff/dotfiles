@@ -52,3 +52,6 @@
 
 [mailmap]
 	file = ~/.mailmap
+
+[pager]
+	branch = false
