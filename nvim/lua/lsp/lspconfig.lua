@@ -135,6 +135,11 @@ lspconfig.cssmodules_ls.setup({
   filetypes = { "css", "scss", "less", "sass", "vue" },
 })
 
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 vim.api.nvim_create_autocmd({ "LspAttach", "InsertEnter", "InsertLeave" }, {
   callback = function(args)
     local enabled = args.event ~= "InsertEnter"

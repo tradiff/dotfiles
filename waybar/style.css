@@ -111,7 +111,7 @@ inspect classes: `GTK_DEBUG=interactive waybar`
 
  #cpu.icon {
    color: #79E6F3;
-   padding-right: 6px;
+   padding-right: 10px;
    font-size: 15px;
  }
 
@@ -218,6 +218,31 @@ inspect classes: `GTK_DEBUG=interactive waybar`
    padding-left: 0;
  }
 
+ #tray menu {
+   background-color: #1E2031;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   border: 1px solid #3D415A;
+   border-radius: 3px;
+ }
+
+ #tray menu menuitem:hover {
+   background-color: #464965;
+ }
+
+ #tray menu menuitem {
+   padding-bottom: 3px;
+   padding-left: 10px;
+   padding-right: 10px;
+ }
+
+ tooltip {
+   background-color: #1E2031;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   border: 1px solid #3D415A;
+   border-radius: 3px;
+ }
 
  /* Keyframes */
 

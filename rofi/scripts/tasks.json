@@ -68,5 +68,10 @@
     "name": "Power",
     "icon": "",
     "command": "exec wlogout"
+  },
+  {
+    "name": "screenshot 5 sec",
+    "icon": "",
+    "command": "sleep 5; hyprshot --freeze --mode region --raw | swappy --file -"
   }
 ]

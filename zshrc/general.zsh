@@ -39,6 +39,7 @@ export PATH="$PATH:$HOME/.local/bin"
 alias ls='eza -lha -F=always --git --group-directories-first'
 alias cls='clear && printf "\e[3J"'
 alias k="kubectl"
+alias zy="sudo zypper"
 
 export WORKER_TIMEOUT=3600
 
