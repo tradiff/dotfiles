@@ -32,9 +32,6 @@ lspconfig.solargraph.setup({
 lspconfig.rubocop.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  on_new_config = function(new_config)
-    new_config.cmd = { "rubocop", "--lsp", }
-  end,
   init_options = {
     layoutMode = true,
   },
