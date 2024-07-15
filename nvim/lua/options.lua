@@ -70,3 +70,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.cmd([[autocmd BufEnter * set formatoptions-=o]])
 
 vim.o.modeline = false
+
+-- don't use scrolloffset in quickfix
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "qf",
+  callback = function()
+    vim.wo.scrolloff = 0
+  end,
+})
