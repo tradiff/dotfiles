@@ -174,13 +174,13 @@
     "format-icons": [
       "󰌶"
     ],
-    "on-scroll-down": "brightnessctl -e set 5%+",
-    "on-scroll-up": "brightnessctl -e set 5%-"
+    "on-scroll-down": "brightnessctl -e set 1%+",
+    "on-scroll-up": "brightnessctl -e set 1%-"
   },
   "backlight#value": {
     "format": "{percent}",
-    "on-scroll-down": "brightnessctl -e set 5%+",
-    "on-scroll-up": "brightnessctl -e set 5%-"
+    "on-scroll-down": "brightnessctl -e set 1%+",
+    "on-scroll-up": "brightnessctl -e set 1%-"
   },
   "clock": {
     "format": "{:%a %b %d  %I:%M %p}",

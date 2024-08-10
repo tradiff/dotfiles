@@ -15,7 +15,6 @@ inspect classes: `GTK_DEBUG=interactive waybar`
    min-height: 0;
    margin: 0;
    padding: 0;
-   color: #dfdfdf;
  }
 
 
@@ -84,6 +83,8 @@ inspect classes: `GTK_DEBUG=interactive waybar`
  }
 
  #workspaces button:hover {
+   box-shadow: inherit;
+   text-shadow: inherit;
    background: transparent;
    border-color: #ff4499;
  }
@@ -226,14 +227,23 @@ inspect classes: `GTK_DEBUG=interactive waybar`
    border-radius: 3px;
  }
 
- #tray menu menuitem:hover {
-   background-color: #464965;
- }
-
- #tray menu menuitem {
+ #tray menuitem {
    padding-bottom: 3px;
    padding-left: 10px;
    padding-right: 10px;
+   color: #dfdfdf;
+ }
+
+ #tray menuitem:hover {
+   background-color: #464965;
+ }
+
+ #tray menuitem:disabled {
+   color: rgba(223, 223, 223, 0.6);
+ }
+
+ #tray menuitem arrow {
+   min-height: 1em;
  }
 
  tooltip {
