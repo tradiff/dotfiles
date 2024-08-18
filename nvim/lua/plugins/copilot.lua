@@ -10,19 +10,13 @@ return {
           enabled = true,
           auto_trigger = false,
           keymap = {
-            accept = "<M-l>",
+            accept = "<M-y>",
             accept_word = false,
             accept_line = false,
             next = "<M-]>",
             prev = "<M-[>",
             dismiss = "<C-]>",
           },
-        },
-        filetypes = {
-          ["*"] = false, -- disable for all other filetypes
-          lua = true,
-          ruby = true,
-          typescript = true,
         },
       })
     end,
