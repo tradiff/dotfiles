@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- enable the mouse (I know, I'm a terrible person)
 vim.o.mouse = "a"
@@ -55,6 +56,23 @@ vim.o.sidescrolloff = 7
 vim.o.cursorline = true
 
 vim.o.swapfile = false
+
+-- trigger `autoread` when files change on disk
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
+-- notification after file change
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  callback = function()
+    vim.api.nvim_echo({ { "File changed on disk. Buffer reloaded.", "WarningMsg" } }, false, {})
+  end,
+})
 
 -- highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true, })

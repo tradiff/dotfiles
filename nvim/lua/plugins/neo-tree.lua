@@ -123,10 +123,24 @@ return {
             conflict = "",
           },
         },
+
+        file_size = {
+          enabled = false,
+        },
+        type = {
+          enabled = false,
+        },
+        last_modified = {
+          enabled = false,
+        },
+        created = {
+          enabled = false,
+        },
+
       },
       commands = {},
       window = {
-        position = "left",
+        position = "float",
         width = 40,
         mapping_options = {
           noremap = true,
@@ -228,42 +242,12 @@ return {
           end,
         },
       },
-      buffers = {
-        follow_current_file = {
-          enabled = true,
-          leave_dirs_open = false,
-        },
-        group_empty_dirs = true, -- when true, empty folders will be grouped together
-        show_unloaded = true,
-        window = {
-          mappings = {
-            ["bd"] = "buffer_delete",
-            ["."] = "set_root",
-          },
-        },
-      },
-      git_status = {
-        window = {
-          position = "float",
-          mappings = {
-            ["A"] = "git_add_all",
-            ["gu"] = "git_unstage_file",
-            ["ga"] = "git_add_file",
-            ["gr"] = "git_revert_file",
-            ["gc"] = "git_commit",
-            ["gp"] = "git_push",
-            ["gg"] = "git_commit_and_push",
-          },
-        },
-      },
 
       sources = {
         "filesystem",
-        "buffers",
-        "git_status",
       },
       source_selector = {
-        winbar = true,
+        winbar = false,
         statusline = false,
       },
     })

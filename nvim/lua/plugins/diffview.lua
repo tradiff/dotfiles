@@ -20,17 +20,27 @@ return {
     -- set diff deletes to use whitespace instead of lame hyphens
     vim.opt.fillchars = vim.opt.fillchars + "diff: "
 
-    vim.api.nvim_create_user_command("DiffviewToggle", function()
+    vim.api.nvim_create_user_command("DiffviewToggle", function(args)
       local view = require("diffview.lib").get_current_view()
 
       if view then
         vim.cmd("DiffviewClose")
       else
-        vim.cmd("DiffviewOpen")
+        local arguments = table.concat(args.fargs, " ") -- Concatenate all arguments into a single string
+        vim.cmd("DiffviewOpen " .. arguments)           -- Forward the arguments
       end
-    end, { nargs = "*", })
-
-
-    vim.keymap.set("n", "<Leader>d", ":DiffviewToggle<cr>")
+    end, { nargs = "*" })
   end,
+  keys = {
+    {
+      "<leader>d",
+      ":DiffviewToggle<cr>",
+      desc = "Toggle Diffview",
+    },
+    {
+      "<leader>md",
+      ":DiffviewToggle main<cr>",
+      desc = "Toggle Diffview compare to main",
+    },
+  }
 }
