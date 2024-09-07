@@ -35,29 +35,36 @@ add-zsh-hook precmd set-title-from-cwd
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/sbin"
 
 alias ls='eza -lha -F=always --git --group-directories-first'
 alias cls='clear && printf "\e[3J"'
 alias k="kubectl"
 alias zy="sudo zypper"
 
+function lc() {
+    if [ -d "$1" ]; then
+        ls "$1"
+    elif [ -f "$1" ]; then
+        cat "$1"
+    else
+        echo "File or directory does not exist"
+    fi
+}
+
 export WORKER_TIMEOUT=3600
 
 export EDITOR="nvim"
 export DIFFPROG="nvim -d $1"
 
-# iterm2
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
+bindkey "^[[1~" beginning-of-line # home
+bindkey "^[[4~" end-of-line # end
+bindkey "^[[1;5C" forward-word # ctrl + right
+bindkey "^[[1;5D" backward-word # ctrl + left
+bindkey "^[" kill-whole-line # esc
 
-# tmux
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
-
-bindkey "^[^[[C" forward-word
-bindkey "^[^[[D" backward-word
-
-bindkey "^[" kill-whole-line
+# ctrl+z to toggle between open text editors
+bindkey -s '^Z' '^Ufg^M'
 
 source ~/secrets.zsh
 
