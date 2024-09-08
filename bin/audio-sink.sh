@@ -3,7 +3,7 @@
 # Function to switch the audio sink
 switch_audio_sink() {
   # pactl list short sinks
-    laptop_sink="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink"
+    laptop_sink="alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.stereo-fallback"
     headphones_sink="bluez_output.80_C3_BA_58_A4_09.1"
     earbuds_sink="bluez_output.AC_3E_B1_A2_31_A1.1"
 

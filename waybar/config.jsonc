@@ -137,14 +137,14 @@
       "pulseaudio#icon2",
       "pulseaudio#value"
     ],
-    "on-click": "pavucontrol"
   },
   "pulseaudio#icon1": {
     "format": "",
     "format-muted": "󰸈",
     "format-bluetooth": "",
     "format-bluetooth-muted": "󰸈",
-    "reverse-scrolling": true
+    "reverse-scrolling": true,
+    "on-click": "pavucontrol"
   },
   "pulseaudio#icon2": {
     "format": "{icon}",
@@ -160,27 +160,31 @@
       "car": "",
       "default": "󰌢"
     },
-    "reverse-scrolling": true
+    "reverse-scrolling": true,
+    "on-click": "pavucontrol"
   },
   "pulseaudio#value": {
     "format": "{volume}",
     "format-muted": "0",
     "format-bluetooth": "{volume}",
     "format-bluetooth-muted": "0",
-    "reverse-scrolling": true
+    "reverse-scrolling": true,
+    "on-click": "pavucontrol"
   },
   "backlight#icon": {
     "format": "{icon}",
     "format-icons": [
       "󰌶"
     ],
-    "on-scroll-down": "brightnessctl -e set 1%+",
-    "on-scroll-up": "brightnessctl -e set 1%-"
+    "reverse-scrolling": true,
+    "on-scroll-up": "brightnessctl -e set 1%+",
+    "on-scroll-down": "brightnessctl -e set 1%-"
   },
   "backlight#value": {
     "format": "{percent}",
-    "on-scroll-down": "brightnessctl -e set 1%+",
-    "on-scroll-up": "brightnessctl -e set 1%-"
+    "reverse-scrolling": true,
+    "on-scroll-up": "brightnessctl -e set 1%+",
+    "on-scroll-down": "brightnessctl -e set 1%-"
   },
   "clock": {
     "format": "{:%a %b %d  %I:%M %p}",
