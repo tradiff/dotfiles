@@ -1,14 +1,11 @@
 -- convert ruby hash rockets to symbol hashes in the visual selection
--- unescaped regex:
--- :(\w+)\s*=>\s*
-vim.api.nvim_create_user_command("HashConvert", "%s/\\%V:\\(\\w\\+\\)\\s*=>\\s*/\\1: /g", { range = true, })
+vim.api.nvim_create_user_command("HashConvert", [=[
+  execute <line1> . ',' . <line2> . 's/\s*"\(.\{-}\)"\s*=>\s*/\1: /g'
+]=], { range = true })
 
--- convert ruby symbol hashes to string hash rockets in the visual selection
--- unescaped regex:
--- (\w+): \s*
-vim.api.nvim_create_user_command("HashConvertString", '%s/\\%V\\(\\w\\+\\): \\s*/"\\1" => /g', { range = true, })
-
-function MigrationBump()
+-- Rename the Rails migration in the current buffer to use today's timestamp
+-- so that it's the last one.
+vim.api.nvim_create_user_command("MigrationBump", function()
   local current_filepath = vim.fn.expand("%")
   local current_dir = vim.fn.expand("%:p:h")
   local current_filename = vim.fn.fnamemodify(current_filepath, ":t")
@@ -35,8 +32,4 @@ function MigrationBump()
     -- User cancelled, do nothing
     print("Function cancelled.")
   end
-end
-
--- Rename the Rails migration in the current buffer to use today's timestamp
--- so that it's the last one.
-vim.api.nvim_create_user_command("MigrationBump", "lua MigrationBump()", {})
+end, {})
