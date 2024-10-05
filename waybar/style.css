@@ -39,6 +39,7 @@ inspect classes: `GTK_DEBUG=interactive waybar`
  #group_hardware,
  #group_inputs,
  #tray,
+ #custom-clock,
  #clock {
    padding: 0.25rem 0.75rem;
    margin: 1px 6px;
@@ -55,6 +56,7 @@ inspect classes: `GTK_DEBUG=interactive waybar`
    margin-left: 3px;
  }
 
+ #custom-clock,
  #clock {
    margin-right: 3px;
  }
@@ -252,6 +254,8 @@ inspect classes: `GTK_DEBUG=interactive waybar`
    padding-bottom: 10px;
    border: 1px solid #3D415A;
    border-radius: 3px;
+   font-family: monospace;
+   font-size: 14px;
  }
 
  /* Keyframes */

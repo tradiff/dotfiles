@@ -1,4 +1,5 @@
 {
+  "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
   "modules-left": [
@@ -11,7 +12,7 @@
     "group/group_hardware",
     "group/group_inputs",
     "tray",
-    "clock"
+    "custom/clock"
   ],
   "custom/distro_icon": {
     "return-type":"json",
@@ -29,8 +30,11 @@
     "max-length": 32,
     "format": "{class}",
     "rewrite": {
+      "firefox": "Firefox",
       "brave-browser": "Brave",
-      "discord": "Discord"
+      "discord": "Discord",
+      "code-url-handler": "VS Code",
+      "jetbrains-idea-ce": "IntelliJ"
     },
     "separate-outputs": true
   },
@@ -185,6 +189,12 @@
     "reverse-scrolling": true,
     "on-scroll-up": "brightnessctl -e set 1%+",
     "on-scroll-down": "brightnessctl -e set 1%-"
+  },
+  "custom/clock": {
+    "exec": "bash -c 'echo \"{\\\"text\\\":\\\"$(date +\"%a %b %d  %I:%M %p\")\\\",\\\"tooltip\\\":\\\"$(date +\"%Z %a %b %d  %I:%M:%S %p\")\\\\n$(date -u +\"%Z %a %b %d  %I:%M:%S %p\")\\\"}\"'",
+    "return-type":"json",
+    "interval": 1,
+    "tooltip": true
   },
   "clock": {
     "format": "{:%a %b %d  %I:%M %p}",
