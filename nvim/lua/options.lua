@@ -103,3 +103,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.wrap = true
   end,
 })
+
+local cwd = vim.fn.getcwd()
+
+-- Generate a server address based on the current directory
+-- local server_address = "/tmp/nvim_" .. cwd:gsub("/", "_"):gsub("\\", "_")
+local server_address = cwd .. "/.nvim.socket"
+local success = pcall(vim.fn.serverstart, server_address)
+
+if not success then
+  print("Error: Unable to start Neovim server. The address '" .. server_address .. "' is already in use.")
+else
+  print("Neovim is listening on: " .. server_address)
+end
