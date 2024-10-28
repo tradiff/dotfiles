@@ -63,9 +63,6 @@ return {
           "--multiline",
         },
         mappings = {
-          n = {
-            ["<C-d>"] = actions.delete_buffer,
-          },
           i = {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
@@ -74,7 +71,18 @@ return {
             ["<esc>"] = actions.close,
             ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
             ["<cr>"] = my_smart_select,
-            ["<C-d>"] = actions.delete_buffer,
+          },
+        },
+      },
+      pickers = {
+        buffers = {
+          mappings = {
+            n = {
+              ["<C-d>"] = actions.delete_buffer
+            },
+            i = {
+              ["<C-d>"] = actions.delete_buffer
+            },
           },
         },
       },
