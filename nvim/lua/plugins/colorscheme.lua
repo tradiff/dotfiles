@@ -18,8 +18,9 @@ return {
       end,
 
       on_highlights = function(hl, c)
-        hl.Comment = { fg = "#727ca7" } -- bit more contrast
-        hl.Folded = { bg = "#1a1b26" }  -- line used for closed folds
+        hl.Comment = { fg = "#727ca7" }               -- bit more contrast
+        hl.Folded = { bg = "#1a1b26" }                -- line used for closed folds
+        hl.DiagnosticUnnecessary = { fg = "#727ca7" } -- bit more contrast
 
         -- Override telescope backgrounds. The foregrounds are all original.
         -- This is because we overrode bg_float above, but since telescope is
