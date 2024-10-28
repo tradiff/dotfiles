@@ -107,8 +107,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 local cwd = vim.fn.getcwd()
 
 -- Generate a server address based on the current directory
--- local server_address = "/tmp/nvim_" .. cwd:gsub("/", "_"):gsub("\\", "_")
 local server_address = cwd .. "/.nvim.socket"
+os.remove(server_address)
 local success = pcall(vim.fn.serverstart, server_address)
 
 if not success then
