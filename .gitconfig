@@ -25,7 +25,7 @@
     unwip = !git log -n 1 | grep -qci "WIP" && git uncommit
 
     # delete any branches that have been pushed and then deleted upstream
-    cleanup = !git switch main && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+    cleanup = !git switch main && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 
     # rebase to main
     slam = !git fetch origin && git rebase origin/main
@@ -58,3 +58,5 @@
   diff = false
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
