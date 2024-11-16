@@ -191,7 +191,7 @@
     "on-scroll-down": "brightnessctl -e set 1%-"
   },
   "custom/clock": {
-    "exec": "bash -c 'echo \"{\\\"text\\\":\\\"$(date +\"%a %b %d  %I:%M %p\")\\\",\\\"tooltip\\\":\\\"$(date +\"%Z %a %b %d  %I:%M:%S %p\")\\\\n$(date -u +\"%Z %a %b %d  %I:%M:%S %p\")\\\"}\"'",
+        "exec": "bash -c 'echo \"{\\\"text\\\":\\\"$(date +\"%a %b %d  %I:%M %p\")\\\",\\\"tooltip\\\":\\\"$(date +\"%Z %a %b %d  %I:%M:%S %p\")\\\\n$(TZ=America/New_York date +\"%Z %a %b %d  %I:%M:%S %p\")\\\\n$(date -u +\"%Z %a %b %d  %I:%M:%S %p\")\\\"}\"'",
     "return-type":"json",
     "interval": 1,
     "tooltip": true
