@@ -73,6 +73,9 @@ return {
             ["<cr>"] = my_smart_select,
           },
         },
+        preview = {
+          filesize_limit = 5, -- MB
+        },
       },
       pickers = {
         buffers = {
@@ -86,6 +89,16 @@ return {
           },
         },
       },
+      extensions = {
+        ["ui-select"] = {
+          require("telescope.themes").get_cursor({
+            width = 40,
+            height = 10,
+            previewer = false,
+            border = true,
+          })
+        }
+      }
     })
 
     pcall(require("telescope").load_extension, "fzf")
