@@ -11,7 +11,7 @@ DEBUG_LOG="$HOME/tmux-run-click-output.txt"
 
 log_debug() {
     if [ "$DEBUG" -eq 1 ]; then
-        echo "$1" >> "$DEBUG_LOG"
+        echo "$1" >>"$DEBUG_LOG"
     fi
 }
 
@@ -24,7 +24,7 @@ scroll_position=$(tmux display-message -p -F "#{scroll_position}" -t "$pane_id")
 log_debug "Pane height: $pane_height, Scroll position: $scroll_position"
 
 # Capture the visible content of the pane
-tmux capture-pane -p -J -t "$pane_id" -S - > /tmp/tmux_pane_content.txt
+tmux capture-pane -p -J -t "$pane_id" -S - >/tmp/tmux_pane_content.txt
 
 # Find the full line that contains the mouse_line
 line=$(tac /tmp/tmux_pane_content.txt | grep -F "$mouse_line" | head -n 1)
@@ -42,7 +42,7 @@ if [ "$position_in_line" -eq 0 ]; then
     exit 0
 fi
 
-char_index=$(( position_in_line + mouse_x - 1 ))
+char_index=$((position_in_line + mouse_x - 1))
 
 log_debug "Position in line: $position_in_line, Mouse X: $mouse_x, Character index: $char_index"
 
@@ -56,16 +56,16 @@ regex='([^ ]+\.[a-zA-Z0-9]+)(:[0-9]+)?'
 while [[ $line =~ $regex ]]; do
     match="${BASH_REMATCH[0]}"
     file_candidate="${BASH_REMATCH[1]}"
-    line_number_candidate="${BASH_REMATCH[2]:1}"  # Remove leading colon
+    line_number_candidate="${BASH_REMATCH[2]:1}" # Remove leading colon
 
     # Calculate match positions
     prefix="${line%%${match}*}"
     match_start=${#prefix}
     match_length=${#match}
-    match_end=$(( match_start + match_length - 1 ))
+    match_end=$((match_start + match_length - 1))
 
     # Check if char_index falls within this match
-    if (( char_index >= match_start && char_index <= match_end )); then
+    if ((char_index >= match_start && char_index <= match_end)); then
         file_path="$file_candidate"
         line_number="$line_number_candidate"
         break
@@ -97,10 +97,29 @@ server_name="$pane_cwd/.nvim.socket"
 log_debug "Neovim server name: $server_name"
 
 if [ -n "$line_number" ]; then
-    remote_cmd="<C-\\><C-N>:e $file_path<CR>:${line_number}<CR>"
+    # ensure normal mode, switch to the top-left pane, and open the file
+    remote_cmd="<C-\\><C-N>:wincmd t | e +${line_number} $file_path<CR>"
 else
-    remote_cmd="<C-\\><C-N>:e $file_path<CR>"
+    remote_cmd="<C-\\><C-N>:wincmd t | e $file_path<CR>"
 fi
 
 nvim --server "$server_name" --remote-send "$remote_cmd"
 
+find_neovim_pane() {
+    tmux list-panes -F "#{pane_id} #{pne_pid}" | while read -r pane_id pane_pid; do
+        if pstree -p "$pane_pid" | grep -qw "nvim"; then
+            echo "$pane_id"
+            return 0
+        fi
+    done
+    return 1
+}
+neovim_pane_id=$(find_neovim_pane)
+
+if [ -n "$neovim_pane_id" ]; then
+    # Switch focus to the Neovim pane
+    tmux select-pane -t "$neovim_pane_id"
+    log_debug "Switched focus to Neovim pane: $neovim_pane_id"
+else
+    log_debug "Neovim pane not found. Focus remains on the current pane."
+fi
