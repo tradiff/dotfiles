@@ -10,9 +10,9 @@ DEBUG=1
 DEBUG_LOG="$HOME/tmux-run-click-output.txt"
 
 log_debug() {
-    if [ "$DEBUG" -eq 1 ]; then
-        echo "$1" >>"$DEBUG_LOG"
-    fi
+  if [ "$DEBUG" -eq 1 ]; then
+    echo "$1" >>"$DEBUG_LOG"
+  fi
 }
 
 log_debug "Running pane_id: $pane_id, mouse_x: $mouse_x, mouse_line: $mouse_line"
@@ -32,14 +32,14 @@ line=$(tac /tmp/tmux_pane_content.txt | grep -F "$mouse_line" | head -n 1)
 log_debug "Line: $line"
 
 if [ -z "$line" ]; then
-    exit 0
+  exit 0
 fi
 
 # Find the position of mouse_line within the full line
 position_in_line=$(awk -v full_line="$line" -v partial_line="$mouse_line" 'BEGIN { print index(full_line, partial_line) }')
 
 if [ "$position_in_line" -eq 0 ]; then
-    exit 0
+  exit 0
 fi
 
 char_index=$((position_in_line + mouse_x - 1))
@@ -54,30 +54,30 @@ regex='([^ ]+\.[a-zA-Z0-9]+)(:[0-9]+)?'
 
 # Loop through all matches in the line
 while [[ $line =~ $regex ]]; do
-    match="${BASH_REMATCH[0]}"
-    file_candidate="${BASH_REMATCH[1]}"
-    line_number_candidate="${BASH_REMATCH[2]:1}" # Remove leading colon
+  match="${BASH_REMATCH[0]}"
+  file_candidate="${BASH_REMATCH[1]}"
+  line_number_candidate="${BASH_REMATCH[2]:1}" # Remove leading colon
 
-    # Calculate match positions
-    prefix="${line%%${match}*}"
-    match_start=${#prefix}
-    match_length=${#match}
-    match_end=$((match_start + match_length - 1))
+  # Calculate match positions
+  prefix="${line%%${match}*}"
+  match_start=${#prefix}
+  match_length=${#match}
+  match_end=$((match_start + match_length - 1))
 
-    # Check if char_index falls within this match
-    if ((char_index >= match_start && char_index <= match_end)); then
-        file_path="$file_candidate"
-        line_number="$line_number_candidate"
-        break
-    fi
+  # Check if char_index falls within this match
+  if ((char_index >= match_start && char_index <= match_end)); then
+    file_path="$file_candidate"
+    line_number="$line_number_candidate"
+    break
+  fi
 
-    # Remove the matched portion from the line and continue
-    line="${line#*${match}}"
+  # Remove the matched portion from the line and continue
+  line="${line#*${match}}"
 done
 
 if [ -z "$file_path" ]; then
-    log_debug "No valid file path found at character index: $char_index"
-    exit 0
+  log_debug "No valid file path found at character index: $char_index"
+  exit 0
 fi
 
 log_debug "File path: $file_path, Line number: $line_number"
@@ -89,37 +89,37 @@ log_debug "Current working directory: $pane_cwd"
 absolute_path="$pane_cwd/$file_path"
 
 if [ ! -f "$absolute_path" ]; then
-    log_debug "File does not exist: $absolute_path"
-    exit 0
+  log_debug "File does not exist: $absolute_path"
+  exit 0
 fi
 
 server_name="$pane_cwd/.nvim.socket"
 log_debug "Neovim server name: $server_name"
 
 if [ -n "$line_number" ]; then
-    # ensure normal mode, switch to the top-left pane, and open the file
-    remote_cmd="<C-\\><C-N>:wincmd t | e +${line_number} $file_path<CR>"
+  # ensure normal mode, switch to the top-left pane, and open the file
+  remote_cmd="<C-\\><C-N>:wincmd t | e +${line_number} $file_path<CR>"
 else
-    remote_cmd="<C-\\><C-N>:wincmd t | e $file_path<CR>"
+  remote_cmd="<C-\\><C-N>:wincmd t | e $file_path<CR>"
 fi
 
 nvim --server "$server_name" --remote-send "$remote_cmd"
 
 find_neovim_pane() {
-    tmux list-panes -F "#{pane_id} #{pne_pid}" | while read -r pane_id pane_pid; do
-        if pstree -p "$pane_pid" | grep -qw "nvim"; then
-            echo "$pane_id"
-            return 0
-        fi
-    done
-    return 1
+  tmux list-panes -F "#{pane_id} #{pne_pid}" | while read -r pane_id pane_pid; do
+    if pstree -p "$pane_pid" | grep -qw "nvim"; then
+      echo "$pane_id"
+      return 0
+    fi
+  done
+  return 1
 }
 neovim_pane_id=$(find_neovim_pane)
 
 if [ -n "$neovim_pane_id" ]; then
-    # Switch focus to the Neovim pane
-    tmux select-pane -t "$neovim_pane_id"
-    log_debug "Switched focus to Neovim pane: $neovim_pane_id"
+  # Switch focus to the Neovim pane
+  tmux select-pane -t "$neovim_pane_id"
+  log_debug "Switched focus to Neovim pane: $neovim_pane_id"
 else
-    log_debug "Neovim pane not found. Focus remains on the current pane."
+  log_debug "Neovim pane not found. Focus remains on the current pane."
 fi

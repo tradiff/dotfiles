@@ -17,10 +17,21 @@ local on_attach = function(_, bufnr)
   map("n", "gd", "<CMD>Glance definitions<CR>", bufopts)
   map("n", "gr", "<CMD>Glance references<CR>", bufopts)
   map("n", "ca", vim.lsp.buf.code_action, bufopts)
+  map("n", "<leader>f", vim.lsp.buf.format, bufopts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+require("mason-lspconfig").setup_handlers({
+  -- Default handler
+  function(server_name)
+    lspconfig[server_name].setup({
+      on_attach = on_attach,
+      capabilities = capabilities
+    })
+  end,
+})
 
 lspconfig.ruby_lsp.setup({
   on_attach = on_attach,
@@ -106,7 +117,11 @@ local vue_language_server_path = mason_registry.get_package("vue-language-server
     "/node_modules/@vue/language-server"
 
 lspconfig.ts_ls.setup({
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- Disable tsserver's formatting capability
+    client.server_capabilities.documentFormattingProvider = false
+    on_attach(client, bufnr)
+  end,
   capabilities = capabilities,
   init_options = {
     plugins = {
@@ -120,22 +135,31 @@ lspconfig.ts_ls.setup({
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 })
 
+lspconfig.eslint.setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
 
-lspconfig.volar.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
+
+-- lspconfig.volar.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- }
 lspconfig.html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
 
-lspconfig.cssls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "css", "scss", "less", "sass", "vue" },
-})
-
+-- lspconfig.cssls.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "css", "scss", "less", "sass", "vue" },
+-- })
+--
 lspconfig.cssmodules_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
