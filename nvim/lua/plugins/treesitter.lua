@@ -6,7 +6,10 @@ return {
       extension = {
         rasi = "rasi",
       },
-      pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+      pattern = {
+        [".*/hypr/.*%.conf"] = "hyprlang",
+        [".*_spec%.rb"] = "ruby.spec",
+      },
     })
     require("nvim-treesitter.configs").setup({
       -- A list of parser names, or "all"
