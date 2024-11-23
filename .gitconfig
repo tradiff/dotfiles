@@ -22,7 +22,7 @@
     # commit changes (if any) using the "WIP" message
     wip = !git add . && (git diff --quiet HEAD || git commit -m "WIP")
     # only uncommit if the last commit was "WIP"
-    unwip = !git log -n 1 | grep -qci "WIP" && git uncommit
+    unwip = !git log -n 1 | grep -qci "WIP" && git uncommit && git reset HEAD
 
     # delete any branches that have been pushed and then deleted upstream
     cleanup = !git switch main && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
