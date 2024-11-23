@@ -17,7 +17,6 @@ local on_attach = function(_, bufnr)
   map("n", "gd", "<CMD>Glance definitions<CR>", bufopts)
   map("n", "gr", "<CMD>Glance references<CR>", bufopts)
   map("n", "ca", vim.lsp.buf.code_action, bufopts)
-  map("n", "<leader>f", vim.lsp.buf.format, bufopts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -28,14 +27,9 @@ require("mason-lspconfig").setup_handlers({
   function(server_name)
     lspconfig[server_name].setup({
       on_attach = on_attach,
-      capabilities = capabilities
+      capabilities = capabilities,
     })
   end,
-})
-
-lspconfig.ruby_lsp.setup({
-  on_attach = on_attach,
-  capabilities = capabilities
 })
 
 lspconfig.solargraph.setup({
@@ -45,14 +39,6 @@ lspconfig.solargraph.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
-
--- lspconfig.rubocop.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   init_options = {
---     layoutMode = true,
---   },
--- })
 
 lspconfig.lua_ls.setup({
   on_attach = on_attach,
@@ -89,7 +75,6 @@ lspconfig.lua_ls.setup({
   },
 })
 
-
 lspconfig.rust_analyzer.setup({
   on_attach = on_attach,
   settings = {
@@ -113,8 +98,8 @@ lspconfig.rust_analyzer.setup({
 })
 
 local mason_registry = require("mason-registry")
-local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path() ..
-    "/node_modules/@vue/language-server"
+local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+    .. "/node_modules/@vue/language-server"
 
 lspconfig.ts_ls.setup({
   on_attach = function(client, bufnr)
@@ -144,15 +129,14 @@ lspconfig.eslint.setup({
   end,
 })
 
-
 -- lspconfig.volar.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 -- }
-lspconfig.html.setup {
+lspconfig.html.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
 
 -- lspconfig.cssls.setup({
 --   on_attach = on_attach,
@@ -166,7 +150,7 @@ lspconfig.cssmodules_ls.setup({
   filetypes = { "css", "scss", "less", "sass", "vue" },
 })
 
-lspconfig.gopls.setup {
+lspconfig.gopls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-}
+})
