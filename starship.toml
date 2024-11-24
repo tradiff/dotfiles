@@ -1,11 +1,11 @@
-add_newline = true
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
-
-# $line_break\
-# $character\
-# """
+# Blank line between shell prompts
+add_newline = false
 
 # right_format = """\
+
 
 format = """\
 $directory\
@@ -15,10 +15,9 @@ ${custom.wip}\
 $git_status\
 $git_commit\
 $git_state\
-$sudo\
-$status\
+$hg_branch\
+$pijul_channel\
 $fill\
-$cmd_duration\
 $docker_context\
 $package\
 $c\
@@ -32,6 +31,7 @@ $elixir\
 $elm\
 $erlang\
 $fennel\
+$gleam\
 $golang\
 $guix_shell\
 $haskell\
@@ -51,6 +51,7 @@ $php\
 $pulumi\
 $purescript\
 $python\
+$quarto\
 $raku\
 $rlang\
 $red\
@@ -60,6 +61,7 @@ $scala\
 $solidity\
 $swift\
 $terraform\
+$typst\
 $vlang\
 $vagrant\
 $zig\
@@ -73,10 +75,23 @@ $aws\
 $gcloud\
 $openstack\
 $azure\
-
+$nats\
+$direnv\
+$crystal\
+$sudo\
+$cmd_duration\
 $line_break\
+
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
 $character\
 """
+
 [custom.giticon]
 description = "Display icon for remote Git server"
 command = """
@@ -110,10 +125,14 @@ command = "echo \"wip \""
 format = "[$output](yellow bold) "
 when = "git log -1 --pretty=%B | grep -i \"wip\" >/dev/null"
 
+[env_var.TIDELIFT_ENVIRONMENT]
+style = "fg:#f6914d bold"
+format = "[T $env_value]($style) "
+
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+vimcmd_symbol = "[N](bg:blue fg:black bold)"
 
 [fill]
 symbol = '-'
@@ -143,6 +162,10 @@ read_only = " 󰌾"
 read_only_style = "red"
 
 [directory.substitutions]
+
+
+[direnv]
+disabled = false
 
 [status]
 format = " [$symbol$status]($style)"
@@ -293,6 +316,7 @@ symbol = " "
 format = "[$symbol($version )]($style)"
 
 [package]
+disabled = true
 symbol = "󰏗 "
 format = "[$symbol($version )]($style)"
 
