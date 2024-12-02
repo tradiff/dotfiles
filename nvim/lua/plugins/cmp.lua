@@ -109,17 +109,17 @@ return {
 
       formatting = {
         fields = { "kind", "abbr", "menu", },
-        format = function(entry, vim_item)
+        format = function(entry, item)
           -- Kind icons
-          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-          vim_item.menu = ({
+          item.kind = string.format("%s", kind_icons[item.kind])
+          item.menu = ({
             copilot = "[copilot]",
             luasnip = "[snippet]",
             nvim_lsp = "[lsp]",
             path = "[path]",
             buffer = "[buffer]",
           })[entry.source.name]
-          return vim_item
+          return item
         end,
       },
     })

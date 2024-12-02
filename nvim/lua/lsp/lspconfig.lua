@@ -17,10 +17,14 @@ local on_attach = function(_, bufnr)
   map("n", "gd", "<CMD>Glance definitions<CR>", bufopts)
   map("n", "gr", "<CMD>Glance references<CR>", bufopts)
   map("n", "ca", vim.lsp.buf.code_action, bufopts)
+  map("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if has_cmp then
+  capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+end
 
 require("mason-lspconfig").setup_handlers({
   -- Default handler

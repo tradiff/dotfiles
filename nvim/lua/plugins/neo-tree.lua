@@ -55,7 +55,6 @@ return {
             if (filename == nil) then
               filename = selection[1]
             end
-            -- any way to open the file without triggering auto-close event of neo-tree?
             require("neo-tree.sources.filesystem").navigate(state, state.path, filename)
           end)
           return true
@@ -93,7 +92,7 @@ return {
         icon = {
           folder_closed = "",
           folder_open = "",
-          folder_empty = "ﰊ",
+          folder_empty = "󰉖",
           -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
           -- then these will never be used.
           default = "*",
