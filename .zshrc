@@ -10,10 +10,13 @@ report_timing() {
   fi
 }
 
+# Load init
+source "$HOME/zshrc/powerlevel10k.zsh"
+
 local zsh_start_time=$EPOCHREALTIME
 
 # Load the remaining config files
-autorun_files=($(find $HOME/zshrc/ -type f -name '*.zsh' ! -path '*/completions/*'))
+autorun_files=($(find $HOME/zshrc/ -type f -name '*.zsh' ! -name 'powerlevel10k.zsh' ! -path '*/completions/*'))
 
 for file in ${autorun_files}; do
   file_start_time=$EPOCHREALTIME
