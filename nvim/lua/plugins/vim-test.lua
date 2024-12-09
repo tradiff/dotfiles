@@ -13,5 +13,7 @@ return {
 
     vim.keymap.set("n", "<leader>t", ":wa<CR>:TestNearest<CR>", { noremap = true, })
     vim.keymap.set("n", "<leader>l", ":wa<CR>:TestLast<CR>", { noremap = true, })
+
+    vim.g["test#go#gotest#executable"] = "gotestsum --"
   end,
 }
