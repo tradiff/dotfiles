@@ -30,8 +30,18 @@ return {
   },
   init = function()
     require("which-key").add({
-      {
-        "<leader>n", group = "notifications"
-      } })
+      { "<leader>n", group = "notifications" },
+      { "<leader>u", group = "ui" }
+    })
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "VeryLazy",
+      callback = function()
+        Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
+        Snacks.toggle.option("wrap"):map("<leader>uw")
+        Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>un")
+        Snacks.toggle.diagnostics():map("<leader>ud")
+        Snacks.toggle.treesitter():map("<leader>uT")
+      end,
+    })
   end,
 }

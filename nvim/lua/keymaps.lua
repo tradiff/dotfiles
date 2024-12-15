@@ -60,10 +60,3 @@ map("v", "<tab>", ">gv")
 map("v", "<s-tab>", "<gv")
 
 map("n", "U", "<C-R>", "Redo last change")
-
-
-local function toggle_relative_line_numbers()
-  vim.o.relativenumber = not vim.o.relativenumber
-end
-
-map("n", "<leader>rn", toggle_relative_line_numbers, "Toggle relative line numbers")
