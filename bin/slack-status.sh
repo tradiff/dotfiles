@@ -33,11 +33,20 @@ case "$1" in
   afk)
     slack_set_status ":afk:" "afk" "away"
     ;;
+  walk)
+    slack_set_status ":walking-the-dog:" "walking" "away"
+    ;;
+  pair)
+    slack_set_status ":pear:" "pairing" "away"
+    ;;
+  meeting)
+    slack_set_status ":calendar:" "meeting" "away"
+    ;;
   back)
     slack_set_status "" "" "auto"
     ;;
   *)
-    echo "Usage: $0 {lunch|afk|back}"
+    echo "Usage: $0 {lunch|afk|walk|pair|meeting|back}"
     exit 1
     ;;
 esac

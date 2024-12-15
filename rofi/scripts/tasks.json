@@ -30,6 +30,21 @@
     "command": "exec $HOME/bin/slack-status.sh lunch"
   },
   {
+    "name": "slack walk",
+    "icon": "slack",
+    "command": "exec $HOME/bin/slack-status.sh walk"
+  },
+  {
+    "name": "slack pair",
+    "icon": "slack",
+    "command": "exec $HOME/bin/slack-status.sh pair"
+  },
+  {
+    "name": "slack meeting",
+    "icon": "slack",
+    "command": "exec $HOME/bin/slack-status.sh meeting"
+  },
+  {
     "name": "slack back",
     "icon": "slack",
     "command": "exec $HOME/bin/slack-status.sh back"
