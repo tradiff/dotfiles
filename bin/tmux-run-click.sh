@@ -6,7 +6,7 @@ mouse_x="$2"
 mouse_line="$MOUSE_LINE"
 
 # Optional: Set DEBUG to 1 to enable debug logging
-DEBUG=1
+DEBUG=0
 DEBUG_LOG="$HOME/tmux-run-click-output.txt"
 
 log_debug() {
@@ -98,9 +98,9 @@ log_debug "Neovim server name: $server_name"
 
 if [ -n "$line_number" ]; then
   # ensure normal mode, switch to the top-left pane, and open the file
-  remote_cmd="<C-\\><C-N>:wincmd t | e +${line_number} $file_path<CR>"
+  remote_cmd="<esc><cmd>wincmd t<cr><cmd>e +${line_number} $file_path<cr>"
 else
-  remote_cmd="<C-\\><C-N>:wincmd t | e $file_path<CR>"
+  remote_cmd="<esc><cmd>wincmd t<cr><cmd>e $file_path<cr>"
 fi
 
 nvim --server "$server_name" --remote-send "$remote_cmd"
