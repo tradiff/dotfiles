@@ -40,9 +40,19 @@ lspconfig.solargraph.setup({
   init_options = {
     formatting = false,
   },
+  mason = false,
+  cmd = { vim.fn.expand("~/.rbenv/shims/solargraph"), "stdio" },
+  filetypes = { "ruby", "ruby.spec" },
   on_attach = on_attach,
   capabilities = capabilities,
+})
+
+lspconfig.rubocop.setup({
+  mason = false,
+  cmd = { vim.fn.expand("~/.rbenv/shims/rubocop"), "--lsp" },
   filetypes = { "ruby", "ruby.spec" },
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 lspconfig.lua_ls.setup({
