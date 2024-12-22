@@ -8,6 +8,7 @@ return {
       spec = {
         {
           mode = { "n", "v" },
+          { "<leader>c", group = "CopilotChat" },
           { "<leader>f", group = "file/find" },
           { "z",         group = "fold" },
         },
