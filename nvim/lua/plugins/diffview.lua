@@ -34,12 +34,12 @@ return {
   keys = {
     {
       "<leader>d",
-      ":DiffviewToggle<cr>",
+      "<cmd>DiffviewToggle<cr>",
       desc = "Toggle Diffview",
     },
     {
       "<leader>md",
-      ":DiffviewToggle main<cr>",
+      "<cmd>DiffviewToggle main<cr>",
       desc = "Toggle Diffview compare to main",
     },
   }
