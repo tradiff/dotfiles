@@ -1,0 +1,9 @@
+* {
+  font: "sans-serif 12";
+  main-bg: #282a36;
+  main-fg: #f8f8f2;
+  main-br: #6272a4;
+  input-bg: #181825;
+  select-bg: #6272a4;
+  select-fg: #f8f8f2;
+}
