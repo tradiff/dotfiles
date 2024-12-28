@@ -34,12 +34,12 @@
       "brave-browser": "Brave",
       "discord": "Discord",
       "code-url-handler": "VS Code",
-      "jetbrains-idea-ce": "IntelliJ"
+      "jetbrains-idea-ce": "IntelliJ",
+      "com.mitchellh.ghostty": "Ghostty"
     },
     "separate-outputs": true
   },
   "group/group_hardware": {
-    "on-click": "alacritty -e btop",
     "orientation": "horizontal",
     "modules": [
       "temperature#icon",

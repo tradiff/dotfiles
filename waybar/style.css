@@ -100,7 +100,9 @@ inspect classes: `GTK_DEBUG=interactive waybar`
    color: #c9545d;
  }
 
- #window {}
+ #window {
+   font-family: sans-serif
+ }
 
  #temperature.icon {
    color: #f1af5f;
