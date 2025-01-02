@@ -1,7 +1,14 @@
-theme = tokyonight
+theme = dark:tokyonight,light:tokyonight-day
 font-family = monospace
 font-size = 10
 gtk-wide-tabs = false
 gtk-titlebar = false
 background-opacity = 1
 confirm-close-surface = false
+mouse-scroll-multiplier = 0.5
+
+# Disable ligatures as described here:
+# https://ghostty.org/docs/config/reference#font-feature
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
