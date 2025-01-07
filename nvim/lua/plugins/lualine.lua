@@ -17,16 +17,6 @@ return {
       bg = "#2C3043",
     }
 
-    -- change nightlfy theme colors
-    lualine_nightfly.insert.a.bg = new_colors.green
-    lualine_nightfly.command = {
-      a = {
-        gui = "bold",
-        bg = new_colors.yellow,
-        fg = new_colors.black,
-      },
-    }
-
     local function search_result()
       if vim.v.hlsearch == 0 then
         return ""
@@ -66,6 +56,11 @@ return {
       lualine_a = {},
       lualine_b = {
         {
+          "require('arrow.statusline').text_for_statusline_with_icons()",
+          color = { fg = new_colors.blue },
+          padding = { right = 1, left = 1, },
+        },
+        {
           "filetype",
           colored = true,
           icon_only = true,
@@ -79,7 +74,7 @@ return {
           path = 1,
           shorting_target = 40,
           symbols = {
-            modified = "",
+            modified = "[[]]",
             readonly = "[-]",
             unnamed = "[No Name]",
             newfile = "[New]",
