@@ -1,5 +1,9 @@
-source ~/projects/infra/tidelift.sh
-tl setenv awsprod
+file="~/projects/infra/tidelift"
+
+if [[ -f "$file" ]]; then
+  source file
+  tl setenv awsprod
+fi
 
 # returns the number of minutes remaining in the current sso session
 tl-lremaining() {
