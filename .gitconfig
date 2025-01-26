@@ -14,7 +14,10 @@
     l = !git --no-pager log --pretty=minimal -20 --reverse
     conflicts = diff --name-only --diff-filter=U
 
-    main = !git switch main && git pull
+    # utility alias to return the name of the default branch (main, master, etc)
+    defaultbranch = "!sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"'"
+
+    main = "!git checkout $(git defaultbranch) && git pull"
     rs = !git reset --hard && git clean -df
     uncommit = reset --soft HEAD~1
     unadd = reset HEAD
@@ -25,10 +28,10 @@
     unwip = !git log -n 1 | grep -qci "WIP" && git uncommit && git reset HEAD
 
     # delete any branches that have been pushed and then deleted upstream
-    cleanup = !git switch main && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
+    cleanup = !git switch $(git defaultbranch) && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 
     # rebase to main
-    slam = !git fetch origin && git rebase origin/main
+    slam = !git fetch origin && git rebase origin/$(git defaultbranch)
 
     bump = "!f() { if [ -z \"$1\" ]; then echo \"Usage: git bump <start-commit-sha>\"; return 1; fi; GIT_SEQUENCE_EDITOR=: git rebase -i $1^ --exec \"GIT_COMMITTER_DATE='$(date)' git commit --amend --no-edit --date '$(date)'\"; }; f"
 
