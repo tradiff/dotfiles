@@ -1,7 +1,7 @@
-file="~/projects/infra/tidelift"
+file="$HOME/projects/infra/tidelift.sh"
 
 if [[ -f "$file" ]]; then
-  source file
+  source $file
   tl setenv awsprod
 fi
 
