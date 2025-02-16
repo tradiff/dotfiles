@@ -54,3 +54,8 @@
     ~/.config/wlogout: wlogout
     ~/.config/fontconfig: fontconfig
     ~/.config/ghostty: ghostty
+
+- shell:
+    - description: Installing tmux plugins
+      command: "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || exit 0"
+
