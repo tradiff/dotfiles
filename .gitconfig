@@ -4,6 +4,7 @@
 [core]
     editor = code --wait
     excludesFile = ~/.gitignore_global
+	autocrlf = input
 
 [blame]
     date = relative
@@ -63,3 +64,9 @@
 	defaultBranch = main
 [pull]
 	rebase = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
