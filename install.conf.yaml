@@ -54,6 +54,7 @@
     ~/.config/wlogout: wlogout
     ~/.config/fontconfig: fontconfig
     ~/.config/ghostty: ghostty
+    ~/.config/plasma-workspace/env: plasma-workspace/env
 
 - shell:
     - description: Installing tmux plugins
