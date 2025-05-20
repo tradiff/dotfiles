@@ -1,0 +1,31 @@
+auto_sync = false
+filter_mode = "directory"
+search_mode = "skim"
+filter_mode_shell_up_key_binding = "session"
+## possible values: auto, full, compact
+style = "compact"
+
+## the max number of lines. 0 = full
+inline_height = 20
+
+invert = true
+# history_format = "{time}\t{command}\t{duration}"
+history_format = "{time}\t{command}"
+
+enter_accept = false
+
+[stats]
+
+[keys]
+
+[sync]
+# Enable sync v2 by default
+# This ensures that sync v2 is enabled for new installs only
+# In a later release it will become the default across the board
+records = true
+
+[preview]
+
+[daemon]
+
+[search]
