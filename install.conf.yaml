@@ -55,6 +55,7 @@
     ~/.config/fontconfig: fontconfig
     ~/.config/ghostty: ghostty
     ~/.config/plasma-workspace/env: plasma-workspace/env
+    ~/.config/atuin/config.toml: ./atuin/config.toml
 
 - shell:
     - description: Installing tmux plugins
