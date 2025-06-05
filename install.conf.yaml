@@ -55,6 +55,7 @@
     ~/.config/fontconfig: fontconfig
     ~/.config/ghostty: ghostty
     ~/.config/plasma-workspace/env: plasma-workspace/env
+    ~/.psqlrc: .psqlrc
     ~/.config/atuin/config.toml: ./atuin/config.toml
     ~/.local/share/aurorae/themes/catppuccin-travis: aurorae/themes/catppuccin-travis
 
