@@ -2,3 +2,5 @@
 .idea
 .pry_history
 .tool-versions
+.envrc
+.justfile
