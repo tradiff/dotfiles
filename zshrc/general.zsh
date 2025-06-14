@@ -29,8 +29,6 @@ zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 
 autoload -Uz compinit && compinit
 
-zstyle ':completion:*' menu select
-
 autoload -U add-zsh-hook
 add-zsh-hook precmd set-title-from-cwd
 
