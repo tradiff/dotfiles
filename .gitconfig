@@ -1,72 +1,72 @@
 [include]
-    path = .gitconfig_user
+path = .gitconfig_user
 
 [core]
-    editor = code --wait
-    excludesFile = ~/.gitignore_global
-	autocrlf = input
+editor = code --wait
+excludesFile = ~/.gitignore_global
+autocrlf = input
 
 [blame]
-    date = relative
+date = relative
 
 [alias]
-    br = branch
-    sw = switch
-    l = !git --no-pager log --pretty=minimal -20 --reverse
-    conflicts = diff --name-only --diff-filter=U
+br = branch
+sw = switch
+l = !git --no-pager log --pretty=minimal -20 --reverse
+conflicts = diff --name-only --diff-filter=U
 
-    # utility alias to return the name of the default branch (main, master, etc)
-    defaultbranch = "!sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"'"
+# utility alias to return the name of the default branch (main, master, etc)
+defaultbranch = "!sh -c 'git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\"'"
 
-    main = "!git checkout $(git defaultbranch) && git pull"
-    rs = !git reset --hard && git clean -df
-    uncommit = reset --soft HEAD~1
-    unadd = reset HEAD
+main = "!git checkout $(git defaultbranch) && git pull"
+rs = !git reset --hard && git clean -df
+uncommit = reset --soft HEAD~1
+unadd = reset HEAD
 
-    # commit changes (if any) using the "WIP" message
-    wip = !git add . && (git diff --quiet HEAD || git commit -m "WIP")
-    # only uncommit if the last commit was "WIP"
-    unwip = !git log -n 1 | grep -qci "WIP" && git uncommit && git reset HEAD
+# commit changes (if any) using the "WIP" message
+wip = !git add . && (git diff --quiet HEAD || git commit -m "WIP")
+# only uncommit if the last commit was "WIP"
+unwip = !git log -n 1 | grep -qci "WIP" && git uncommit && git reset HEAD
 
-    # delete any branches that have been pushed and then deleted upstream
-    cleanup = !git switch $(git defaultbranch) && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
+# delete any branches that have been pushed and then deleted upstream
+cleanup = !git switch $(git defaultbranch) && git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D
 
-    # rebase to main
-    slam = !git fetch origin && git rebase origin/$(git defaultbranch)
+# rebase to main
+slam = !git fetch origin && git rebase origin/$(git defaultbranch)
 
-    bump = "!f() { if [ -z \"$1\" ]; then echo \"Usage: git bump <start-commit-sha>\"; return 1; fi; GIT_SEQUENCE_EDITOR=: git rebase -i $1^ --exec \"GIT_COMMITTER_DATE='$(date)' git commit --amend --no-edit --date '$(date)'\"; }; f"
+bump = "!f() { if [ -z \"$1\" ]; then echo \"Usage: git bump <start-commit-sha>\"; return 1; fi; GIT_SEQUENCE_EDITOR=: git rebase -i $1^ --exec \"GIT_COMMITTER_DATE='$(date)' git commit --amend --no-edit --date '$(date)'\"; }; f"
 
 [pretty]
-    minimal = format:"%C(#0080ff)%<(12,trunc)%cr %C(#17b062)%<(15,trunc)%aN%C(reset) %s %C(auto)%D %C(#555555)%h"
-    #                                         │                          |            |          |             └─ hash (abbreviated)
-    #                                         │                          │            │          └─ decorations (branch, heads or tags)
-    #                                         │                          │            └─ message 
-    #                                         │                          └─ author name
-    #                                         └─ date (relative)
+minimal = format:"%C(#0080ff)%<(12,trunc)%cr %C(#17b062)%<(15,trunc)%aN%C(reset) %s %C(auto)%D %C(#555555)%h"
+#                                         │                          |            |          |             └─ hash (abbreviated)
+#                                         │                          │            │          └─ decorations (branch, heads or tags)
+#                                         │                          │            └─ message
+#                                         │                          └─ author name
+#                                         └─ date (relative)
 
 [branch]
-  sort = committerdate
+sort = committerdate
 
 [push]
-    default = current
-    autoSetupRemote = true
+default = current
+autoSetupRemote = true
 
 [fetch]
-    prune = true
+prune = true
 
 [mailmap]
-	file = ~/.mailmap
+file = ~/.mailmap
 
 [pager]
-	branch = false
-  diff = false
+branch = false
+diff = false
 [init]
-	defaultBranch = main
+defaultBranch = main
 [pull]
-	rebase = true
+rebase = true
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+helper =
+helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+helper =
+helper = !/usr/bin/gh auth git-credential
