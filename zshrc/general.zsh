@@ -1,5 +1,5 @@
 setopt autocd
-setopt HIST_EXPIRE_DUPS_FIRST 
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
@@ -71,7 +71,7 @@ bindkey "^[[1;5C" forward-word    # ctrl + right
 bindkey "^[[1;5D" backward-word   # ctrl + left
 bindkey "^[" kill-whole-line      # esc
 bindkey "\C-?" backward-delete-char
-bindkey "\C-h" backward-kill-word 
+bindkey "\C-h" backward-kill-word
 bindkey "[3~" delete-char # Delete
 
 # ctrl+z to toggle between open text editors

@@ -2,7 +2,6 @@ file="$HOME/projects/infra/tidelift.sh"
 
 if [[ -f "$file" ]]; then
   source $file
-  tl setenv awsprod
 fi
 
 # returns the number of minutes remaining in the current sso session
