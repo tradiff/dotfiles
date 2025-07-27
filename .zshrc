@@ -16,7 +16,22 @@ source "$HOME/zshrc/powerlevel10k.zsh"
 local zsh_start_time=$EPOCHREALTIME
 
 # Load the remaining config files
-autorun_files=($(find $HOME/zshrc/ -type f -name '*.zsh' ! -name 'powerlevel10k.zsh' ! -path '*/completions/*'))
+autorun_files=(
+  "$HOME/zshrc/fzf.zsh"
+  "$HOME/zshrc/fzf-tab.zsh"
+  "$HOME/zshrc/gcp.zsh"
+  "$HOME/zshrc/general.zsh"
+  "$HOME/zshrc/git.zsh"
+  "$HOME/zshrc/gradle.zsh"
+  "$HOME/zshrc/mise.zsh"
+  "$HOME/zshrc/rails.zsh"
+  "$HOME/zshrc/tl.zsh"
+  "$HOME/zshrc/wezterm.zsh"
+  "$HOME/zshrc/zbell.zsh"
+
+  # needs to come after fzf-tab
+  "$HOME/zshrc/atuin.zsh"
+)
 
 for file in ${autorun_files}; do
   file_start_time=$EPOCHREALTIME
