@@ -4,3 +4,5 @@
 .tool-versions
 .envrc
 .justfile
+.mise.local.toml
+.mise.*.local.toml

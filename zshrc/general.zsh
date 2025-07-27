@@ -47,6 +47,7 @@ alias cls='clear && printf "\e[3J"'
 alias k="kubectl"
 alias zy="sudo zypper"
 alias dnf="sudo dnf"
+alias mr="mise run"
 
 function lc() {
     if [ -d "$1" ]; then

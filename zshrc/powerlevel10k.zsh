@@ -25,3 +25,10 @@ typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=1
 
 # Duration format: 1d 2h 3m 4s.
 typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
+
+
+function prompt_my_mise_env() {
+  [[ -n "${MISE_ENV}" ]] && p10k segment -f '#a8b1ff' -i 'M' -t "${MISE_ENV}"
+}
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(my_mise_env "${POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS[@]}")
