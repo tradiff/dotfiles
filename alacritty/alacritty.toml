@@ -1,7 +1,5 @@
 [general]
-import = [
-  "~/.config/alacritty/tokyonight_night.toml"
-]
+import = ["~/.config/alacritty/tokyonight_night.toml"]
 
 [font]
 size = 10
@@ -31,6 +29,10 @@ TERM = "xterm-256color"
 
 [keyboard]
 bindings = [
-  # { key = "C", mods = "Control", action = "Copy" },
-  { key = "V", mods = "Control", action = "Paste" }
+  # disable the default Alacritty binding so CTRL+SHIFT+C gets passed through
+  { key = "C", mods = "Control|Shift", action = "ReceiveChar" },
+  # alternative copy binding that always works
+  { key = "C", mods = "Control|Alt", action = "Copy" },
+
+  { key = "V", mods = "Control", action = "Paste" },
 ]

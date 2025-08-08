@@ -3,3 +3,4 @@ nvim/sessions/**
 nvim/.luarc.json
 nvim/lazy-lock.json
 kitty/kitty.conf.bak
+zellij/plugins/**
