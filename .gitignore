@@ -4,3 +4,5 @@ nvim/.luarc.json
 nvim/lazy-lock.json
 kitty/kitty.conf.bak
 zellij/plugins/**
+fish/fish_variables
+fish/functions/**

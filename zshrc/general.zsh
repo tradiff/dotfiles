@@ -76,4 +76,4 @@ bindkey "[3~" delete-char # Delete
 # ctrl+z to toggle between open text editors
 bindkey -s '^Z' '^Ufg^M'
 
-source ~/secrets.zsh
+source ~/secrets.sh
