@@ -1,6 +1,7 @@
 -- vim: se ft=psql :
 
-\setenv PAGER 'less -S -X'
+\pset pager always
+\setenv PAGER 'less --ignore-case --LONG-PROMPT --quit-if-one-screen --no-init --chop-long-lines --tabs=4'
 
 \set QUIET 1
 
@@ -11,7 +12,6 @@
 \pset border 2
 \pset linestyle unicode
 
-
 -- By default, NULL is an empty space. This makes NULL values visible.
 \pset null (null)
 
@@ -20,12 +20,13 @@
 -- If a command is run more than once in a row, only store it once in the history.
 \set HISTCONTROL ignoredups
 \set HISTSIZE 2000
-\set PROMPT1 '%[%033[36;1m%]%M %n@%/%R%#%[%033[0m%] '
-\set PROMPT2 '%[%033[36;1m%]...%#%[%033[0m%] '
 -- \set VERBOSITY verbose
 
 \set all 'select * from'
 \set extensions 'select * from pg_available_extensions;'
 \set version 'select version();'
+
+\set PROMPT1 '\n%[%033[1;31m%]➤ %[%033[1;36m%]%n%[%033[34m%]@%[%033[1;36m%]%M:%>%[%033[1;33m%]/%/ %[%033[1;31m%]%x %[%033[K%]%[%033[0m%]\n%[%033[1;33m%]%R%#%[%033[0m%] '
+\set PROMPT2 '%[%033[1;33m%]%R%#%[%033[0m%] '
 
 \set QUIET 0
