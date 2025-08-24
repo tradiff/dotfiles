@@ -16,15 +16,17 @@ return {
     -- Opening is defined here, closing is in the window mappings below.
     map("n", "-", ":Neotree reveal<CR>")
   end,
-  config = function()
-    vim.fn.sign_define("DiagnosticSignError",
-      { text = " ", texthl = "DiagnosticSignError", })
-    vim.fn.sign_define("DiagnosticSignWarn",
-      { text = " ", texthl = "DiagnosticSignWarn", })
-    vim.fn.sign_define("DiagnosticSignInfo",
-      { text = " ", texthl = "DiagnosticSignInfo", })
-    vim.fn.sign_define("DiagnosticSignHint",
-      { text = "", texthl = "DiagnosticSignHint", })
+  config = function ()
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.HINT] = "",
+        },
+      },
+    })
 
     ---Gets the node parent folder recursively
     ---@param tree table to look for nodes
