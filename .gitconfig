@@ -36,6 +36,17 @@ slam = !git fetch origin && git rebase origin/$(git defaultbranch)
 
 bump = "!f() { if [ -z \"$1\" ]; then echo \"Usage: git bump <start-commit-sha>\"; return 1; fi; GIT_SEQUENCE_EDITOR=: git rebase -i $1^ --exec \"GIT_COMMITTER_DATE='$(date)' git commit --amend --no-edit --date '$(date)'\"; }; f"
 
+# Squash all commits on the current branch since it diverged from origin/HEAD into a single commit
+# usage: `git squash-branch -m "my message"
+squash-branch = "!f() { \
+  base=$(git merge-base HEAD origin/HEAD); \
+  git reset --soft \"$base\"; \
+  git commit \"$@\"; \
+}; f"
+
+# commit an empty commit, even if there are staged changes
+empty = "!git commit-tree HEAD^{tree} -m 'empty commit' -p HEAD | xargs git update-ref HEAD"
+
 [pretty]
 minimal = format:"%C(#0080ff)%<(12,trunc)%cr %C(#17b062)%<(15,trunc)%aN%C(reset) %s %C(auto)%D %C(#555555)%h"
 #                                         │                          |            |          |             └─ hash (abbreviated)

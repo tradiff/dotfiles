@@ -6,3 +6,4 @@ kitty/kitty.conf.bak
 zellij/plugins/**
 fish/fish_variables
 fish/functions/**
+fish/fishd.tmp.*

@@ -34,7 +34,8 @@ ButtonMarginTop=2
 
 ButtonMarginLeft=4
 ButtonMarginRight=4
-ExplicitButtonSpacer=10
+ExplicitButtonSpacer=30
+Spacer=30
 PaddingBottom=67
 PaddingLeft=54
 PaddingRight=54

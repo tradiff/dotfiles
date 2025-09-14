@@ -4,7 +4,7 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 CAELNDAR_FILE_TTL=$((15 * 60))  # 15 minutes
 
 # expects to find environment variables CALENDAR_FILE and CALENDAR_NAME
-source ~/secrets.zsh
+source ~/secrets.sh
 
 download_calendar() {
   gcalendar --account tidelift --calendar $CALENDAR_NAME --no-of-days 3 --output json > "$CALENDAR_FILE"
