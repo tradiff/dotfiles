@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Handle mouse clicks in tmux panes to execute commands or interact with terminal content
 
 pane_id="$1"
 mouse_x="$2"

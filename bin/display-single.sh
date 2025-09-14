@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Configure display to use only the laptop screen with optimal scaling
 
 xrandr --dpi 96 \
   --output eDP-1 --primary --mode 3456x2160 --pos 0x0 --rate 60.00 --rotate normal --scale 0.5x0.5 \

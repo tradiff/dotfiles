@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Mirror laptop display to TV/external monitor via DP-2 port
 
 xrandr --dpi 96 \
   --output eDP-1 --primary --mode 1920x1080  --pos 0x0 --rotate normal --scale 1.0x1.0 \

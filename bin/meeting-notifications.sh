@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Monitor calendar events and send desktop notifications for upcoming meetings
 
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 CAELNDAR_FILE_TTL=$((15 * 60))  # 15 minutes

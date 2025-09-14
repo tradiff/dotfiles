@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Update Slack status and presence using the Slack API
 
 # expects to find an environment variable called SLACK_AUTH_HEADER
 # with the value "Bearer xoxp-TOKEN-HERE"

@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Switch between different audio output devices (laptop speakers, headphones, earbuds)
 
 # Function to switch the audio sink
 switch_audio_sink() {

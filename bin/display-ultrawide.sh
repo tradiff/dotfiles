@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Configure dual monitor setup with ultrawide monitor and laptop screen
 
 xrandr --dpi 96 \
   --output eDP-1 --primary --mode 1920x1440 --pos 0x0 --rate 60.00 --rotate normal --scale 1x1 \

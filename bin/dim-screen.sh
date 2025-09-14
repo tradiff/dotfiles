@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Gradually fade screen brightness down to minimum over time
 
 min_brightness=1
 

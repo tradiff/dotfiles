@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Control system volume with desktop notifications and visual feedback
 
 ICON_DIR="$HOME/.config/dunst/icons"
 

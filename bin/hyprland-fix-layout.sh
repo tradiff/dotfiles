@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Reorganize Hyprland workspaces across monitors for optimal layout
 
 monitor_count=$(hyprctl monitors -j | jq length)
 
