@@ -23,7 +23,11 @@ set -gx DIFFPROG "nvim -d"
 ################################################################################
 # Aliases
 ################################################################################
-alias ls='eza -lha -F=always --git --group-directories-first'
+if command -v eza > /dev/null
+    alias ls='eza -lha -F=always --git --group-directories-first'
+else
+    alias ls='ls -lha --color=auto'
+end
 alias cls='clear && printf "\e[3J"'
 abbr --add k 'kubectl'
 abbr --add dnf 'sudo dnf'
