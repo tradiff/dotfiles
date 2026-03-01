@@ -1,4 +1,6 @@
-theme = dark:tokyonight,light:tokyonight-day
+# vim: set ft=toml:
+
+theme = dark:TokyoNight Night,light:TokyoNight Day
 font-family = monospace
 font-size = 10
 gtk-wide-tabs = false
@@ -6,6 +8,11 @@ gtk-titlebar = false
 background-opacity = 1
 confirm-close-surface = false
 mouse-scroll-multiplier = 0.5
+
+cursor-style = bar
+cursor-color = "#CD974C"
+adjust-cursor-thickness = 3
+cursor-style-blink = false
 
 # Disable ligatures as described here:
 # https://ghostty.org/docs/config/reference#font-feature
