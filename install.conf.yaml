@@ -12,40 +12,40 @@
     ~/.config/wezterm: wezterm
     ~/.config/alacritty: alacritty
     ~/.config/karabiner/karabiner.json:
-      if: "[ `uname` = Darwin ]"
+      if: "uname | grep -qx Darwin"
       path: karabiner/karabiner.json
     ~/.config/yabai/yabairc:
-      if: "[ `uname` = Darwin ]"
+      if: "uname | grep -qx Darwin"
       path: yabai/yabairc
     ~/.config/skhd/skhdrc:
-      if: "[ `uname` = Darwin ]"
+      if: "uname | grep -qx Darwin"
       path: skhd/skhdrc
     ~/.config/hypr:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: hypr
     ~/.config/rofi:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: rofi
     ~/.config/dunst:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: dunst
     ~/.config/waybar:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: waybar
     ~/.config/awesome:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: awesome
     ~/.xprofile:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: xorg/.xprofile
     ~/bin:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: bin
     ~/.config/espanso:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: espanso
     ~/.config/wireplumber:
-      if: "[ `uname` = Linux ]"
+      if: "uname | grep -qx Linux"
       path: wireplumber
     ~/.config/zellij:
       path: zellij
@@ -56,7 +56,7 @@
     ~/.config/ghostty: ghostty
     ~/.config/plasma-workspace/env: plasma-workspace/env
     ~/.psqlrc: .psqlrc
-    ~/.config/atuin/config.toml: ./atuin/config.toml
+    ~/.config/atuin/config.toml: atuin/config.toml
     ~/.local/share/aurorae/themes/catppuccin-travis: aurorae/themes/catppuccin-travis
     ~/.config/fish: fish
 
