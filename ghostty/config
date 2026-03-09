@@ -19,3 +19,12 @@ cursor-style-blink = false
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
+
+keybind = clear
+keybind = ctrl+v=paste_from_clipboard
+keybind = unconsumed:ctrl+shift+v=ignore
+keybind = ctrl+shift+,=reload_config
+keybind = ctrl+0=reset_font_size
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+shift+p=toggle_command_palette
