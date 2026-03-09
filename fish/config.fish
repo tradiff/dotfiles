@@ -20,6 +20,7 @@ set -gx WORKER_TIMEOUT 3600
 set -gx EDITOR nvim
 set -gx DIFFPROG "nvim -d"
 set -gx NVIM_APPNAME nvim-lazy
+set -gx NODE_TLS_REJECT_UNAUTHORIZED 0
 
 ################################################################################
 # Aliases
