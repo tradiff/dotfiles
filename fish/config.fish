@@ -3,14 +3,15 @@ set --universal fish_greeting
 ################################################################################
 # PATH configuration
 ################################################################################
-set -gx PATH $PATH $HOME/bin
-set -gx PATH $PATH $HOME/go/bin
-set -gx PATH $PATH $HOME/.local/bin
-set -gx PATH $PATH /usr/sbin
-set -gx PATH $PATH /usr/local/go/bin
-set -gx PATH $PATH /opt/maven/bin
-set -gx PATH $PATH /opt/gradle/gradle-8.9/bin
-set -gx PATH $PATH /home/travis/Applications/idea-IU-243.24978.46/bin
+fish_add_path $HOME/bin
+fish_add_path $HOME/go/bin
+fish_add_path $HOME/.local/bin
+fish_add_path /usr/sbin
+fish_add_path /usr/local/go/bin
+fish_add_path /opt/maven/bin
+fish_add_path /opt/gradle/gradle-8.9/bin
+fish_add_path /home/travis/Applications/idea-IU-243.24978.46/bin
+fish_add_path /home/travis/.opencode/bin
 
 ################################################################################
 # Environment variables
@@ -73,6 +74,11 @@ end
 if status --is-interactive
     atuin init fish  --disable-up-arrow | source
 end
+
+################################################################################
+# User functions
+################################################################################
+set -p fish_function_path ~/.config/fish/functions_user
 
 ################################################################################
 # mise
