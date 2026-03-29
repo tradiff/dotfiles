@@ -7,3 +7,4 @@ zellij/plugins/**
 fish/fish_variables**
 fish/functions/**
 fish/fishd.tmp.*
+bin/tidelift
