@@ -1,22 +1,38 @@
 auto_sync = false
+search_mode = "daemon-fuzzy"
 filter_mode = "directory"
-search_mode = "skim"
 filter_mode_shell_up_key_binding = "session"
+secrets_filter = "false"
+
 ## possible values: auto, full, compact
 style = "compact"
+invert = true
 
 ## the max number of lines. 0 = full
 inline_height = 20
 
-invert = true
-# history_format = "{time}\t{command}\t{duration}"
-history_format = "{time}\t{command}"
 
 enter_accept = false
+ctrl_n_shortcuts = false
+
+[ui]
+columns = ["time", "command"]
+
+[search]
+recency_score_multiplier = 10000.0
+frequency_score_multiplier = 0.0
+frecency_score_multiplier = 10000.0
+filters = ["global", "session", "directory"]
 
 [stats]
 
 [keys]
+
+[preview]
+
+[daemon]
+enabled = true
+autostart = true
 
 [sync]
 # Enable sync v2 by default
@@ -24,8 +40,11 @@ enter_accept = false
 # In a later release it will become the default across the board
 records = true
 
-[preview]
+[ai]
+enabled = false
 
-[daemon]
+[logs]
+level = "info"
 
-[search]
+[keymap.emacs]
+"ctrl-d" = "delete"
