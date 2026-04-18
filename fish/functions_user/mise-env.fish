@@ -30,6 +30,7 @@ function mise-env
                 printf '%s\t%s\n' $file $file
             end
         end | fzf \
+        --popup \
         --ansi \
         --delimiter='\t' \
         # display second value
@@ -40,10 +41,7 @@ function mise-env
         --header="Select mise env • Enter=set • Esc=cancel • unset=disable" \
         --border \
         --border-label=" mise env " \
-        --padding=1 \
-        --margin=5%,10% \
-        --layout=reverse \
-        --height=40%)
+        --layout=reverse)
 
     if test -n "$selected"
         if test "$selected" = "$unset_value"
