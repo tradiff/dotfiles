@@ -233,7 +233,6 @@ plugins {
     configuration location="zellij:configuration"
     plugin-manager location="zellij:plugin-manager"
     about location="zellij:about"
-    zjstatus location="file:~/.config/zellij/plugins/zjstatus.wasm"
 }
 
 // Plugins to load in the background when a new session starts
