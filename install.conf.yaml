@@ -1,6 +1,5 @@
 - link:
     ~/.zshrc: .zshrc
-    ~/zshrc: zshrc
     ~/.p10k.zsh: .p10k.zsh
     ~/.tmux.conf: .tmux.conf
     ~/.config/tmuxinator: tmuxinator
@@ -61,5 +60,5 @@
     ~/.config/fish: fish
 
 - shell:
-    - description: Switch to fish
-      command: "echo $SHELL | grep $(which fish) || sudo chsh -s $(which fish) $(whoami)"
+    - description: Switch to zsh
+      command: "echo $SHELL | grep $(which zsh) || sudo chsh -s $(which zsh) $(whoami)"

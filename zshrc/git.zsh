@@ -1,2 +1,0 @@
-alias g="git"
-export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
