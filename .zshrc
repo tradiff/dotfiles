@@ -220,6 +220,11 @@ function clear-scrollback() {
 zle -N clear-scrollback
 bindkey "^L" clear-scrollback # ctrl+L
 
+function zle-line-init() {
+  NUMERIC=1 zle set-local-history
+}
+zle -N zle-line-init
+
 
 bindkey "^[" kill-whole-line # esc
 bindkey "\C-h" backward-kill-word # ctrl+backspace
