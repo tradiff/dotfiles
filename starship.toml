@@ -112,7 +112,7 @@ style = "red bold dimmed"
 disabled = false
 
 [directory]
-truncation_length = 3
+truncation_length = 2
 truncate_to_repo = true
 fish_style_pwd_dir_length = 0
 use_logical_path = true
@@ -122,15 +122,12 @@ style = "#00AFFF bold"
 disabled = false
 read_only = " 󰌾"
 read_only_style = "red"
-truncation_symbol = "repo:"
+truncation_symbol = "…"
 home_symbol = "~"
 use_os_path_sep = true
 
-[directory.substitutions]
-"~/projects" = "󰲋 "
-
 [fill]
-symbol = '-'
+symbol = '─'
 style = '#333333'
 
 [git_branch]
@@ -195,9 +192,9 @@ worktree_typechanged = '[T$count ](fg:yellow)'
 # changes that `git commit` would include
 # separator + everything else in the repo state.
 format = """\
-$ahead_behind[|](fg:bright-black) \
+$ahead_behind[|](fg:#333333) \
 $index_added$index_modified$renamed$index_deleted$index_typechanged\
-[|](fg:bright-black) $conflicted$worktree_modified$worktree_deleted$worktree_typechanged$untracked$stashed\
+[|](fg:#333333) $conflicted$worktree_modified$worktree_deleted$worktree_typechanged$untracked$stashed\
 """
 use_git_executable = true
 
