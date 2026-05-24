@@ -124,7 +124,8 @@ path=(${^extra_path}(N-/) $path)
 # -----------------------------
 
 if command -v eza >/dev/null 2>&1; then
-    alias ls='eza -lha -F=always --git --group-directories-first'
+    alias ls='eza --long --all --classify=always --group-directories-first'
+    alias tree='eza --tree --level=2 --all --classify=always --group-directories-first'
 else
     alias ls='ls -lha --color=auto'
 fi
