@@ -232,6 +232,23 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd update_git_root
 update_git_root
 
+# Ring the terminal bell after each command finishes.
+typeset -gi _bell_after_command_pending=0
+
+function mark_bell_after_command() {
+  _bell_after_command_pending=1
+}
+
+function ring_bell_after_command() {
+  if (( _bell_after_command_pending )); then
+    printf '\a'
+    _bell_after_command_pending=0
+  fi
+}
+
+add-zsh-hook preexec mark_bell_after_command
+add-zsh-hook precmd ring_bell_after_command
+
 # -----------------------------
 # Keybindings / ZLE widgets
 # -----------------------------
