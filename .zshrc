@@ -214,6 +214,24 @@ if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
+
+# Keep $GIT_ROOT pointed at the current git worktree root.
+function update_git_root() {
+  emulate -L zsh
+
+  local git_root
+  git_root=$(git rev-parse --show-toplevel 2>/dev/null) || git_root=
+
+  if [[ -n "$git_root" ]]; then
+    export GIT_ROOT="$git_root"
+  else
+    unset GIT_ROOT
+  fi
+}
+autoload -U add-zsh-hook
+add-zsh-hook chpwd update_git_root
+update_git_root
+
 # -----------------------------
 # Keybindings / ZLE widgets
 # -----------------------------
