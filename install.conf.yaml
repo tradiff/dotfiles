@@ -1,3 +1,4 @@
+
 - link:
     ~/.zshrc: .zshrc
     ~/.p10k.zsh: .p10k.zsh
@@ -62,3 +63,22 @@
 - shell:
     - description: Switch to zsh
       command: "echo $SHELL | grep $(which zsh) || sudo chsh -s $(which zsh) $(whoami)"
+
+- shell:
+    - description: Install oh-my-zsh
+      command: '[ -d "$HOME/.oh-my-zsh" ] || git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"'
+
+- create:
+    - ~/.oh-my-zsh/custom/plugins
+
+- shell:
+    - description: Install zsh-syntax-highlighting plugin
+      command: '[ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"'
+    - description: Install zsh-autosuggestions plugin
+      command: '[ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ] || git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"'
+    - description: Install zsh-completions plugin
+      command: '[ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-completions" ] || git clone https://github.com/zsh-users/zsh-completions.git "$HOME/.oh-my-zsh/custom/plugins/zsh-completions"'
+    - description: Install gradle-completion plugin
+      command: '[ -d "$HOME/.oh-my-zsh/custom/plugins/gradle-completion" ] || git clone https://github.com/gradle/gradle-completion.git "$HOME/.oh-my-zsh/custom/plugins/gradle-completion"'
+    - description: Install fzf-tab plugin
+      command: '[ -d "$HOME/.oh-my-zsh/custom/plugins/fzf-tab" ] || git clone https://github.com/Aloxaf/fzf-tab "$HOME/.oh-my-zsh/custom/plugins/fzf-tab"'
