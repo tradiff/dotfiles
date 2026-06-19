@@ -1,4 +1,4 @@
-# vim: set ft=toml:
+# vim: set ft=conf:
 
 theme = dark:TokyoNight Night,light:TokyoNight Day
 font-family = monospace
