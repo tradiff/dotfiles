@@ -16,10 +16,13 @@ ensure_history_file() {
 refresh_data() {
   local tmp_annotations_json
   local tmp_emoji_test_txt
+  local variation_selector
 
   printf 'Downloading CLDR annotations...\n'
   tmp_annotations_json="$(mktemp)"
   tmp_emoji_test_txt="$(mktemp)"
+  # U+FE0F forces emoji presentation; CLDR often omits it from annotation keys.
+  variation_selector=$'\uFE0F'
   trap 'rm -f "$tmp_annotations_json" "$tmp_emoji_test_txt"' RETURN
 
   curl -fsSL "$ANNOTATIONS_URL" -o "$tmp_annotations_json"
@@ -39,7 +42,25 @@ refresh_data() {
         (.value.default | join(" "))
       ]
     | join(" ")
-  ' "$tmp_annotations_json" | awk 'NR==FNR { emoji[$0]=1; next } { if ($1 in emoji) print }' <(
+  ' "$tmp_annotations_json" | awk -v vs="$variation_selector" '
+    function normalized(value) {
+      gsub(vs, "", value)
+      return value
+    }
+
+    NR == FNR {
+      emoji[normalized($0)] = $0
+      next
+    }
+
+    {
+      key = normalized($1)
+      if (key in emoji) {
+        $1 = emoji[key]
+        print
+      }
+    }
+  ' <(
     sed -n 's/^.*; fully-qualified[[:space:]]*# \([^ ]\+\) .*$/\1/p' "$tmp_emoji_test_txt"
   ) - > "$EMOJI_TXT"
 
