@@ -44,8 +44,8 @@ squash-branch = "!f() { \
   git commit \"$@\"; \
 }; f"
 
-# commit an empty commit, even if there are staged changes
-empty = "!git commit-tree HEAD^{tree} -m 'empty commit' -p HEAD | xargs git update-ref HEAD"
+# create an empty commit, even if there are staged changes
+empty = commit --only --allow-empty -m 'empty commit'
 
 [pretty]
 minimal = format:"%C(#0080ff)%<(12,trunc)%cr %C(#17b062)%<(15,trunc)%aN%C(reset) %s %C(auto)%D %C(#555555)%h"
