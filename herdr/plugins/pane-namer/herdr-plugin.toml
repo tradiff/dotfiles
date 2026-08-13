@@ -1,0 +1,15 @@
+id = "travis.pane-namer"
+name = "Pane Namer"
+version = "0.1.1"
+min_herdr_version = "0.8.0"
+description = "Names panes from their terminal titles."
+platforms = ["linux"]
+
+[[actions]]
+id = "rename-panes"
+title = "Rename panes"
+contexts = ["global", "workspace", "tab", "pane"]
+command = ["python3", "rename_panes.py"]
+
+[[startup]]
+command = ["python3", "rename_panes.py", "--watch"]
