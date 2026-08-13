@@ -1,0 +1,64 @@
+onboarding = false
+
+[terminal]
+# Tabs and panes inherit the focused pane's directory.
+# New workspaces use the explicit command below to start from $HOME.
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+space"
+
+# workspaces
+new_workspace = "" # see alt+shift+n below
+previous_workspace = "alt+up"
+next_workspace = "alt+down"
+
+# tabs
+new_tab = ["alt+n", "prefix+c"]
+previous_tab = ["alt+left", "prefix+p"]
+next_tab = ["alt+right", "prefix+n"]
+
+# panes
+split_horizontal = ["prefix+s"]
+split_vertical = "prefix+v"
+zoom = ["alt+f", "prefix+z"]
+focus_pane_left = ["alt+h", "prefix+h"]
+focus_pane_down = ["alt+j", "prefix+j"]
+focus_pane_up = ["alt+k", "prefix+k"]
+focus_pane_right = ["alt+l", "prefix+l"]
+
+reload_config = ["ctrl+shift+r", "prefix+shift+r"]
+
+[[keys.command]]
+key = "alt+shift+n"
+type = "shell"
+command = 'herdr workspace create --cwd "$HOME" --focus'
+
+[ui]
+agent_panel_sort = "spaces"
+copy_on_select = false
+right_click_passthrough_modifier = "ctrl"
+
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace", "tab"]]
+
+[ui.sidebar.spaces]
+row_gap = 0
+rows = [["state_icon", "workspace"], ["branch", "git_status"]]
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "system"
+
+[ui.toast.clipboard]
+enabled = true
+position = "top-right"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[theme.custom]
+accent = "#a6e3a1"

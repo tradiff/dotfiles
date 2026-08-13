@@ -59,6 +59,7 @@
     ~/.config/atuin/config.toml: atuin/config.toml
     ~/.local/share/aurorae/themes/catppuccin-travis: aurorae/themes/catppuccin-travis
     ~/.config/fish: fish
+    ~/.config/herdr/config.toml: herdr/config.toml
 
 - shell:
     - description: Switch to zsh
