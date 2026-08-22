@@ -17,6 +17,8 @@ next_workspace = "alt+down"
 new_tab = ["alt+n", "prefix+c"]
 previous_tab = ["alt+left", "prefix+p"]
 next_tab = ["alt+right", "prefix+n"]
+move_tab_previous = "alt+shift+left"
+move_tab_next = "alt+shift+right"
 
 # panes
 split_horizontal = ["prefix+s"]
@@ -38,6 +40,7 @@ command = 'herdr workspace create --cwd "$HOME" --focus'
 agent_panel_sort = "spaces"
 copy_on_select = false
 right_click_passthrough_modifier = "ctrl"
+window_title = "herdr: {pane}"
 
 [ui.sidebar.agents]
 rows = [["state_icon", "workspace", "tab"]]
@@ -62,3 +65,4 @@ auto_switch = false
 
 [theme.custom]
 accent = "#a6e3a1"
+sidebar_bg = "#181825"
