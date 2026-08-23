@@ -90,13 +90,18 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=242'
 # Environment
 # -----------------------------
 
+# Show the current directory in an idle terminal's title.
+export ZSH_THEME_TERM_TITLE_IDLE="%~"
+
 export MAVEN_HOME=/opt/maven
+export OPENCODE_DB=opencode.db
 
 # Preferred editor
 export EDITOR="nvim"
 export DIFFPROG="nvim -d"
 export NVIM_APPNAME="nvim-lazy"
 
+source "$HOME/secrets.sh"
 
 # -----------------------------
 # PATH
@@ -166,7 +171,6 @@ function mise-env() {
         printf "%s\t%s\n" "$f" "$f"
       done
     } | fzf \
-      --popup \
       --ansi \
       --delimiter="\t" \
       --with-nth=2 \
@@ -212,6 +216,19 @@ fi
 
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
+fi
+
+if command -v atuin >/dev/null 2>&1; then
+  source <(atuin gen-completions --shell zsh)
+fi
+if command -v herdr >/dev/null 2>&1; then
+  source <(herdr completion zsh)
+fi
+if command -v tailscale >/dev/null 2>&1; then
+  source <(tailscale completion zsh)
+fi
+if command -v pup >/dev/null 2>&1; then
+  source <(pup completions zsh)
 fi
 
 
