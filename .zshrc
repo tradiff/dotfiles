@@ -227,9 +227,6 @@ fi
 if command -v tailscale >/dev/null 2>&1; then
   source <(tailscale completion zsh)
 fi
-if command -v pup >/dev/null 2>&1; then
-  source <(pup completions zsh)
-fi
 
 
 # Keep $GIT_ROOT pointed at the current git worktree root.
