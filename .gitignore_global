@@ -8,3 +8,6 @@
 .mise.*.local.toml
 .claude/settings.local.json
 .claude/worktrees
+.agents/plans
+.agents/scratch
+AGENTS.override.md
