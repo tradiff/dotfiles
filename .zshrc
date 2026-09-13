@@ -96,6 +96,8 @@ export ZSH_THEME_TERM_TITLE_IDLE="%~"
 export MAVEN_HOME=/opt/maven
 export OPENCODE_DB=opencode.db
 
+export SUDO_ASKPASS=$HOME/bin/sudo-askpass.sh
+
 # Preferred editor
 export EDITOR="nvim"
 export DIFFPROG="nvim -d"
