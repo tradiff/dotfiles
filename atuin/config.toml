@@ -3,6 +3,7 @@ search_mode = "daemon-fuzzy"
 filter_mode = "directory"
 filter_mode_shell_up_key_binding = "session"
 secrets_filter = "false"
+workspaces = "true"
 
 ## possible values: auto, full, compact
 style = "compact"
@@ -22,7 +23,7 @@ columns = ["time", "command"]
 recency_score_multiplier = 10000.0
 frequency_score_multiplier = 0.0
 frecency_score_multiplier = 10000.0
-filters = ["global", "session", "directory"]
+filters = ["directory", "workspace", "global"]
 
 [stats]
 
