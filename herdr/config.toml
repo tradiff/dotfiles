@@ -32,9 +32,23 @@ focus_pane_right = ["alt+l", "prefix+l"]
 reload_config = ["ctrl+shift+r", "prefix+shift+r"]
 
 [[keys.command]]
+key = "alt+p"
+type = "plugin_action"
+command = "vjeantet.palette.open"
+description = "Command palette"
+
+[[keys.command]]
 key = "alt+shift+n"
 type = "shell"
 command = 'herdr workspace create --cwd "$HOME" --focus'
+description = "new workspace"
+
+[[keys.command]]
+key = "alt+w"
+type = "plugin_action"
+command = "worktrunk.open-with-remotes"
+description = "Worktree: switch / create from local or remote branches"
+
 
 [ui]
 agent_panel_sort = "spaces"
@@ -47,8 +61,8 @@ pane_borders = "always"
 rows = [["state_icon", "workspace", "tab"]]
 
 [ui.sidebar.spaces]
-row_gap = 0
-rows = [["state_icon", "workspace"], ["branch", "git_status"]]
+row_gap = 1
+rows = [["state_icon", "workspace", "git_status"]]
 
 [ui.sound]
 enabled = false
@@ -67,3 +81,4 @@ auto_switch = false
 [theme.custom]
 accent = "#a6e3a1"
 sidebar_bg = "#181825"
+active_row_bg = "#45475a"

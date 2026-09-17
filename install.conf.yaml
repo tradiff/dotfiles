@@ -57,6 +57,7 @@
     ~/.config/plasma-workspace/env: plasma-workspace/env
     ~/.psqlrc: .psqlrc
     ~/.config/atuin/config.toml: atuin/config.toml
+    ~/.config/worktrunk/config.toml: worktrunk/config.toml
     ~/.local/share/aurorae/themes/catppuccin-travis: aurorae/themes/catppuccin-travis
     ~/.config/fish: fish
     ~/.config/herdr/config.toml: herdr/config.toml

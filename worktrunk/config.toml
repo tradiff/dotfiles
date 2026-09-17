@@ -1,0 +1,8 @@
+# Docs: https://worktrunk.dev/config/
+
+worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+
+pre-start = [
+  { copy = "wt step copy-ignored" },
+  { trust = "mise trust -y" },
+]

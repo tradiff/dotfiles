@@ -5,6 +5,7 @@ path = .gitconfig_user
 editor = code --wait
 excludesFile = ~/.gitignore_global
 autocrlf = input
+fsmonitor = true
 
 [blame]
 date = relative
@@ -47,6 +48,17 @@ squash-branch = "!f() { \
 # create an empty commit, even if there are staged changes
 empty = commit --only --allow-empty -m 'empty commit'
 
+# clone into <repository>/.git for bare-worktree workflows
+clonebare = "!f() { \
+  [ \"$#\" -eq 1 ] || { printf '%s\\n' 'Usage: git clonebare <repository-url>' >&2; return 2; }; \
+  url=$1; \
+  repo=${url%/}; \
+  repo=${repo##*/}; \
+  repo=${repo%.git}; \
+  [ -n \"$repo\" ] || { printf '%s\\n' 'Unable to derive repository name' >&2; return 2; }; \
+  mkdir -- \"$repo\" && git clone --bare \"$url\" \"$repo/.git\"; \
+}; f"
+
 [pretty]
 minimal = format:"%C(#0080ff)%<(12,trunc)%cr %C(#17b062)%<(15,trunc)%aN%C(reset) %s %C(auto)%D %C(#555555)%h"
 #                                         │                          |            |          |             └─ hash (abbreviated)
@@ -85,3 +97,5 @@ helper = !/usr/bin/gh auth git-credential
 	format = ssh
 [commit]
 	gpgsign = true
+[checkout]
+	defaultRemote = origin
