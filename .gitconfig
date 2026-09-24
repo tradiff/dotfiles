@@ -49,14 +49,19 @@ squash-branch = "!f() { \
 empty = commit --only --allow-empty -m 'empty commit'
 
 # clone into <repository>/.git for bare-worktree workflows
-clonebare = "!f() { \
-  [ \"$#\" -eq 1 ] || { printf '%s\\n' 'Usage: git clonebare <repository-url>' >&2; return 2; }; \
+cloneworktree = "!f() { \
+  [ \"$#\" -eq 1 ] || { printf '%s\\n' 'Usage: git cloneworktree <repository-url>' >&2; return 2; }; \
   url=$1; \
   repo=${url%/}; \
   repo=${repo##*/}; \
   repo=${repo%.git}; \
   [ -n \"$repo\" ] || { printf '%s\\n' 'Unable to derive repository name' >&2; return 2; }; \
-  mkdir -- \"$repo\" && git clone --bare \"$url\" \"$repo/.git\"; \
+  mkdir -- \"$repo\" && git clone --bare \"$url\" \"$repo/.git\" && \
+    git -C \"$repo/.git\" config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*' && \
+    git -C \"$repo/.git\" fetch origin && \
+    branch=$(git -C \"$repo/.git\" symbolic-ref --short HEAD) && \
+    git -C \"$repo/.git\" branch --set-upstream-to=\"origin/$branch\" \"$branch\" && \
+    git -C \"$repo/.git\" worktree add \"../$branch\" \"$branch\"; \
 }; f"
 
 [pretty]
