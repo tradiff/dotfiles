@@ -22,10 +22,27 @@ def run(*args):
     ).stdout
 
 
+def directory_title(pane):
+    cwd = pane.get("foreground_cwd") or pane.get("cwd")
+    home = os.path.expanduser("~")
+    if cwd == home:
+        return "~"
+    if cwd and cwd.startswith(f"{home}/"):
+        return f"~{cwd[len(home):]}"
+    return cwd
+
+
+def pane_title(pane):
+    # Shell titles transiently become the foreground command. Agent titles are intentional.
+    if not pane.get("agent"):
+        return directory_title(pane)
+    return (pane.get("terminal_title_stripped") or "").strip()
+
+
 def renames(panes):
     for pane in panes:
         pane_id = pane.get("pane_id")
-        title = (pane.get("terminal_title_stripped") or "").strip()
+        title = pane_title(pane)
         if pane_id and title and pane.get("label") != title:
             yield pane_id, title
 
@@ -71,11 +88,13 @@ def watch():
 
 
 def check():
+    home = os.path.expanduser("~")
+    assert directory_title({"cwd": "/tmp", "foreground_cwd": f"{home}/project"}) == "~/project"
     assert list(renames([
-        {"pane_id": "w1:p1", "terminal_title_stripped": "Build docs"},
-        {"pane_id": "w1:p2", "terminal_title_stripped": "Up to date", "label": "Up to date"},
+        {"pane_id": "w1:p1", "cwd": "/tmp", "terminal_title_stripped": "Build docs"},
+        {"pane_id": "w1:p2", "agent": "opencode", "terminal_title_stripped": "Up to date", "label": "Up to date"},
         {"pane_id": "w1:p3"},
-    ])) == [("w1:p1", "Build docs")]
+    ])) == [("w1:p1", "/tmp")]
 
 
 if __name__ == "__main__":
