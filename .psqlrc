@@ -1,11 +1,18 @@
 -- vim: se ft=psql :
 
 \pset pager always
-\setenv PAGER 'less --ignore-case --LONG-PROMPT --quit-if-one-screen --no-init --chop-long-lines --tabs=4'
+-- Prefer pspg, but retain the previous less setup when it is unavailable.
+\set has_pspg `command -v pspg >/dev/null 2>&1 && printf true || printf false`
+\if :has_pspg
+\setenv PSQL_PAGER 'pspg --no-mouse --ignore-case --quit-if-one-screen --reprint-on-exit --less-status-bar --style=0'
+\else
+\setenv PSQL_PAGER 'less --ignore-case --LONG-PROMPT --quit-if-one-screen --no-init --chop-long-lines --tabs=4'
+\endif
+\unset has_pspg
 
 \set QUIET 1
 
---\timing
+\timing
 --\x auto
 
 -- table frame borders
