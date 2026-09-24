@@ -1,10 +1,9 @@
 # vim: set ft=conf:
 
-theme = dark:TokyoNight Night,light:TokyoNight Day
+theme = dark:TokyoNight Night, light:TokyoNight Day
 font-family = monospace
 font-size = 10
 gtk-wide-tabs = false
-gtk-titlebar = false
 background-opacity = 1
 confirm-close-surface = false
 mouse-scroll-multiplier = 0.5
