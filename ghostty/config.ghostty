@@ -20,7 +20,7 @@ font-feature = -liga
 font-feature = -dlig
 
 keybind = clear
-keybind = ctrl+v=paste_from_clipboard
+keybind = performable:ctrl+v=paste_from_clipboard
 keybind = unconsumed:ctrl+shift+v=ignore
 keybind = ctrl+shift+,=reload_config
 keybind = ctrl+0=reset_font_size
