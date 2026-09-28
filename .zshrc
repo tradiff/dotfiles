@@ -230,6 +230,9 @@ fi
 if command -v tailscale >/dev/null 2>&1; then
   source <(tailscale completion zsh)
 fi
+if command -v wt >/dev/null 2>&1; then
+  eval "$(wt config shell init zsh)";
+fi
 
 
 # Keep $GIT_ROOT pointed at the current git worktree root.
