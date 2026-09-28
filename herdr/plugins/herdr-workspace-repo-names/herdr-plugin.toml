@@ -1,0 +1,15 @@
+id = "travis.workspace-repo-names"
+name = "herdr-workspace-repo-names"
+version = "0.1.0"
+min_herdr_version = "0.9.1"
+description = "Name automatic workspaces after their Git repository, including linked worktrees."
+platforms = ["linux"]
+
+[[startup]]
+command = ["python3", "workspace_repo_names.py", "--watch"]
+
+[[actions]]
+id = "start"
+title = "Start workspace repo naming"
+contexts = ["global"]
+command = ["python3", "workspace_repo_names.py", "--watch"]
