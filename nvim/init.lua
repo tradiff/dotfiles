@@ -1,6 +1,0 @@
-require("log-cleanup")
-require("options")
-require("lazy-plugins")
-require("lsp.lspconfig")
-require("keymaps")
-require("commands")
