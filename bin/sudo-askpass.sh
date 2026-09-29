@@ -4,10 +4,12 @@
 
 prompt=${1:-Password:}
 
-# Suppress this useless warning about a deprecated setting that Plasma keeps regenerating.
-exec 2> >(grep -Fv 'Using GtkSettings:gtk-application-prefer-dark-theme with libadwaita is unsupported.' >&2)
+# Suppress known GTK settings warnings from Zenity.
+exec 2> >(grep -Fv \
+  -e 'Using GtkSettings:gtk-application-prefer-dark-theme with libadwaita is unsupported.' \
+  -e 'Unknown key gtk-modules in ' >&2)
 
-exec /usr/sbin/zenity \
+exec zenity \
   --entry \
   --hide-text \
   --no-markup \
