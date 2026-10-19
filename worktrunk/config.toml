@@ -1,6 +1,6 @@
 # Docs: https://worktrunk.dev/config/
 
-worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+worktree-path = ".worktrees/{{ branch | sanitize }}"
 
 pre-start = [
   { copy = "wt step copy-ignored" },
