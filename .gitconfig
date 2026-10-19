@@ -1,6 +1,10 @@
 [include]
 path = .gitconfig_user
 
+[user]
+name = Travis Collins
+email = travistx@gmail.com
+
 [core]
 editor = code --wait
 excludesFile = ~/.gitignore_global
